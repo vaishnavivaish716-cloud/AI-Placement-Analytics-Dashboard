@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Placement Analytics Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <header>
+        <h1>📊 AI Placement Analytics Dashboard</h1>
+        <p>AI-Based Placement Prediction & Student Performance Analysis</p>
+    </header>
+
+    <!-- Cards Section -->
+    <section class="cards">
+        <div class="card">
+            <h3>Total Students</h3>
+            <h2 id="totalStudents">0</h2>
+        </div>
+
+        <div class="card">
+            <h3>Placed Students</h3>
+            <h2 id="placedStudents">0</h2>
+        </div>
+
+        <div class="card">
+            <h3>Average CGPA</h3>
+            <h2 id="averageCGPA">0.00</h2><div class="card">
+    <h3>Not Placed</h3>
+    <h2 id="notPlacedStudents">0</h2>
+</div>
+
+<div class="card">
+    <h3>Placement Rate</h3>
+    <h2 id="placementRate">0%</h2>
+</div>
+
+        </div>
+    </section>
+
+    <!-- Chart Section -->
+    <section class="chart-section">
+        <h2>Placement Overview</h2>
+        <canvas id="placementChart"></canvas>
+    </section>
+
+    <!-- Table Section -->
+    <section class="table-section">
+        <h2>Student Records</h2><input
+    type="text"
+    id="searchInput"
+    placeholder="Search Student Name..."
+    onkeyup="searchStudent()">
+
+        <div class="table-wrapper">
+            <table id="studentTable">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>CGPA</th>
+                        <th>Aptitude</th>
+                        <th>Communication</th>
+                        <th>Programming</th>
+                        <th>Projects</th>
+                        <th>Certifications</th>
+                        <th>Placement</th>
+                    </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                    <!-- JS la data inga varum -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

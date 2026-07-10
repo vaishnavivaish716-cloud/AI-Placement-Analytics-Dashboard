@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>Admin Dashboard</h1>
+
+<button onclick="logout()">Logout</button>
+
+</header>
+
+<section class="prediction">
+
+<h2>Add Student</h2>
+
+<input type="text" id="studentName" placeholder="Student Name">
+
+<input type="text" id="department" placeholder="Department">
+
+<input type="number" id="cgpaValue" placeholder="CGPA">
+
+<button onclick="addStudent()">
+Add Student
+</button>
+
+</section>
+
+<section>
+
+<table id="adminTable">
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+<th>Department</th>
+<th>CGPA</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="studentBody">
+
+</tbody>
+
+</table>
+
+</section>
+<h2>Add Company</h2>
+
+<input type="text" id="companyName" placeholder="Company Name">
+
+<input type="number" id="package" placeholder="Package (LPA)">
+
+<button onclick="addCompany()">
+Add Company
+</button>
+
+<br><br>
+
+<table id="companyTable">
+
+<thead>
+<tr>
+<th>Company</th>
+<th>Package</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="companyBody">
+
+</tbody>
+
+</table>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Placement Analytics Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body onload="loadDashboard()">
+
+<header class="header">
+
+<h1>🎓 AI Placement Analytics Dashboard</h1>
+
+<div class="header-right">
+<button onclick="toggleDarkMode()">🌙 Dark Mode</button>
+<button onclick="logout()">Logout</button>
+
+<p id="dateTime"></p>
+<h3 id="welcomeMessage"></h3>
+</div>
+
+</header>
+
+<section class="cards">
+
+<div class="card">
+<h2>Total Students</h2>
+<h1 id="totalStudents">0</h1>
+</div>
+
+<div class="card">
+<h2>Placed Students</h2>
+<h1 id="placedStudents">0</h1>
+</div>
+
+<div class="card">
+<h2>Not Placed</h2>
+<h1 id="notPlaced">0</h1>
+</div>
+
+<div class="card">
+<h2>Placement Rate</h2>
+<h1 id="placementRate">0%</h1>
+</div>
+
+<div class="card">
+<h2>Total Companies</h2>
+<h1 id="totalCompanies">35</h1>
+</div>
+
+<div class="card">
+<h2>Offers Given</h2>
+<h1 id="totalOffers">420</h1>
+</div>
+<div class="card">
+    <h2>AI Eligible</h2>
+    <h1 id="eligibleStudents">0</h1>
+</div>
+</section>
+<section class="prediction">
+
+    <h2>🤖 AI Placement Insights</h2>
+
+    <div id="aiInsights"></div>
+
+</section>
+<section class="prediction">
+
+    <h2>🏢 Company Eligibility Checker</h2>
+
+    <input type="number" id="companyCGPA" placeholder="Minimum CGPA">
+
+    <button onclick="checkEligibility()">Check Eligible Students</button>
+
+    <h3 id="eligibilityResult"></h3>
+
+</section>
+
+<section class="charts">
+
+<div class="chart-box">
+
+<h2>Department Placement Rate</h2>
+
+<canvas id="placementChart"></canvas>
+
+</div>
+
+<div class="chart-box">
+
+<h2>Company-wise Hiring</h2>
+
+<canvas id="companyChart"></canvas>
+
+</div>
+
+</section>
+
+<section class="prediction">
+
+<h2>AI Placement Prediction</h2>
+
+<input type="number" id="cgpa" placeholder="CGPA">
+
+<input type="number" id="aptitude" placeholder="Aptitude Score">
+
+<input type="number" id="communication" placeholder="Communication Score">
+
+<button onclick="predictPlacement()">
+
+Predict Placement
+
+</button>
+
+<h3 id="prediction"></h3>
+
+</section>
+
+<section class="prediction">
+
+<h2>Student Performance Analysis</h2>
+
+<input type="number" id="attendance"
+
+placeholder="Attendance (%)">
+
+<input type="number" id="skillScore"
+
+placeholder="Skill Score (0-100)">
+
+<button onclick="analyzePerformance()">
+
+Analyze
+
+</button>
+
+<h3 id="performanceResult"></h3>
+
+</section>
+
+<section class="prediction">
+
+<h2>AI Career Suggestion</h2>
+
+<select id="careerOption">
+
+<option value="software">Software Development</option>
+
+<option value="data">Data Science</option>
+
+<option value="cloud">Cloud Computing</option>
+
+<option value="cyber">Cyber Security</option>
+
+<option value="ai">Artificial Intelligence</option>
+
+</select>
+
+<button onclick="careerSuggestion()">
+
+Get Suggestion
+
+</button>
+
+<h3 id="careerResult"></h3>
+
+</section>
+<!-- Resume Ranking -->
+
+<section class="prediction">
+
+    <h2>AI Resume Ranking</h2>
+
+    <input type="text" id="resumeName" placeholder="Student Name">
+
+    <input type="number" id="resumeCGPA" placeholder="CGPA">
+
+    <input type="number" id="resumeSkill" placeholder="Skill Score (0-100)">
+
+    <button onclick="rankResume()">Check Rank</button>
+
+    <h3 id="resumeResult"></h3>
+    <div class="progress">
+    <div id="resumeProgress" class="progress-bar">0%</div>
+</div>
+
+</section>
+<section class="prediction">
+
+    <h2>AI Resume Match %</h2>
+
+    <input type="number" id="matchCGPA" placeholder="Student CGPA">
+
+    <input type="number" id="matchSkill" placeholder="Skill Score (0-100)">
+
+    <button onclick="calculateMatch()">Check Match</button>
+
+    <h3 id="matchResult"></h3>
+
+<div class="progress">
+    <div id="matchProgress" class="progress-bar">0%</div>
+</div>
+</section>
+<section class="prediction">
+
+    <h2>🎤 AI Interview Readiness</h2>
+
+    <input type="number" id="interviewCGPA" placeholder="CGPA">
+
+    <input type="number" id="interviewSkill" placeholder="Skill Score">
+
+    <input type="number" id="interviewCommunication" placeholder="Communication Score">
+
+    <button onclick="checkInterviewReadiness()">Check Readiness</button>
+
+    <h3 id="interviewResult"></h3>
+
+</section>
+<section class="prediction">
+
+    <h2>📊 AI Skill Gap Analysis</h2>
+
+    <input type="number" id="gapSkill" placeholder="Skill Score">
+
+    <input type="number" id="gapCommunication" placeholder="Communication Score">
+
+    <button onclick="analyzeSkillGap()">Analyze</button>
+
+    <h3 id="gapResult"></h3>
+</section>
+
+<section class="prediction">
+
+    <h2>🏢 AI Company Recommendation</h2>
+
+    <input type="number" id="companyRecCGPA" placeholder="CGPA">
+
+    <input type="number" id="companyRecSkill" placeholder="Skill Score">
+
+    <button onclick="recommendCompany()">Recommend Company</button>
+
+    <h3 id="companyRecommendation"></h3>
+
+</section>
+<section class="prediction">
+
+    <h2>🏢 Company Eligibility Filter</h2>
+
+    <select id="companyFilter">
+        <option value="TCS">TCS</option>
+        <option value="Infosys">Infosys</option>
+        <option value="Accenture">Accenture</option>
+        <option value="Wipro">Wipro</option>
+    </select>
+
+    <button onclick="filterEligibleStudents()">
+        Show Eligible Students
+    </button>
+
+    <h3 id="eligibleList"></h3>
+
+</section>
+
+
+
+<section class="prediction">
+
+<h2>🏆 Top 5 Eligible Students</h2>
+
+<button onclick="showTopStudents()">Show Top 5</button>
+
+<table id="topStudentsTable">
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>CGPA</th>
+            <th>AI Score</th>
+        </tr>
+    </thead>
+
+    <tbody id="topStudentsBody">
+
+    </tbody>
+
+</table>
+
+</section>
+<label><b>Filter by Department:</b></label>
+
+<select id="deptFilter" onchange="filterDepartment()">
+    <option value="All">All</option>
+    <option value="CSE">CSE</option>
+    <option value="IT">IT</option>
+    <option value="ECE">ECE</option>
+    <option value="EEE">EEE</option>
+    <option value="AIDS">AIDS</option>
+</select>
+<!-- Student Management -->
+
+<section class="student-section">
+
+    <h2>Student Management</h2>
+
+    <table id="studentsTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>CGPA</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody id="studentsTableBody">
+        </tbody>
+    </table>
+
+</section>
+
+<section class="prediction">
+
+    <h2>👨‍🎓 Student Profile</h2>
+
+    <select id="studentProfile" onchange="showStudentProfile()">
+        <option value="">Select Student</option>
+        <option value="Arun">Arun</option>
+        <option value="Priya">Priya</option>
+        <option value="Rahul">Rahul</option>
+        <option value="Kavin">Kavin</option>
+        <option value="Divya">Divya</option>
+    </select>
+
+    <div id="studentProfileCard"></div>
+
+</section>
+
+<!-- Company Management -->
+
+<section class="company-section">
+
+    <h2>Company Management</h2>
+
+    <input type="text" id="companyName" placeholder="Company Name">
+
+    <input type="number" id="package" placeholder="Package (LPA)">
+
+    <button onclick="addCompany()">Add Company</button>
+
+    <table id="companyTable">
+
+        <thead>
+
+            <tr>
+
+                <th>Company Name</th>
+
+                <th>Package (LPA)</th>
+
+                <th>Action</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="companyBody">
+
+        </tbody>
+
+    </table>
+
+</section>
+<section class="cards">
+    <div class="card">
+
+        <h2>🏆 AI Top Candidates</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+
+            <tbody id="topCandidatesBody">
+            </tbody>
+
+        </table>
+
+    </div>
+</section>
+<section class="student-section">
+  <h2>Student List</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>CGPA</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <tbody id="studentTableBody">
+      <!-- JS data will come here -->
+    </tbody>
+  </table>
+</section>
+
+<!-- Search -->
+
+<section class="search">
+
+<input type="text"
+
+id="search"
+
+placeholder="Search Student..."
+
+onkeyup="searchStudent()">
+
+
+<select id="departmentFilter"
+
+onchange="filterDepartment()">
+
+<option value="All">All Departments</option>
+
+<option value="CSE">CSE</option>
+
+<option value="IT">IT</option>
+
+<option value="ECE">ECE</option>
+
+<option value="EEE">EEE</option>
+
+<option value="AIDS">AIDS</option>
+
+</select>
+
+</section>
+<section class="company-section">
+
+<h2>Add Student</h2>
+
+<input type="text" id="studentName" placeholder="Student Name">
+
+<select id="department">
+    <option value="CSE">CSE</option>
+    <option value="IT">IT</option>
+    <option value="ECE">ECE</option>
+    <option value="EEE">EEE</option>
+    <option value="AIDS">AIDS</option>
+</select>
+
+<input type="number" id="cgpaValue" placeholder="CGPA">
+
+<button onclick="addStudent()">Add Student</button>
+
+</section>
+
+
+<!-- Student Table -->
+
+<section>
+
+<table id="studentTable">
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Name</th>
+
+<th>Department</th>
+
+<th>CGPA</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody id="studentBody">
+
+<tr>
+
+<td>1</td>
+
+<td>Arun</td>
+
+<td>CSE</td>
+
+<td>8.9</td>
+
+<td>Placed</td>
+
+</tr>
+
+<tr>
+
+<td>2</td>
+
+<td>Priya</td>
+
+<td>IT</td>
+
+<td>8.1</td>
+
+<td>Placed</td>
+
+</tr>
+
+<tr>
+
+<td>3</td>
+
+<td>Rahul</td>
+
+<td>ECE</td>
+
+<td>7.4</td>
+
+<td>Not Placed</td>
+
+</tr>
+
+<tr>
+
+<td>4</td>
+
+<td>Kavin</td>
+
+<td>AIDS</td>
+
+<td>9.2</td>
+
+<td>Placed</td>
+
+</tr>
+
+<tr>
+
+<td>5</td>
+
+<td>Divya</td>
+
+<td>EEE</td>
+
+<td>6.9</td>
+
+<td>Not Placed</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+<!-- Placement Progress -->
+
+<section>
+
+    <h2>Placement Progress</h2>
+
+    <div class="progress">
+
+        <div id="placementBar"></div>
+
+    </div>
+
+</section>
+
+<!-- Top Recruiter Cards -->
+
+<section class="cards">
+
+    <div class="card">
+        <h2>Top Recruiter</h2>
+        <h3 id="topCompany">TCS</h3>
+    </div>
+
+    <div class="card">
+        <h2>Highest Package</h2>
+        <h3 id="highestPackage">12 LPA</h3>
+    </div>
+
+    <div class="card">
+        <h2>Average Package</h2>
+        <h3 id="averagePackage">5.8 LPA</h3>
+    </div>
+
+</section>
+
+<!-- Download Reports -->
+
+<section class="cards">
+
+    <div class="card">
+
+        <h2>Download Reports</h2>
+
+        <button onclick="downloadPDF()">📄 Download PDF</button>
+
+        <br><br>
+
+        <button onclick="downloadExcel()">📊 Download Excel</button>
+
+    </div>
+
+</section>
+
+<!-- Upload CSV -->
+
+<section class="prediction">
+
+    <h2>Upload Student CSV</h2>
+
+    <input type="file" id="csvFile" accept=".csv">
+
+    <button onclick="uploadCSV()">
+        Upload CSV
+    </button>
+
+</section>
+
+<!-- Notifications -->
+
+<section class="cards">
+
+    <div class="card">
+
+        <h2>Notifications</h2>
+
+        <ul id="notificationList">
+
+            <li>Amazon Campus Drive - 10 July</li>
+            <li>TCS Interview Results Published</li>
+            <li>Infosys Registration Open</li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
+<script src="charts.js"></script>
+
+</body>
+</html>

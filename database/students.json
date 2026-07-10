@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "Arun Kumar",
+    "department": "CSE",
+    "cgpa": 8.9,
+    "skills": ["Java", "Python", "SQL"],
+    "company": "TCS",
+    "package": 4.5,
+    "status": "Placed"
+  },
+  {
+    "id": 2,
+    "name": "Priya",
+    "department": "IT",
+    "cgpa": 9.2,
+    "skills": ["JavaScript", "React", "Node.js"],
+    "company": "Infosys",
+    "package": 5.2,
+    "status": "Placed"
+  },
+  {
+    "id": 3,
+    "name": "Rahul",
+    "department": "CSE",
+    "cgpa": 7.8,
+    "skills": ["C", "Python"],
+    "company": "-",
+    "package": 0,
+    "status": "Not Placed"
+  },
+  {
+    "id": 4,
+    "name": "Divya",
+    "department": "ECE",
+    "cgpa": 8.5,
+    "skills": ["Java", "SQL", "HTML"],
+    "company": "Wipro",
+    "package": 3.8,
+    "status": "Placed"
+  },
+  {
+    "id": 5,
+    "name": "Karthik",
+    "department": "EEE",
+    "cgpa": 7.4,
+    "skills": ["Python", "Power BI"],
+    "company": "-",
+    "package": 0,
+    "status": "Not Placed"
+  }
+]

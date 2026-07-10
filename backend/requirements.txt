@@ -1,0 +1,10 @@
+Flask
+Flask-cors
+Pandas
+numpy
+scikit-learn
+joblib
+Flask==3.1.0
+Flask-Cors==6.0.0
+
+
