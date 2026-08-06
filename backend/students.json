@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Divya",
+        "department": "ECE",
+        "cgpa": 8.9,
+        "skills": "Java,SQL,HTML",
+        "status": "Placed",
+        "id": 3
+    },
+    {
+        "name": "Ice",
+        "department": "CS",
+        "cgpa": 9.3,
+        "skills": "PYTHON",
+        "status": "Placed",
+        "id": 3
+    },
+    {
+        "name": "Arun",
+        "department": "CSE",
+        "cgpa": 9.1,
+        "skills": "Java,SQL,HTML",
+        "status": "Placed",
+        "id": 3
+    },
+    {
+        "name": "Anu",
+        "department": "IT",
+        "cgpa": 7.2,
+        "skills": "PYTHON",
+        "status": "Not Placed",
+        "id": 4
+    }
+]

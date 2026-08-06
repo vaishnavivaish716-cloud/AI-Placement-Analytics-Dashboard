@@ -1,0 +1,20 @@
+[
+    {
+        "company": "TCS",
+        "role": "Software Developer",
+        "package": 4.2,
+        "studentsPlaced": 120
+    },
+    {
+        "company": "Infosys",
+        "role": "System Engineer",
+        "package": 5.0,
+        "studentsPlaced": 95
+    },
+    {
+        "company": "Wipro",
+        "role": "Data Analyst",
+        "package": 4.0,
+        "studentsPlaced": 45
+    }
+]

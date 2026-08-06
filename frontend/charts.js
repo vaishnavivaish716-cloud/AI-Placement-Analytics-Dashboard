@@ -1,250 +1,400 @@
-/* ==========================================================
-   AI Placement Analytics Dashboard - charts.js
-   Handles: Department Placement Rate (Bar), Company-wise
-   Hiring (Pie), and overall Placement Rate progress bar.
-   Uses Chart.js (load via CDN in dashboard.html before this file)
-   ========================================================== */
+// =======================================
+// AI Placement Analytics Dashboard
+// charts.js
+// =======================================
 
-// ---- Config: change this if your backend runs elsewhere ----
-const API_BASE_URL = "http://127.0.0.1:5000/api"; // update to your Flask/Node backend
 
-// ---- Fallback dummy data (used if backend is not connected yet) ----
-const DUMMY_STUDENTS = [
-  { id: 1, name: "Arun", department: "CSE", cgpa: 8.9, status: "Placed" },
-  { id: 2, name: "Priya", department: "IT", cgpa: 8.1, status: "Placed" },
-  { id: 3, name: "Rahul", department: "ECE", cgpa: 7.4, status: "Not Placed" },
-  { id: 4, name: "Kavin", department: "AIDS", cgpa: 9.2, status: "Placed" },
-  { id: 5, name: "Divya", department: "EEE", cgpa: 6.9, status: "Not Placed" }
-];
+// ================================
+// Company Wise Hiring Chart
+// ================================
 
-const DUMMY_COMPANIES = [
-  { company: "TCS", studentsPlaced: 120, package: 4.2 },
-  { company: "Infosys", studentsPlaced: 95, package: 5.0 },
-  { company: "Accenture", studentsPlaced: 60, package: 6.5 },
-  { company: "Wipro", studentsPlaced: 45, package: 4.0 }
-];
+function loadCompanyChart(){
 
-// Keep chart instances so we can destroy & redraw (important for dark mode / refresh)
-let deptChartInstance = null;
-let companyPieChartInstance = null;
+    fetch("http://127.0.0.1:5000/companies")
 
-/* ---------------- Data fetch helpers ---------------- */
+    .then(response => response.json())
 
-async function fetchStudents() {
-  try {
-    const res = await fetch(`${API_BASE_URL}/students`);
-    if (!res.ok) throw new Error("Backend not reachable");
-    return await res.json();
-  } catch (err) {
-    console.warn("Using dummy student data:", err.message);
-    return DUMMY_STUDENTS;
-  }
+    .then(data => {
+
+
+        let companyNames = [];
+
+        let studentsCount = [];
+
+
+
+        data.forEach(company => {
+
+
+            companyNames.push(
+                company.company
+            );
+
+
+            studentsCount.push(
+                company.studentsPlaced
+            );
+
+
+        });
+
+
+
+        const canvas =
+        document.getElementById(
+            "companyChart"
+        );
+
+
+
+        if(!canvas) return;
+
+
+
+        new Chart(canvas, {
+
+
+            type:"bar",
+
+
+            data:{
+
+
+                labels: companyNames,
+
+
+                datasets:[{
+
+                    label:
+                    "Students Placed",
+
+
+                    data:
+                    studentsCount
+
+
+                }]
+
+
+            },
+
+
+            options:{
+
+
+                responsive:true,
+
+
+                scales:{
+
+
+                    y:{
+
+
+                        beginAtZero:true
+
+
+                    }
+
+
+                }
+
+
+            }
+
+
+
+        });
+
+
+
+    })
+
+
+    .catch(error=>{
+
+        console.log(
+            "Company Chart Error:",
+            error
+        );
+
+    });
+
+
+
 }
 
-async function fetchCompanies() {
-  try {
-    const res = await fetch(`${API_BASE_URL}/companies`);
-    if (!res.ok) throw new Error("Backend not reachable");
-    return await res.json();
-  } catch (err) {
-    console.warn("Using dummy company data:", err.message);
-    return DUMMY_COMPANIES;
-  }
-}
 
-/* ---------------- Data processing helpers ---------------- */
 
-function computeDepartmentPlacementRate(students) {
-  const deptMap = {}; // { CSE: {placed:0,total:0}, ... }
 
-  students.forEach((s) => {
-    if (!deptMap[s.department]) {
-      deptMap[s.department] = { placed: 0, total: 0 };
-    }
-    deptMap[s.department].total += 1;
-    if (s.status === "Placed") {
-      deptMap[s.department].placed += 1;
-    }
-  });
+// ================================
+// Department Placement Rate Chart
+// ================================
 
-  const labels = Object.keys(deptMap);
-  const rates = labels.map((dept) => {
-    const { placed, total } = deptMap[dept];
-    return total > 0 ? Math.round((placed / total) * 100) : 0;
-  });
 
-  return { labels, rates };
-}
+function loadDepartmentChart(){
 
-function computeOverallPlacementStats(students) {
-  const total = students.length;
-  const placed = students.filter((s) => s.status === "Placed").length;
-  const notPlaced = total - placed;
-  const rate = total > 0 ? Math.round((placed / total) * 100) : 0;
-  return { total, placed, notPlaced, rate };
-}
 
-/* ---------------- Chart renderers ---------------- */
+    fetch(
+        "http://127.0.0.1:5000/api/students"
+    )
 
-function renderDepartmentBarChart(labels, rates) {
-  const canvas = document.getElementById("placementChart");
-  if (!canvas) return; // element not on this page
 
-  const ctx = canvas.getContext("2d");
+    .then(response=>response.json())
 
-  if (deptChartInstance) {
-    deptChartInstance.destroy();
-  }
 
-  deptChartInstance = new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: labels,
-      datasets: [
-        {
-          label: "Placement %",
-          data: rates,
-          backgroundColor: "rgba(54, 162, 235, 0.6)",
-          borderColor: "rgba(54, 162, 235, 1)",
-          borderRadius: 6,
-          borderWidth: 1
+    .then(data=>{
+
+
+        let departments = {};
+
+
+
+        data.forEach(student=>{
+
+
+            let dept =
+            student.department;
+
+
+
+            if(!departments[dept]){
+
+
+                departments[dept]={
+
+                    total:0,
+
+                    placed:0
+
+                };
+
+
+            }
+
+
+
+            departments[dept].total++;
+
+
+
+            if(student.status==="Placed"){
+
+
+                departments[dept].placed++;
+
+
+            }
+
+
+
+        });
+
+
+
+
+        let labels=[];
+
+        let rates=[];
+
+
+
+
+        for(let dept in departments){
+
+
+            labels.push(dept);
+
+
+
+            let rate =
+            (
+                departments[dept].placed /
+                departments[dept].total
+            ) * 100;
+
+
+
+            rates.push(
+                Math.round(rate)
+            );
+
+
+
         }
-      ]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: { display: true, position: "top" },
-        tooltip: {
-          callbacks: {
-            label: (ctx) => `${ctx.parsed.y}% placed`
-          }
-        }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          max: 100,
-          ticks: { callback: (val) => val + "%" }
-        }
-      }
-    }
-  });
+
+
+
+
+        const canvas =
+        document.getElementById(
+            "departmentChart"
+        );
+
+
+
+        if(!canvas) return;
+
+
+
+
+        new Chart(canvas,{
+
+
+            type:"bar",
+
+
+            data:{
+
+
+                labels:labels,
+
+
+                datasets:[{
+
+                    label:
+                    "Placement Rate %",
+
+
+                    data:rates
+
+
+                }]
+
+
+            },
+
+
+            options:{
+
+
+                responsive:true,
+
+
+                scales:{
+
+
+                    y:{
+
+
+                        beginAtZero:true,
+
+
+                        max:100
+
+
+                    }
+
+
+                }
+
+
+            }
+
+
+
+        });
+
+
+
+    })
+
+
+    .catch(error=>{
+
+
+        console.log(
+            "Department Chart Error:",
+            error
+        );
+
+
+    });
+
+
+
 }
+function loadPlacementChart(){
 
-function renderCompanyPieChart(companies) {
-  const canvas = document.getElementById("companyChart");
-  if (!canvas) return;
+    fetch("http://127.0.0.1:5000/api/students")
 
-  const ctx = canvas.getContext("2d");
+    .then(response => response.json())
 
-  const labels = companies.map((c) => c.company);
-  const data = companies.map((c) => c.studentsPlaced);
+    .then(data => {
 
-  const colors = [
-    "#36A2EB", "#FF6384", "#FF9F40", "#FFCE56",
-    "#4BC0C0", "#9966FF", "#C9CBCF"
-  ];
+        let placed = 0;
+        let notPlaced = 0;
 
-  if (companyPieChartInstance) {
-    companyPieChartInstance.destroy();
-  }
 
-  companyPieChartInstance = new Chart(ctx, {
-    type: "pie",
-    data: {
-      labels: labels,
-      datasets: [
-        {
-          label: "Students Placed",
-          data: data,
-          backgroundColor: colors.slice(0, labels.length),
-          borderWidth: 1
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: { position: "top" },
-        tooltip: {
-          callbacks: {
-            label: (ctx) => `${ctx.label}: ${ctx.parsed} students`
-          }
-        }
-      }
-    }
-  });
+        data.forEach(student => {
+
+
+            if(student.status === "Placed"){
+
+                placed++;
+
+            }
+            else{
+
+                notPlaced++;
+
+            }
+
+
+        });
+
+
+
+        const ctx =
+        document.getElementById(
+            "placementChart"
+        );
+
+
+        if(!ctx) return;
+
+
+
+        new Chart(ctx, {
+
+            type:"pie",
+
+            data:{
+
+
+                labels:[
+                    "Placed",
+                    "Not Placed"
+                ],
+
+
+                datasets:[{
+
+                    label:"Students",
+
+                    data:[
+                        placed,
+                        notPlaced
+                    ]
+
+                }]
+
+            },
+
+
+            options:{
+
+                responsive:true
+
+            }
+
+        });
+
+
+
+    })
+
+    .catch(error => console.log(error));
+
+
 }
-
-function renderPlacementRateBar(rate) {
-  const bar = document.getElementById("placementBar");
-  if (!bar) return;
-
-  bar.style.width = rate + "%";
-  bar.style.height = "100%";
-  bar.style.background = "#4CAF50";
-  bar.style.borderRadius = "8px";
-  bar.style.transition = "width 0.6s ease-in-out";
-  bar.textContent = rate + "%";
-}
-
-function renderSummaryCards(stats) {
-  const totalEl = document.getElementById("totalStudents");
-  const placedEl = document.getElementById("placedStudents");
-  const notPlacedEl = document.getElementById("notPlaced");
-  const rateEl = document.getElementById("placementRate");
-
-  if (totalEl) totalEl.textContent = stats.total;
-  if (placedEl) placedEl.textContent = stats.placed;
-  if (notPlacedEl) notPlacedEl.textContent = stats.notPlaced;
-  if (rateEl) rateEl.textContent = stats.rate + "%";
-}
-
-function renderTopRecruiterAndPackages(companies) {
-  if (!companies.length) return;
-
-  const topRecruiter = companies.reduce((a, b) =>
-    a.studentsPlaced > b.studentsPlaced ? a : b
-  );
-  const highestPackage = Math.max(...companies.map((c) => c.package));
-  const avgPackage = (
-    companies.reduce((sum, c) => sum + c.package, 0) / companies.length
-  ).toFixed(1);
-
-  const topEl = document.getElementById("topCompany");
-  const highEl = document.getElementById("highestPackage");
-  const avgEl = document.getElementById("averagePackage");
-
-  if (topEl) topEl.textContent = topRecruiter.company;
-  if (highEl) highEl.textContent = highestPackage + " LPA";
-  if (avgEl) avgEl.textContent = avgPackage + " LPA";
-}
-
-/* ---------------- Main init ---------------- */
-
-async function initDashboardCharts() {
-  const [students, companies] = await Promise.all([
-    fetchStudents(),
-    fetchCompanies()
-  ]);
-
-  // Summary cards + overall placement rate
-  const stats = computeOverallPlacementStats(students);
-  renderSummaryCards(stats);
-  renderPlacementRateBar(stats.rate);
-
-  // Department bar chart
-  const { labels, rates } = computeDepartmentPlacementRate(students);
-  renderDepartmentBarChart(labels, rates);
-
-  // Company pie chart + recruiter/package cards
-  renderCompanyPieChart(companies);
-  renderTopRecruiterAndPackages(companies);
-}
-
-// Run once DOM is ready
-document.addEventListener("DOMContentLoaded", initDashboardCharts);
-
-// Expose for manual refresh (e.g. after "Add Company" button click)
-window.refreshDashboardCharts = initDashboardCharts;

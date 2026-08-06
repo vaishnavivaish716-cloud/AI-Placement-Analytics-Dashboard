@@ -3,24 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Login</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Login - AI Placement Analytics Dashboard</title>
+
+    <link rel="stylesheet" href="login.css">
 </head>
+
 <body>
 
-<div class="login-container">
-    <h2>AI Placement Analytics</h2>
+<div class="login-box">
 
-    <input type="text" id="username" placeholder="Username">
+    <h1>🎓 AI Placement Analytics Dashboard</h1>
 
-    <input type="password" id="password" placeholder="Password">
+    <h2>Admin Login</h2>
+    <select id="userType">
 
-    <button onclick="login()">Login</button>
+    <option value="admin">Admin</option>
 
-    <p id="message"></p>
+    <option value="student">Student</option>
+
+</select>
+
+    <input
+        type="text"
+        id="username"
+        placeholder="Username">
+
+    <input
+        type="password"
+        id="password"
+        placeholder="Password">
+
+    <button onclick="login()">
+        Login
+    </button>
+
+    <p id="error"></p>
+
 </div>
 
-<script src="script.js"></script>
+<script src="login.js"></script>
 
 </body>
 </html>

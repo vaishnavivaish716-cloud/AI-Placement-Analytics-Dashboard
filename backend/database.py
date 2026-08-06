@@ -32,6 +32,8 @@ def create_tables():
         company_name TEXT,
         role TEXT,
         package TEXT
+        students_placed INTEGER
+
     )
     """)
 
@@ -67,3 +69,24 @@ def get_students():
     conn.close()
 
     return students
+# Get all companies
+def get_companies():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    companies = cursor.execute(
+        "SELECT * FROM companies"
+    ).fetchall()
+
+    conn.close()
+
+    return companies
+from pymongo import MongoClient
+
+client = MongoClient("mongodb://localhost:27017/")
+db = client["placement_db"]
+
+students = db["students"]
+companies = db["companies"]
+
+
