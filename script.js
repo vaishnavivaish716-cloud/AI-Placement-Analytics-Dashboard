@@ -2144,6 +2144,7 @@ function deletePlacementDrive(index){
 // =======================================
 
 function applyForDrive(company, role){
+    alert("Button clicked");
 
     let applications =
         JSON.parse(
@@ -2352,6 +2353,7 @@ function updateApplicationSummary(){
         JSON.parse(
             localStorage.getItem("myApplications")
         ) || [];
+        console.log(applications);
 
     let applied = 0;
     let shortlisted = 0;
@@ -2403,6 +2405,7 @@ function updateApplicationStatus(index, newStatus){
         "myApplications",
         JSON.stringify(applications)
     );
+    showMyApplications();
     updateApplicationSummary();
 
     alert("Application Status Updated Successfully");
