@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Placement Analytics Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- JavaScript Files -->
+    <script src="charts.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body onload="
+    showWelcomeMessage();
+    loadDashboard();
+    getCompanies();
+    loadCompanyChart();
+    loadDepartmentChart();
+    loadPlacementChart();
+    showPlacementDrives();
+    showMyApplications();
+    updateApplicationSummary();
+    showStudentNotifications();
+">
+ 
+ 
+
+<header class="header">
+
+    <div class="logo-section">
+
+        <h1>🎓 AI Placement Analytics Dashboard</h1>
+         
+
+
+        <p>Kavery Arts and Science College</p>
+
+    </div>
+
+
+    <div class="header-right">
+
+        <span id="dateTime"></span>
+
+        <button onclick="toggleDarkMode()">
+            🌙 Dark Mode
+        </button>
+
+
+        <button onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
+</header>
+<div class="welcome-box">
+    <h2 id="welcomeMessage">Welcome Admin</h2>
+</div>
+<div class="admin-profile">
+
+    <h3>👤 Admin Profile</h3>
+
+    <p><b>Name:</b> <span id="adminName">Admin</span></p>
+
+    <p><b>College:</b> Kavery Arts and Science College</p>
+
+    <p><b>Role:</b> Placement Officer</p>
+
+</div>
+
+<section class="cards">
+
+    <div class="card">
+        <h2>Total Students</h2>
+        <h1 id="totalStudents">0</h1>
+    </div>
+
+    <div class="card">
+        <h2>Placed Students</h2>
+        <h1 id="placedStudents">0</h1>
+    </div>
+
+    <div class="card">
+        <h2>Not Placed</h2>
+        <h1 id="notPlaced">0</h1>
+    </div>
+
+    <div class="card">
+        <h2>Placement Rate</h2>
+        <h1 id="placementRate">0%</h1>
+    </div>
+
+</section>
+
+
+<section class="students"
+id="studentSection">
+
+    <h2>Student Details</h2>
+    <div class="add-student-form">
+
+    <input type="text" id="studentName" placeholder="Student Name">
+
+    <input type="text" id="studentDepartment" placeholder="Department">
+
+    <input type="number" id="studentCGPA" placeholder="CGPA" step="0.1">
+
+    <input type="text" id="studentSkills" placeholder="Skills">
+
+    <select id="studentStatus">
+        <option value="Placed">Placed</option>
+        <option value="Not Placed">Not Placed</option>
+    </select>
+
+    <button id="studentBtn" onclick="addStudent()">
+        Add Student
+    </button>
+
+</div>
+    <div class="student-filters">
+
+    <input
+        type="text"
+        id="studentSearch"
+        placeholder="Search student name..."
+        onkeyup="filterStudents()"
+    >
+
+    <select id="departmentFilter" onchange="filterStudents()">
+        <option value="All">All Departments</option>
+        <option value="CSE">CSE</option>
+        <option value="IT">IT</option>
+        <option value="ECE">ECE</option>
+        <option value="AIDS">AIDS</option>
+        <option value="EEE">EEE</option>
+    </select>
+
+    <select id="statusFilter" onchange="filterStudents()">
+        <option value="All">All Status</option>
+        <option value="Placed">Placed</option>
+        <option value="Not Placed">Not Placed</option>
+    </select>
+
+</div>
+
+    <table id="studentTable">
+
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Department</th>
+                <th>CGPA</th>
+                <th>Skills</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="studentTableBody">
+        </tbody>
+
+    </table>
+
+</section>
+
+<!-- Company Details -->
+
+<section class="companies"
+id="companySection">
+
+    <h2>Company Details</h2>
+
+    <table id="companyTable">
+
+        <thead>
+            <tr>
+                <th>Company</th>
+                <th>Role </th>
+                <th>Package (LPA)</th>
+                <th>Students Placed</th>
+                <th>Action</th>
+                
+            </tr>
+        </thead>
+
+        <tbody id="companyTableBody">
+
+        </tbody>
+
+    </table>
+
+</section>
+<!-- =========================
+     Placement Drives
+========================= -->
+<section class="application-section">
+
+    <h2>📄 My Applications</h2>
+    <div class="application-summary">
+
+    <div class="summary-card">
+        <h3>Applied</h3>
+        <p id="appliedCount">0</p>
+    </div>
+
+    <div class="summary-card">
+        <h3>Shortlisted</h3>
+        <p id="shortlistedCount">0</p>
+    </div>
+
+    <div class="summary-card">
+        <h3>Interview</h3>
+        <p id="interviewCount">0</p>
+    </div>
+
+    <div class="summary-card">
+        <h3>Selected</h3>
+        <p id="selectedCount">0</p>
+    </div>
+
+    <div class="summary-card">
+        <h3>Rejected</h3>
+        <p id="rejectedCount">0</p>
+    </div>
+
+</div>
+<div class="application-filters">
+
+    <input 
+        type="text" 
+        id="applicationSearch"
+        placeholder="🔍 Search company or role..."
+        onkeyup="filterApplications()"
+    >
+
+    <select id="applicationStatusFilter" onchange="filterApplications()">
+        <option value="All">All Status</option>
+        <option value="Applied">Applied</option>
+        <option value="Shortlisted">Shortlisted</option>
+        <option value="Interview">Interview</option>
+        <option value="Selected">Selected</option>
+        <option value="Rejected">Rejected</option>
+    </select>
+
+</div>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Company</th>
+                <th>Role</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody id="applicationTableBody"></tbody>
+
+    </table>
+
+</section>
+
+
+
+
+    <!-- Import Students from CSV -->
+
+<section class="csv-import-section">
+
+    <h2>📥 Import Students from CSV</h2>
+
+    <input
+        type="file"
+        id="csvFile"
+        accept=".csv"
+    >
+
+    <button onclick="importStudentsCSV()">
+        📤 Import Students
+    </button>
+
+    <p id="csvStatus"></p>
+
+</section>
+
+<section class="company-form-section">
+
+    <h2>➕ Add New Company</h2>
+
+    <input 
+    type="text"
+    id="companyName"
+    placeholder="Company Name">
+
+    <input 
+    type="text"
+    id="companyRole"
+    placeholder="Job Role">
+
+    <input 
+    type="text"
+    id="package"
+    placeholder="Package (LPA)">
+
+    <input 
+    type="number"
+    id="studentsPlaced"
+    placeholder="Students Placed">
+
+    <button onclick="addCompany()">
+        Add Company
+    </button>
+    </section>
+
+
+
+
+<!-- Charts -->
+
+<section class="charts">
+
+    <div class="chart-box">
+
+        <h2>Company-wise Hiring</h2>
+
+        <canvas id="companyChart"></canvas>
+
+    </div>
+
+    <div class="chart-box">
+
+        <h2>Department Placement Rate</h2>
+
+        <canvas id="departmentChart"></canvas>
+
+    </div>
+
+
+<div class="chart-box">
+
+    <h2>Placement Status</h2>
+
+    <canvas id="placementChart"></canvas>
+
+</div>
+</section>
+
+
+
+<!-- AI Prediction -->
+ <!-- AI Placement Insights -->
+
+<section class="insights-section">
+
+    <h2>🤖 AI Placement Insights</h2>
+
+    <div id="aiInsights">
+
+        <p>📊 Analyzing placement data...</p>
+
+    </div>
+
+</section>
+
+<div class="student-dashboard-grid">
+
+    <!-- Student My Profile -->
+    <section id="studentProfileSection">
+
+        <h2>👤 My Profile</h2>
+
+        <div id="myProfile">
+            <p>Loading profile...</p>
+        </div>
+
+    </section>
+
+
+    <!-- Student Performance Analysis -->
+    <section id="studentPerformanceSection">
+
+        <h2>📊 My Performance Analysis</h2>
+
+        <div id="studentPerformance">
+            <p>Loading performance...</p>
+        </div>
+
+    </section>
+
+
+    <!-- Student Notifications -->
+    <section id="studentNotificationSection">
+
+        <h2>🔔 My Notifications</h2>
+
+        <div id="studentNotifications">
+            <p>Loading notifications...</p>
+        </div>
+
+    </section>
+
+
+    <!-- Top Performing Students -->
+    <section class="top-students-section">
+
+        <h2>🏆 Top Performing Students</h2>
+
+        <div id="topStudents">
+            <p>📊 Loading top students...</p>
+        </div>
+
+    </section>
+
+</div>
+<!-- Department Statistics -->
+
+<section class="department-stats-section">
+
+    <h2>📊 Department-wise Statistics</h2>
+
+    <table id="departmentStatsTable">
+
+        <thead>
+
+            <tr>
+                <th>Department</th>
+                <th>Total Students</th>
+                <th>Placed</th>
+                <th>Not Placed</th>
+                <th>Placement Rate</th>
+            </tr>
+
+        </thead>
+
+        <tbody id="departmentStatsBody">
+
+        </tbody>
+
+    </table>
+
+</section>
+<div id="driveAdminSection">
+
+    <h3>➕ Add Placement Drive</h3>
+
+    <input
+        type="text"
+        id="driveCompany"
+        placeholder="Company Name">
+
+    <input
+        type="text"
+        id="driveRole"
+        placeholder="Job Role">
+
+    <input
+        type="date"
+        id="driveDate">
+
+    <input
+        type="number"
+        id="driveCGPA"
+        placeholder="Minimum CGPA">
+
+    <button onclick="addPlacementDrive()">
+        Add Drive
+    </button>
+
+</div>
+<!-- Placement Drive Management -->
+
+<section class="drive-section">
+
+    <h2>📅 Placement Drives</h2>
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>Company</th>
+                <th>Job Role</th>
+                <th>Drive Date</th>
+                <th>Eligibility CGPA</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+
+        </thead>
+
+        <tbody id="driveTableBody"></tbody>
+
+        
+
+    </table>
+
+</section>
+<section class="prediction">
+
+    <h2>AI Placement Prediction</h2>
+
+    <input type="number" id="cgpa" placeholder="Enter CGPA">
+
+    <input type="number" id="aptitude" placeholder="Enter Aptitude Marks">
+
+    <button onclick="predictPlacement()">
+        Predict
+    </button>
+
+    <h3 id="predictionResult"></h3>
+    <div class="progress-box">
+        <div id="predictionBar">
+            0%
+    </div>
+    </div>
+
+</section>
+<section class="prediction-history">
+
+    <h2>📊 Prediction History</h2>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>CGPA</th>
+                <th>Aptitude</th>
+                <th>Probability</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+
+        <tbody id="predictionHistoryBody">
+        </tbody>
+
+    </table>
+
+</section>
+<section class="eligibility">
+
+    <h2>🎯 Placement Eligibility Checker</h2>
+
+    <input type="number" id="eligibilityCGPA" placeholder="Enter CGPA">
+
+    <button onclick="checkEligibility()">
+        Check Eligibility
+    </button>
+
+    <h3 id="eligibilityResult"></h3>
+
+</section>
+<section class="resume-section">
+
+    <h2>📄 Resume Upload</h2>
+
+    <input type="file" id="resumeFile">
+
+    <button onclick="uploadResume()">
+        Upload Resume
+    </button>
+
+    <h3 id="resumeStatus"></h3>
+    <h3 id="resumeScore"></h3>
+
+    <p id="resumeSuggestion"></p>
+<div class="progress-box">
+    <div id="resumeScoreBar">0%</div>
+</div>
+</section>
+
+<section class="resume-section">
+<h2>📊 Resume Analysis</h2>
+
+<button onclick="analyzeResume()">
+    🤖 Analyze Resume
+</button>
+<div id="resumeAnalysis">
+    <p>No analysis available.</p>
+</div>
+</section>
+
+<section class="placement-score">
+<h2>🎯 Placement Eligibility Score</h2>
+
+<button onclick="calculatePlacementScore()">
+    Calculate Score
+</button>
+
+<div id="placementScoreResult">
+    <p>Click the button to calculate your score.</p>
+</div>
+</section>
+<section class="recommendation">
+
+    <h2>🏢 AI Company Recommendation</h2>
+
+    <input
+        type="text"
+        id="skillInput"
+        placeholder="Enter Your Skills">
+
+    <button onclick="recommendCompany()">
+        Recommend Company
+    </button>
+
+    <h3 id="companyRecommendation"></h3>
+
+</section>
+<section class="email-notification">
+
+    <h2>📧 Email Notification</h2>
+
+    <input
+        type="email"
+        id="emailInput"
+        placeholder="Enter email address">
+
+    <button onclick="sendEmailNotification()">
+        Send Email
+    </button>
+
+    <p id="emailStatus"></p>
+
+</section>
+<section class="advanced-analytics">
+
+    <h2>📊 Advanced Analytics</h2>
+
+    <button onclick="generateAnalytics()">
+        Generate Report
+    </button>
+
+    <div id="analyticsResult">
+        <p>Click the button to view analytics.</p>
+    </div>
+
+</section>
+<section class="skill-gap-section">
+
+    <h2>📊 Skill Gap Analysis</h2>
+
+    <button onclick="analyzeSkillGap()">
+        Analyze Skills
+    </button>
+
+    <div id="skillGapResult">
+
+        <p>Click the button to analyze skills.</p>
+
+    </div>
+
+</section>
+<section class="interview-section">
+
+    <h2>🎤 AI Interview Question Generator</h2>
+
+    <select id="interviewTopic">
+        <option value="Java">Java</option>
+        <option value="Python">Python</option>
+        <option value="SQL">SQL</option>
+        <option value="HR">HR</option>
+    </select>
+
+    <button onclick="generateInterviewQuestion()">
+        Generate Question
+    </button>
+
+    <div id="interviewQuestion">
+        <p>Select a topic and click Generate Question.</p>
+    </div>
+
+</section>
+
+<section class="mock-interview">
+
+    <h2>🎤 AI Mock Interview</h2>
+
+    <button onclick="startMockInterview()">
+        Start Mock Interview
+    </button>
+
+    <div id="mockInterviewResult">
+        Click Start to begin.
+    </div>
+
+</section>
+<section class="career-roadmap">
+
+    <h2>🛣️ AI Career Roadmap</h2>
+
+    <button onclick="generateRoadmap()">
+        Generate Roadmap
+    </button>
+
+    <div id="roadmapResult">
+        <p>Click the button to generate your career roadmap.</p>
+    </div>
+
+</section>
+<section class="skill-progress">
+
+    <h2>📈 AI Skill Progress Tracker</h2>
+
+    <button onclick="showSkillProgress()">
+        Show Progress
+    </button>
+
+    <div id="skillProgressResult">
+        <p>Click the button to view your skill progress.</p>
+    </div>
+
+</section>
+<section class="interview-performance">
+
+    <h2>🎤 Interview Performance Tracker</h2>
+
+    <button onclick="showInterviewPerformance()">
+        Show Performance
+    </button>
+
+    <div id="interviewPerformanceResult">
+
+        <p>Click the button to view the result.</p>
+
+    </div>
+
+</section>
+<section class="report-section">
+
+<h2>📁 Reports</h2>
+
+<button onclick="downloadPDF()">
+Download PDF
+</button>
+
+
+<button onclick="downloadExcel()">
+Download Excel
+</button>
+
+
+</section>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<!-- 🤖 AI Placement Assistant -->
+
+<!-- 🤖 Floating AI Assistant -->
+
+<button id="aiFloatingButton" onclick="toggleAIChat()">
+    🤖
+</button>
+
+<div id="aiChatWindow">
+
+    <div class="ai-chat-header">
+
+        🤖 AI Placement Assistant
+
+        <button onclick="toggleAIChat()">
+            ✖
+        </button>
+
+    </div>
+
+    <div id="chatBox">
+
+        <div class="bot-message">
+            👋 Hi! I am your AI Placement Assistant.
+            Ask me anything about placements, skills and companies!
+        </div>
+
+    </div>
+
+    <div class="chat-input-area">
+
+        <input
+            type="text"
+            id="userQuestion"
+            placeholder="Ask your doubt..."
+        >
+
+        <button onclick="askAI()">
+            Ask
+        </button>
+        <button onclick="analyzeMyProfile()">
+    📊 Analyze My Profile
+</button>
+
+
+    </div>
+
+</div>
+
+</body>
+</html>
