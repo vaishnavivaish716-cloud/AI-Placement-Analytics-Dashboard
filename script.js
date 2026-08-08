@@ -818,6 +818,7 @@ window.onload = function(){
     // Load My Applications
     showMyApplications();
     updateApplicationSummary();
+    
     showStudentNotifications();
 
 
@@ -2181,6 +2182,7 @@ function applyForDrive(company, role){
 );
 
 showMyApplications();
+updateApplicationSummary();
 
 alert(
     "✅ Application Submitted Successfully");
