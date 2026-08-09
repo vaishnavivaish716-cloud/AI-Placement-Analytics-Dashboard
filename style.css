@@ -1891,3 +1891,30 @@ body.dark-mode #roadmapResult p {
 
     color: #ffffff !important;
 }
+.bot-message {
+    background: #f1f5f9;
+    color: #111827;
+    padding: 12px 15px;
+    margin: 10px 5px;
+    border-radius: 12px;
+    max-width: 85%;
+    line-height: 1.5;
+}
+
+.user-message {
+    background: #2563eb;
+    color: white;
+    padding: 12px 15px;
+    margin: 10px 5px;
+    border-radius: 12px;
+    max-width: 85%;
+    margin-left: auto;
+    line-height: 1.5;
+}
+.bot-message {
+    color: #000000 !important;
+    background: #f1f1f1;
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin: 8px 0;
+}
