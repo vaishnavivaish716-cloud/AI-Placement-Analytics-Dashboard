@@ -356,17 +356,7 @@ id="companySection">
 <!-- AI Prediction -->
  <!-- AI Placement Insights -->
 
-<section class="insights-section">
 
-    <h2>🤖 AI Placement Insights</h2>
-
-    <div id="aiInsights">
-
-        <p>📊 Analyzing placement data...</p>
-
-    </div>
-
-</section>
 
 <div class="student-dashboard-grid">
 
@@ -751,54 +741,235 @@ Download Excel
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<!-- 🤖 AI Placement Assistant -->
+<!-- ===============================
+     AI PLACEMENT ASSISTANT
+================================ -->
 
-<!-- 🤖 Floating AI Assistant -->
+<div id="aiChatWindow" style="
+    display:none;
+    position:fixed;
+    right:30px;
+    bottom:115px;
+    width:380px;
+    height:520px;
+    background:white;
+    border-radius:18px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.30);
+    z-index:999998;
+    overflow:hidden;
+">
 
-<button id="aiFloatingButton" onclick="toggleAIChat()">
-    🤖
-</button>
+    <div style="
+        height:65px;
+        background:linear-gradient(135deg,#2196f3,#00bcd4);
+        color:white;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding:0 18px;
+        font-size:18px;
+        font-weight:bold;
+    ">
 
-<div id="aiChatWindow">
+        <span>🤖 AI Placement Assistant</span>
 
-    <div class="ai-chat-header">
-
-        🤖 AI Placement Assistant
-
-        <button onclick="toggleAIChat()">
-            ✖
+        <button
+            onclick="toggleAIChat()"
+            style="
+                background:none;
+                border:none;
+                color:white;
+                font-size:24px;
+                cursor:pointer;
+            "
+        >
+            ✕
         </button>
 
     </div>
 
-    <div id="chatBox">
 
-        <div class="bot-message">
-            👋 Hi! I am your AI Placement Assistant.
-            Ask me anything about placements, skills and companies!
+    <div id="chatBox" style="
+        height:380px;
+        padding:15px;
+        overflow-y:auto;
+        background:#f5f7fb;
+    ">
+
+        <div style="
+            background:#e3f2fd;
+            padding:12px;
+            border-radius:12px;
+            margin-bottom:10px;
+        ">
+            🤖 Hello! I am your AI Placement Assistant.
+            <br>
+            Ask me anything about placements, skills, interviews, resumes or companies.
         </div>
 
     </div>
 
-    <div class="chat-input-area">
+
+    <div style="
+        height:75px;
+        display:flex;
+        align-items:center;
+        gap:8px;
+        padding:10px;
+        background:white;
+        border-top:1px solid #ddd;
+    ">
 
         <input
             type="text"
             id="userQuestion"
             placeholder="Ask your doubt..."
+            onkeypress="if(event.key==='Enter') askAI()"
+            style="
+                flex:1;
+                height:42px;
+                padding:0 12px;
+                border:1px solid #ccc;
+                border-radius:8px;
+                outline:none;
+            "
         >
 
-        <button onclick="askAI()">
+        <button
+            onclick="askAI()"
+            style="
+                height:42px;
+                padding:0 18px;
+                border:none;
+                border-radius:8px;
+                background:#2196f3;
+                color:white;
+                cursor:pointer;
+                font-weight:bold;
+            "
+        >
             Ask
         </button>
-        <button onclick="analyzeMyProfile()">
-    📊 Analyze My Profile
-</button>
-
 
     </div>
 
 </div>
+<button id="aiChatButton"
+onclick="toggleAIChat()"
+style="
+position:fixed !important;
+right:30px !important;
+bottom:30px !important;
+width:70px !important;
+height:70px !important;
+border-radius:50% !important;
+border:0 !important;
+background:linear-gradient(135deg,#2196f3,#00bcd4) !important;
+color:white !important;
+font-size:32px !important;
+display:flex !important;
+align-items:center !important;
+justify-content:center !important;
+cursor:pointer !important;
+z-index:999999 !important;
+box-shadow:0 6px 20px rgba(0,0,0,.35) !important;
+">
+🤖
+</button>
+<style>
+/* ================================
+   AI CHAT - SAME POSITION
+================================ */
 
+#aiChatWindow {
+    position: fixed !important;
+
+    /* Button இருக்கும் அதே RIGHT position */
+    right: 30px !important;
+    left: auto !important;
+
+    /* Button-க்கு மேலே Chat */
+    bottom: 110px !important;
+    top: auto !important;
+
+    width: 380px !important;
+    height: 520px !important;
+
+    background: white !important;
+    border-radius: 18px !important;
+
+    box-shadow: 0 8px 30px rgba(0,0,0,0.30) !important;
+
+    z-index: 999998 !important;
+    overflow: hidden !important;
+}
+
+
+/* AI Button */
+#aiChatButton {
+    position: fixed !important;
+
+    right: 30px !important;
+    left: auto !important;
+
+    bottom: 30px !important;
+    top: auto !important;
+
+    width: 70px !important;
+    height: 70px !important;
+
+    border-radius: 50% !important;
+    border: 0 !important;
+
+    background: linear-gradient(
+        135deg,
+        #2196f3,
+        #00bcd4
+    ) !important;
+
+    color: white !important;
+    font-size: 32px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    cursor: pointer !important;
+
+    z-index: 999999 !important;
+
+    box-shadow: 0 6px 20px rgba(0,0,0,.35) !important;
+}
+
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    #aiChatWindow {
+        right: 15px !important;
+        bottom: 100px !important;
+        width: calc(100vw - 30px) !important;
+        height: 500px !important;
+    }
+
+    #aiChatButton {
+        right: 15px !important;
+        bottom: 20px !important;
+    }
+
+}
+#chatBox,
+#chatBox div {
+    color: #222 !important;
+}
+
+#chatBox .user-message {
+    color: #222 !important;
+}
+
+#chatBox .assistant-message {
+    color: #222 !important;
+}
+</style>
 </body>
 </html>

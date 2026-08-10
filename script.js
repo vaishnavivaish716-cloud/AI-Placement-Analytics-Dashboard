@@ -1334,33 +1334,8 @@ function checkEligibility(){
 }
 
 
-    status.innerHTML =
-    "✅ Resume Uploaded Successfully";
 
-    status.style.color = "green";
-    let score = Math.floor(Math.random() * 21) + 80;
-
-document.getElementById("resumeScore").innerHTML =
-"🤖 AI Resume Score : " + score + "/100";
-
-if(score >= 90){
-
-    document.getElementById("resumeSuggestion").innerHTML =
-    "🌟 Excellent Resume. Ready for placement.";
-
-}
-else if(score >= 85){
-
-    document.getElementById("resumeSuggestion").innerHTML =
-    "👍 Good Resume. Add more projects or certifications.";
-
-}
-else{
-
-    document.getElementById("resumeSuggestion").innerHTML =
-    "📚 Improve technical skills, internships, GitHub and LinkedIn.";
-
-}
+    
 
 
 function recommendCompany() {
@@ -2521,254 +2496,15 @@ function editCompany(companyName) {
     });
 
 }
-// =======================================
-// Floating AI Assistant
-// =======================================
 
-function toggleAIChat(){
-
-    let chatWindow =
-        document.getElementById("aiChatWindow");
-
-    if(chatWindow.style.display === "none" ||
-       chatWindow.style.display === ""){
-
-        chatWindow.style.display = "block";
-
-    }
-    else{
-
-        chatWindow.style.display = "none";
-
-    }
-
-}
-// =======================================
-// Ask AI Assistant
-// =======================================
-
-function askAI(){
-
-    const input =
-        document.getElementById("userQuestion");
-
-    const chatBox =
-        document.getElementById("chatBox");
-
-    const question =
-        input.value.trim();
-
-    if(question === ""){
-
-        alert("Please enter your question");
-
-        return;
-
-    }
-
-    // Display user question
-    chatBox.innerHTML += `
-        <div class="user-message">
-            👤 ${question}
-        </div>
-    `;
-
-    let answer =
-        getAIAnswer(question);
-
-    // Display AI answer
-    chatBox.innerHTML += `
-        <div class="bot-message">
-            🤖 ${answer}
-        </div>
-    `;
-
-    input.value = "";
-
-    chatBox.scrollTop =
-        chatBox.scrollHeight;
-
-}
-
-
-// =======================================
-// AI Answer Logic
-// =======================================
-
-function getAIAnswer(question){
-
-    question =
-        question.toLowerCase();
-
-
-    if(
-        question.includes("placement") ||
-        question.includes("job")
-    ){
-
-        return "To improve your placement chances, focus on programming skills, aptitude, communication, projects and interview preparation.";
-
-    }
-
-
-    if(
-        question.includes("skill") ||
-        question.includes("learn")
-    ){
-
-        return "You can learn Python, Java, SQL, HTML, CSS, JavaScript and basic Data Structures.";
-
-    }
-
-
-    if(
-        question.includes("interview")
-    ){
-
-        return "Prepare your self-introduction, technical questions, aptitude, projects and HR interview questions.";
-
-    }
-
-
-    if(
-        question.includes("resume")
-    ){
-
-        return "Keep your resume simple and include your skills, projects, internships, certifications and achievements.";
-
-    }
-
-
-    if(
-        question.includes("company")
-    ){
-
-        return "Research companies, understand their required skills and prepare according to their job roles.";
-
-    }
-
-
-    return "I can help you with placements, skills, interviews, resumes and companies. Please ask a placement-related question.";
-
-}
-// =======================================
-// AI Personalized Profile Analysis
-// =======================================
-
-function analyzeMyProfile(){
-
-    let chatBox =
-        document.getElementById("chatBox");
-
-    if(!students || students.length === 0){
-
-        chatBox.innerHTML += `
-            <div class="bot-message">
-                🤖 Student data not available.
-            </div>
-        `;
-
-        return;
-    }
     function analyzeSkillGapAI() {
         analyzeSkillGap();
     }
     
 
-    // First student demo profile
-    let student = students[0];
-
-    let advice = "";
-
-    if(student.cgpa >= 8.5){
-
-        advice +=
-        "🌟 Excellent CGPA. Keep maintaining your academic performance.<br>";
-
-    }
-
-    else if(student.cgpa >= 7.5){
-
-        advice +=
-        "👍 Good CGPA. Try to improve it further.<br>";
-
-    }
-
-    else{
-
-        advice +=
-        "⚠️ Focus on improving your CGPA.<br>";
-
-    }
+    
 
 
-    if(
-        student.skills &&
-        student.skills.toLowerCase().includes("python")
-    ){
-
-        advice +=
-        "✅ Python skill is a good advantage for placements.<br>";
-
-    }
-
-    else{
-
-        advice +=
-        "📚 Learn Python for better placement opportunities.<br>";
-
-    }
-
-
-    advice +=
-        "🎯 Practice aptitude regularly.<br>";
-
-    advice +=
-        "💻 Build real-world projects.<br>";
-
-    advice +=
-        "🗣️ Improve communication and interview skills.<br>";
-
-
-    chatBox.innerHTML += `
-
-        <div class="bot-message">
-
-            🤖 <b>📊 Your Personalized Placement Analysis</b>
-
-            <br><br>
-
-            👤 Name: ${student.name}
-
-            <br>
-
-            🏢 Department: ${student.department}
-
-            <br>
-
-            📚 CGPA: ${student.cgpa}
-
-            <br>
-
-            💻 Skills: ${student.skills}
-
-            <br><br>
-
-            <b>🎯 AI Recommendations:</b>
-
-            <br><br>
-
-            ${advice}
-
-        </div>
-
-    `;
-
-
-    chatBox.scrollTop =
-        chatBox.scrollHeight;
-
-}
 function analyzeResume() {
 
     let analysis = document.getElementById("resumeAnalysis");
@@ -2990,12 +2726,7 @@ function showSkillProgress(){
     `;
 
 }
-function sendEmailNotification() {
 
-    document.getElementById("emailStatus").innerHTML =
-        "✅ Notification sent successfully";
-
-}
 function showAdvancedAnalytics() {
 
     let totalStudents = students.length;
@@ -3086,4 +2817,194 @@ function showInterviewPerformance() {
 
     `;
 
+}
+// ===============================
+// New AI Chat Assistant
+// ===============================
+
+function toggleAIChat() {
+
+    const chatWindow =
+        document.getElementById("aiChatWindow");
+
+    if (chatWindow.style.display === "block") {
+        chatWindow.style.display = "none";
+    } else {
+        chatWindow.style.display = "block";
+    }
+
+}
+
+
+// ===============================
+// Ask AI
+// ===============================
+
+function askAI() {
+
+    const input =
+        document.getElementById("userQuestion");
+
+    const chatBox =
+        document.getElementById("chatBox");
+
+    const question =
+        input.value.trim();
+
+    if (question === "") {
+        return;
+    }
+
+    // User message
+    chatBox.innerHTML += `
+        <div class="user-message">
+            👤 ${question}
+        </div>
+    `;
+
+    let answer = getAIAnswer(question);
+
+    // AI message
+    chatBox.innerHTML += `
+        <div class="bot-message">
+            🤖 ${answer}
+        </div>
+    `;
+
+    input.value = "";
+
+    chatBox.scrollTop =
+        chatBox.scrollHeight;
+}
+
+
+// ===============================
+// AI Answer
+// ===============================
+
+function getAIAnswer(question) {
+
+    question = question.toLowerCase();
+
+    if (
+        question.includes("placement") ||
+        question.includes("job")
+    ) {
+        return "I can help you improve your placement preparation with skills, aptitude, projects and interview preparation.";
+    }
+
+    if (
+        question.includes("skill") ||
+        question.includes("learn")
+    ) {
+        return "You can learn Python, Java, SQL, HTML, CSS, JavaScript and Data Structures.";
+    }
+
+    if (question.includes("interview")) {
+        return "Prepare your self-introduction, technical questions, aptitude and HR interview questions.";
+    }
+
+    if (question.includes("resume")) {
+        return "Add your skills, projects, internships, certifications and achievements to your resume.";
+    }
+
+    if (question.includes("company")) {
+        return "Research the company, required skills and job role before applying.";
+    }
+
+    return "Hi! I can help you with placements, skills, interviews, resumes and companies.";
+}
+// ===============================
+// New AI Chat Assistant
+// ===============================
+
+function toggleAIChat() {
+
+    const chatWindow =
+        document.getElementById("aiChatWindow");
+
+    if (chatWindow.style.display === "block") {
+        chatWindow.style.display = "none";
+    } else {
+        chatWindow.style.display = "block";
+    }
+
+}
+
+
+// ===============================
+// Ask AI
+// ===============================
+
+function askAI() {
+
+    const input =
+        document.getElementById("userQuestion");
+
+    const chatBox =
+        document.getElementById("chatBox");
+
+    const question =
+        input.value.trim();
+
+    if (question === "") {
+        return;
+    }
+
+    chatBox.innerHTML += `
+        <div class="user-message">
+            👤 ${question}
+        </div>
+    `;
+
+    let answer = getAIAnswer(question);
+
+    chatBox.innerHTML += `
+        <div class="bot-message">
+            🤖 ${answer}
+        </div>
+    `;
+
+    input.value = "";
+
+    chatBox.scrollTop =
+        chatBox.scrollHeight;
+}
+
+
+// ===============================
+// AI Answer
+// ===============================
+
+function getAIAnswer(question) {
+
+    question = question.toLowerCase();
+
+    if (
+        question.includes("placement") ||
+        question.includes("job")
+    ) {
+        return "I can help you improve your placement preparation with skills, aptitude, projects and interview preparation.";
+    }
+
+    if (
+        question.includes("skill") ||
+        question.includes("learn")
+    ) {
+        return "You can learn Python, Java, SQL, HTML, CSS, JavaScript and Data Structures.";
+    }
+
+    if (question.includes("interview")) {
+        return "Prepare your self-introduction, technical questions, aptitude and HR interview questions.";
+    }
+
+    if (question.includes("resume")) {
+        return "Add your skills, projects, internships, certifications and achievements to your resume.";
+    }
+
+    if (question.includes("company")) {
+        return "Research the company, required skills and job role before applying.";
+    }
+
+    return "Hi! I can help you with placements, skills, interviews, resumes and companies.";
 }
