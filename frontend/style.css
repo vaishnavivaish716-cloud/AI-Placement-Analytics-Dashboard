@@ -3256,24 +3256,21 @@ body.dark-mode .ai-chat-input input::placeholder {
 
 #aiChatWindow {
     position: fixed !important;
+
     right: 30px !important;
     bottom: 115px !important;
+
     left: auto !important;
     top: auto !important;
 
     width: 380px !important;
     height: 520px !important;
 
-    background: white !important;
-    border-radius: 18px !important;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.25) !important;
-
     z-index: 999998 !important;
-    overflow: hidden !important;
 
-    /* IMPORTANT */
     display: none;
 }
+
 /* AI ROUND BUTTON */
 #aiChatButton {
     position: fixed !important;
