@@ -2828,9 +2828,13 @@ function toggleAIChat() {
         document.getElementById("aiChatWindow");
 
     if (chatWindow.style.display === "block") {
+
         chatWindow.style.display = "none";
+
     } else {
+
         chatWindow.style.display = "block";
+
     }
 
 }
@@ -2848,6 +2852,10 @@ function askAI() {
     const chatBox =
         document.getElementById("chatBox");
 
+    if (!input || !chatBox) {
+        return;
+    }
+
     const question =
         input.value.trim();
 
@@ -2855,26 +2863,207 @@ function askAI() {
         return;
     }
 
-    // User message
+
+    // ===============================
+    // User Message
+    // ===============================
+
     chatBox.innerHTML += `
+
         <div class="user-message">
+
             👤 ${question}
+
         </div>
+
     `;
 
-    let answer = getAIAnswer(question);
-
-    // AI message
-    chatBox.innerHTML += `
-        <div class="bot-message">
-            🤖 ${answer}
-        </div>
-    `;
 
     input.value = "";
 
+
+    // ===============================
+    // AI Thinking Message
+    // ===============================
+
+    const thinkingMessage =
+        document.createElement("div");
+
+    thinkingMessage.className =
+        "assistant-message";
+
+    thinkingMessage.innerHTML =
+        "🤖 Thinking...";
+
+
+    // White reply box
+    thinkingMessage.style.backgroundColor = "white";
+    thinkingMessage.style.color = "#222";
+    thinkingMessage.style.padding = "15px 18px";
+    thinkingMessage.style.borderRadius = "15px";
+    thinkingMessage.style.margin = "12px 10px";
+    thinkingMessage.style.maxWidth = "85%";
+    thinkingMessage.style.width = "fit-content";
+    thinkingMessage.style.lineHeight = "1.5";
+    thinkingMessage.style.boxShadow =
+        "0 2px 8px rgba(0,0,0,0.15)";
+
+
+    chatBox.appendChild(thinkingMessage);
+
+
     chatBox.scrollTop =
         chatBox.scrollHeight;
+
+
+    // ===============================
+    // Send Question to Flask Backend
+    // ===============================
+
+    fetch(
+        "http://127.0.0.1:5000/api/ai-chat",
+        {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                question: question
+            })
+
+        }
+    )
+
+
+    .then(response => {
+
+        if (!response.ok) {
+
+            throw new Error(
+                "AI API Error: " + response.status
+            );
+
+        }
+
+        return response.json();
+
+    })
+
+
+    .then(data => {
+
+        console.log("AI RESPONSE:", data);
+
+
+        // Get AI answer
+        let answer =
+            data.answer ||
+            data.response ||
+            data.message;
+
+
+        if (!answer) {
+
+            answer =
+                getAIAnswer(question);
+
+        }
+
+
+        // ===============================
+        // AI Reply
+        // ===============================
+
+        thinkingMessage.innerHTML =
+            "🤖 " + answer;
+
+
+        // White background
+        thinkingMessage.style.backgroundColor =
+            "white";
+
+        // Black text
+        thinkingMessage.style.color =
+            "#222";
+
+        thinkingMessage.style.padding =
+            "15px 18px";
+
+        thinkingMessage.style.borderRadius =
+            "15px";
+
+        thinkingMessage.style.margin =
+            "12px 10px";
+
+        thinkingMessage.style.maxWidth =
+            "85%";
+
+        thinkingMessage.style.width =
+            "fit-content";
+
+        thinkingMessage.style.lineHeight =
+            "1.5";
+
+        thinkingMessage.style.boxShadow =
+            "0 2px 8px rgba(0,0,0,0.15)";
+
+
+        chatBox.scrollTop =
+            chatBox.scrollHeight;
+
+    })
+
+
+    .catch(error => {
+
+        console.error(
+            "AI Chat Error:",
+            error
+        );
+
+
+        // If backend fails
+        thinkingMessage.innerHTML =
+            "🤖 " + getAIAnswer(question);
+
+
+        // White reply box
+        thinkingMessage.style.backgroundColor =
+            "white";
+
+        thinkingMessage.style.color =
+            "#222";
+
+        thinkingMessage.style.padding =
+            "15px 18px";
+
+        thinkingMessage.style.borderRadius =
+            "15px";
+
+        thinkingMessage.style.margin =
+            "12px 10px";
+
+        thinkingMessage.style.maxWidth =
+            "85%";
+
+        thinkingMessage.style.width =
+            "fit-content";
+
+        thinkingMessage.style.lineHeight =
+            "1.5";
+
+        thinkingMessage.style.boxShadow =
+            "0 2px 8px rgba(0,0,0,0.15)";
+
+
+        chatBox.scrollTop =
+            chatBox.scrollHeight;
+
+    });
+
 }
 
 
@@ -2886,125 +3075,48 @@ function getAIAnswer(question) {
 
     question = question.toLowerCase();
 
-    if (
-        question.includes("placement") ||
-        question.includes("job")
-    ) {
-        return "I can help you improve your placement preparation with skills, aptitude, projects and interview preparation.";
-    }
-
-    if (
-        question.includes("skill") ||
-        question.includes("learn")
-    ) {
-        return "You can learn Python, Java, SQL, HTML, CSS, JavaScript and Data Structures.";
-    }
-
-    if (question.includes("interview")) {
-        return "Prepare your self-introduction, technical questions, aptitude and HR interview questions.";
-    }
-
-    if (question.includes("resume")) {
-        return "Add your skills, projects, internships, certifications and achievements to your resume.";
-    }
-
-    if (question.includes("company")) {
-        return "Research the company, required skills and job role before applying.";
-    }
-
-    return "Hi! I can help you with placements, skills, interviews, resumes and companies.";
-}
-// ===============================
-// New AI Chat Assistant
-// ===============================
-
-function toggleAIChat() {
-
-    const chatWindow =
-        document.getElementById("aiChatWindow");
-
-    if (chatWindow.style.display === "block") {
-        chatWindow.style.display = "none";
-    } else {
-        chatWindow.style.display = "block";
-    }
-
-}
-
-
-// ===============================
-// Ask AI
-// ===============================
-
-function askAI() {
-
-    const input =
-        document.getElementById("userQuestion");
-
-    const chatBox =
-        document.getElementById("chatBox");
-
-    const question =
-        input.value.trim();
-
-    if (question === "") {
-        return;
-    }
-
-    chatBox.innerHTML += `
-        <div class="user-message">
-            👤 ${question}
-        </div>
-    `;
-
-    let answer = getAIAnswer(question);
-
-    chatBox.innerHTML += `
-        <div class="bot-message">
-            🤖 ${answer}
-        </div>
-    `;
-
-    input.value = "";
-
-    chatBox.scrollTop =
-        chatBox.scrollHeight;
-}
-
-
-// ===============================
-// AI Answer
-// ===============================
-
-function getAIAnswer(question) {
-
-    question = question.toLowerCase();
 
     if (
         question.includes("placement") ||
         question.includes("job")
     ) {
+
         return "I can help you improve your placement preparation with skills, aptitude, projects and interview preparation.";
+
     }
+
 
     if (
         question.includes("skill") ||
         question.includes("learn")
     ) {
+
         return "You can learn Python, Java, SQL, HTML, CSS, JavaScript and Data Structures.";
+
     }
+
 
     if (question.includes("interview")) {
+
         return "Prepare your self-introduction, technical questions, aptitude and HR interview questions.";
+
     }
+
 
     if (question.includes("resume")) {
+
         return "Add your skills, projects, internships, certifications and achievements to your resume.";
+
     }
+
 
     if (question.includes("company")) {
+
         return "Research the company, required skills and job role before applying.";
+
     }
 
+
     return "Hi! I can help you with placements, skills, interviews, resumes and companies.";
+
 }

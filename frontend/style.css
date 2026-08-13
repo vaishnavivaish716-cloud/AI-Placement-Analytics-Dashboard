@@ -1,933 +1,174 @@
 /* =================================
-AI Placement Analytics Dashboard
-Modern Style
+   AI PLACEMENT ANALYTICS DASHBOARD
+   FINAL CLEAN STYLE
 ================================= */
 
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: "Segoe UI", sans-serif;
 }
 
-
-body{
-
-    background:#f4f7fb;
-    color:#333;
-    min-height:100vh;
-
+body {
+    background: #f4f7fb;
+    color: #333;
+    min-height: 100vh;
 }
 
+/* =================================
+   HEADER
+================================= */
 
-/* Header */
-
-.header{
-
-    background:linear-gradient(
-        135deg,
-        #667eea,
-        #764ba2
-    );
-
-    color:white;
-
-    padding:20px 30px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
+.header {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-
-.header h1{
-
-    font-size:28px;
-
+.header h1 {
+    font-size: 28px;
 }
 
-
-.header-right button{
-
-    padding:10px 18px;
-
-    margin-left:10px;
-
-    border:none;
-
-    border-radius:8px;
-
-    cursor:pointer;
-
-    background:white;
-
-    color:#555;
-
-    font-weight:bold;
-
+.logo-section p {
+    margin-top: 5px;
+    font-size: 15px;
+    opacity: 0.9;
 }
 
-
-
-/* Cards */
-
-.cards{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(220px,1fr));
-
-    gap:20px;
-
-    padding:25px;
-
+.header-right button {
+    padding: 10px 18px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: white;
+    color: #555;
+    font-weight: bold;
 }
 
-
-
-.card{
-
-    background:white;
-
-    padding:25px;
-
-    border-radius:15px;
-
-    text-align:center;
-
-    box-shadow:
-    0 5px 15px rgba(0,0,0,0.1);
-
-    transition:0.3s;
-
+#dateTime {
+    margin-right: 15px;
+    font-size: 14px;
 }
 
+/* =================================
+   COMMON BUTTON
+================================= */
 
-
-.card:hover{
-
-    transform:translateY(-8px);
-
+button {
+    min-width: 180px;
+    cursor: pointer;
 }
 
+/* =================================
+   CARDS
+================================= */
 
-
-.card h2{
-
-    font-size:18px;
-
-    color:#666;
-
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 25px;
 }
 
-
-.card h1{
-
-    margin-top:15px;
-
-    font-size:35px;
-
-    color:#667eea;
-
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
 }
 
-
-
-/* Filters */
-
-.filters{
-
-    padding:20px 25px;
-
-    display:flex;
-
-    gap:15px;
-
+.card:hover {
+    transform: translateY(-8px);
 }
 
+.card h2 {
+    font-size: 18px;
+    color: #666;
+}
+
+.card h1 {
+    margin-top: 15px;
+    font-size: 35px;
+    color: #667eea;
+}
+
+/* =================================
+   FILTERS
+================================= */
+
+.filters {
+    padding: 20px 25px;
+    display: flex;
+    gap: 15px;
+}
 
 .filters input,
-.filters select{
-
-    padding:12px;
-
-    border-radius:8px;
-
-    border:1px solid #ccc;
-
-    width:250px;
-
+.filters select {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 250px;
 }
-/* ================================
-Tables
-================================ */
 
+/* =================================
+   TABLES
+================================= */
 
 .students,
-.companies{
-
-    padding:25px;
-
+.companies {
+    padding: 25px;
 }
-
 
 .students h2,
 .companies h2,
 .chart-box h2,
-.prediction h2{
-
-    margin-bottom:15px;
-
-    color:#444;
-
-}
-
-
-
-table{
-
-    width:100%;
-
-    border-collapse:collapse;
-
-    background:white;
-
-    border-radius:12px;
-
-    overflow:hidden;
-
-    box-shadow:
-    0 5px 15px rgba(0,0,0,0.08);
-
-}
-
-
-
-th{
-
-    background:#667eea;
-
-    color:white;
-
-    padding:14px;
-
-    text-align:center;
-
-}
-
-
-
-td{
-
-    padding:12px;
-
-    text-align:center;
-
-    border-bottom:1px solid #eee;
-
-}
-
-
-
-tr:hover{
-
-    background:#f5f7ff;
-
-}
-
-
-
-/* ================================
-Charts
-================================ */
-
-
-.charts{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(350px,1fr));
-
-    gap:25px;
-
-    padding:25px;
-
-}
-
-
-
-.chart-box{
-
-    background:white;
-
-    padding:20px;
-
-    border-radius:15px;
-
-    box-shadow:
-    0 5px 15px rgba(0,0,0,0.1);
-
-}
-
-
-
-.chart-box canvas{
-
-    max-height:350px;
-
-}
-
-
-
-/* ================================
-AI Prediction
-================================ */
-
-
-.prediction{
-
-    margin:25px;
-
-    padding:25px;
-
-    background:white;
-
-    border-radius:15px;
-
-    box-shadow:
-    0 5px 15px rgba(0,0,0,0.1);
-
-}
-
-
-
-.prediction input{
-
-    padding:12px;
-
-    margin:8px;
-
-    border-radius:8px;
-
-    border:1px solid #ccc;
-
-}
-
-
-
-.prediction button{
-
-    padding:12px 25px;
-
-    background:#667eea;
-
-    color:white;
-
-    border:none;
-
-    border-radius:8px;
-
-    cursor:pointer;
-
-}
-
-
-
-.prediction button:hover{
-
-    background:#5563c1;
-
-}
-
-
-
-/* ================================
-Footer
-================================ */
-
-
-footer{
-
-    text-align:center;
-
-    padding:20px;
-
-    background:#333;
-
-    color:white;
-
-    margin-top:30px;
-
-}
-
-
-
-/* ================================
-Dark Mode
-================================ */
-
-
-.dark-mode{
-
-    background:#121212;
-
-    color:white;
-
-}
-
-
-
-.dark-mode .card,
-.dark-mode table,
-.dark-mode .chart-box,
-.dark-mode .prediction{
-
-    background:#1e1e1e;
-
-    color:white;
-
-}
-
-
-
-.dark-mode td{
-
-    color:white;
-
-}
-
-
-
-.dark-mode h2{
-
-    color:white;
-
-}
-
-
-
-/* ================================
-Mobile View
-================================ */
-
-
-@media(max-width:600px){
-
-
-    .header{
-
-        flex-direction:column;
-
-        gap:15px;
-
-        text-align:center;
-
-    }
-
-
-    .filters{
-
-        flex-direction:column;
-
-    }
-
-
-    .filters input,
-    .filters select{
-
-        width:100%;
-
-    }
-
-
-    table{
-
-        font-size:12px;
-
-    }
-
-
-}
-.logo-section p{
-
-    margin-top:5px;
-
-    font-size:15px;
-
-    opacity:0.9;
-
-}
-
-
-#dateTime{
-
-    margin-right:15px;
-
-    font-size:14px;
-
-}
-.progress-box{
-
-    width:100%;
-
-    background:#eee;
-
-    height:25px;
-
-    border-radius:20px;
-
-    margin-top:20px;
-
-    overflow:hidden;
-
-}
-
-
-#predictionBar{
-
-    height:100%;
-
-    width:0%;
-
-    background:#667eea;
-
-    color:white;
-
-    text-align:center;
-
-    line-height:25px;
-
-    transition:0.5s;
-
-}
-.admin-form{
-
-    margin:25px;
-
-    padding:25px;
-
-    background:white;
-
-    border-radius:15px;
-
-    box-shadow:
-    0 5px 15px rgba(0,0,0,0.1);
-
-}
-
-
-.admin-form input{
-
-    padding:12px;
-
-    margin:8px;
-
-    border-radius:8px;
-
-    border:1px solid #ccc;
-
-}
-
-
-.admin-form button{
-
-    padding:12px 25px;
-
-    background:#667eea;
-
-    color:white;
-
-    border:none;
-
-    border-radius:8px;
-
-    cursor:pointer;
-
-}
-.report-section{
-
-    margin:25px;
-
-    padding:25px;
-
-    background:white;
-
-    border-radius:15px;
-
-    text-align:center;
-
-}
-
-
-.report-section button{
-
-    padding:12px 25px;
-
-    margin:10px;
-
-    border:none;
-
-    border-radius:8px;
-
-    background:#667eea;
-
-    color:white;
-
-    cursor:pointer;
-
-}
-/* =========================
-Login Page
-========================= */
-
-.login-body{
-
-    min-height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:linear-gradient(
-        135deg,
-        #667eea,
-        #764ba2
-    );
-
-}
-
-
-.login-box{
-
-    background:white;
-
-    width:350px;
-
-    padding:35px;
-
-    border-radius:20px;
-
-    text-align:center;
-
-    box-shadow:
-    0 10px 25px rgba(0,0,0,0.2);
-
-}
-
-
-.login-box h1{
-
-    font-size:24px;
-
-    margin-bottom:20px;
-
-}
-
-
-.login-box h2{
-
-    margin-bottom:20px;
-
-}
-
-
-.login-box input{
-
-    width:100%;
-
-    padding:12px;
-
-    margin:10px 0;
-
-    border-radius:8px;
-
-    border:1px solid #ccc;
-
-}
-
-
-
-.login-box button{
-
-    width:100%;
-
-    padding:12px;
-
-    margin-top:15px;
-
-    border:none;
-
-    border-radius:8px;
-
-    background:#667eea;
-
-    color:white;
-
-    font-size:16px;
-
-    cursor:pointer;
-
-}
-
-
-
-.login-box button:hover{
-
-    background:#5563c1;
-
-}
-
-
-#message{
-
-    margin-top:15px;
-
-    color:red;
-
-}
-.welcome-box{
-
-    background:#2196f3;
-
-    color:white;
-
-    margin:20px;
-
-    padding:20px;
-
-    border-radius:10px;
-
-    text-align:center;
-
-    font-size:22px;
-
-    font-weight:bold;
-
-}
-.admin-profile{
-
-    background:white;
-
-    margin:20px;
-
-    padding:20px;
-
-    border-radius:10px;
-
-    box-shadow:0 2px 8px rgba(0,0,0,0.2);
-
-}
-
-.admin-profile h3{
-
-    color:#2196f3;
-
-    margin-bottom:10px;
-
-}
-
-.admin-profile p{
-
-    margin:8px 0;
-
-    font-size:16px;
-
-}
-/* Placement Drive Delete Button */
-
-#driveTableBody button {
-    background: #dc3545;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-#driveTableBody button:hover {
-    background: #b02a37;
-}
-/* Application Summary Cards */
-
-.application-summary {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 15px;
-    margin: 20px 0;
-}
-
-.summary-card {
-    background: white;
-    padding: 18px;
-    text-align: center;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-}
-
-.summary-card h3 {
-    margin: 0;
-    font-size: 16px;
-}
-
-.summary-card p {
-    font-size: 28px;
-    font-weight: bold;
-    margin: 10px 0 0;
-}
-
-/* Mobile Responsive */
-
-@media (max-width: 900px) {
-
-    .application-summary {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-}
-/* ================================
-   STUDENT DETAILS SECTION
-================================ */
-
-#studentSection {
-    display: block !important;
-    visibility: visible !important;
-    width: 100%;
-    padding: 25px;
-    margin: 25px 0;
-}
-
-#studentSection h2 {
-    display: block !important;
+.prediction h2 {
+    margin-bottom: 15px;
     color: #444;
-    margin-bottom: 15px;
 }
 
-#studentTable {
-    display: table !important;
-    visibility: visible !important;
-}
-
-#studentTableBody {
-    display: table-row-group !important;
-    visibility: visible !important;
-}
-/* Student Dashboard Alignment */
-
-.student-dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin: 25px 0;
-}
-
-.student-dashboard-grid section {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.student-dashboard-grid h2 {
-    margin-top: 0;
-    margin-bottom: 15px;
-}
-/* AI Placement Insights */
-
-.insights-section {
-    background: white;
-    padding: 25px;
-    margin: 25px 0;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.insights-section h2 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-#aiInsights {
-    line-height: 1.8;
-}
-/* AI Skill Gap Analysis */
-
-.skill-gap-section {
-    background: white;
-    padding: 25px;
-    margin: 25px 0;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.skill-gap-section h2 {
-    margin-top: 0;
-    margin-bottom: 20px;
-}
-
-.skill-gap-section input {
-    width: 60%;
-    padding: 12px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-}
-
-.skill-gap-section button {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-#skillGapResult {
-    margin-top: 20px;
-}
-/* Department Statistics and Placement Drives */
-
-.department-stats-section,
-.drive-section {
-    background: white;
-    padding: 25px;
-    margin: 25px 0;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.department-stats-section h2,
-.drive-section h2 {
-    margin-top: 0;
-    margin-bottom: 20px;
-}
-
-.department-stats-section table,
-.drive-section table {
+table {
     width: 100%;
     border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
-.department-stats-section th,
-.department-stats-section td,
-.drive-section th,
-.drive-section td {
-    padding: 12px;
+th {
+    background: #667eea;
+    color: white;
+    padding: 14px;
     text-align: center;
 }
-/* Charts Alignment */
+
+td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+tr:hover {
+    background: #f5f7ff;
+}
+
+/* =================================
+   CHARTS
+================================= */
 
 .charts {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    padding: 25px;
     margin: 25px 0;
 }
 
@@ -948,107 +189,69 @@ Login Page
 .chart-box canvas {
     width: 100% !important;
     height: 280px !important;
-}
-/* Responsive Alignment */
-
-@media (max-width: 768px) {
-
-    .student-dashboard-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .charts {
-        grid-template-columns: 1fr;
-    }
-
-    .skill-gap-section input {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-}
-/* Main Dashboard Alignment */
-
-body {
-    margin: 0;
-    padding: 0;
+    max-height: 350px;
 }
 
-header,
-.welcome-box,
-.admin-profile,
-.cards,
-.students,
-.activity-section,
-.companies,
-.application-section,
-.csv-import-section,
-.company-form-section,
-.charts,
-.insights-section,
-.skill-gap-section,
-.student-dashboard-grid,
-.top-students-section,
-.department-stats-section,
-#driveAdminSection,
-.drive-section,
+/* =================================
+   PROGRESS BAR
+================================= */
+
+.progress-box {
+    width: 100%;
+    background: #eee;
+    height: 25px;
+    border-radius: 20px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+#predictionBar {
+    height: 100%;
+    width: 0%;
+    background: #667eea;
+    color: white;
+    text-align: center;
+    line-height: 25px;
+    transition: 0.5s;
+}
+
+#resumeScoreBar {
+    width: 0%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: white;
+    background: #22c55e;
+    border-radius: 8px;
+    transition: 0.5s;
+}
+
+/* =================================
+   PREDICTION
+================================= */
+
 .prediction,
 .prediction-history,
 .eligibility,
 .resume-section,
 .recommendation,
 .report-section,
-footer {
+.interview-section,
+.mock-interview,
+.roadmap-section,
+.career-roadmap,
+.skill-progress,
+.placement-score,
+.email-notification,
+.advanced-analytics,
+.interview-performance {
+    background: white;
+    width: 90%;
     max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-}
-/* Forms Alignment */
-
-.csv-import-section,
-.company-form-section {
-    background: white;
-    padding: 25px;
     margin: 25px auto;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.csv-import-section h2,
-.company-form-section h2 {
-    margin-top: 0;
-    margin-bottom: 20px;
-}
-
-.company-form-section input,
-.csv-import-section input {
-    padding: 12px;
-    margin: 5px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-}
-
-.company-form-section button,
-.csv-import-section button {
-    padding: 12px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-/* Final Feature Sections Alignment */
-
-.prediction,
-.prediction-history,
-.eligibility,
-.resume-section,
-.recommendation,
-.report-section {
-    background: white;
     padding: 25px;
-    margin: 25px auto;
     border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .prediction h2,
@@ -1056,14 +259,24 @@ footer {
 .eligibility h2,
 .resume-section h2,
 .recommendation h2,
-.report-section h2 {
+.report-section h2,
+.interview-section h2,
+.mock-interview h2,
+.roadmap-section h2,
+.career-roadmap h2,
+.skill-progress h2,
+.placement-score h2,
+.email-notification h2,
+.advanced-analytics h2,
+.interview-performance h2 {
     margin-top: 0;
     margin-bottom: 20px;
 }
 
 .prediction input,
 .eligibility input,
-.recommendation input {
+.recommendation input,
+.resume-section input {
     padding: 12px;
     margin: 5px;
     border: 1px solid #ccc;
@@ -1074,319 +287,187 @@ footer {
 .eligibility button,
 .resume-section button,
 .recommendation button,
-.report-section button {
+.report-section button,
+.interview-section button,
+.mock-interview button,
+.roadmap-section button,
+.career-roadmap button,
+.skill-progress button,
+.placement-score button,
+.email-notification button,
+.advanced-analytics button,
+.interview-performance button {
+    background: #2196f3;
+    color: white;
+    border: none;
     padding: 12px 20px;
-    margin: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.prediction button:hover {
+    background: #5563c1;
+}
+
+/* =================================
+   RESULT BOXES
+================================= */
+
+#resumeAnalysis,
+#placementScoreResult,
+#companyRecommendation,
+#companyRecommendationResult,
+#interviewQuestion,
+#questionResult,
+#mockInterviewResult,
+#roadmapResult,
+#careerRoadmapResult,
+#skillProgressResult,
+#skillGapResult {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f1f5f9;
+    border-radius: 10px;
+}
+
+/* =================================
+   ADMIN FORM
+================================= */
+
+.admin-form {
+    margin: 25px auto;
+    padding: 25px;
+    width: 90%;
+    max-width: 1200px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.admin-form input {
+    padding: 12px;
+    margin: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.admin-form button {
+    padding: 12px 25px;
+    background: #667eea;
+    color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
 }
 
-.prediction-history table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.prediction-history th,
-.prediction-history td {
-    padding: 12px;
-    text-align: center;
-}
+/* =================================
+   REPORT
+================================= */
 
 .report-section {
     text-align: center;
 }
-/* Strong Dark Mode Fix */
 
-body.dark-mode {
-    background: #0f172a !important;
-    color: #f8fafc !important;
+.report-section button {
+    margin: 10px;
 }
 
-body.dark-mode section,
-body.dark-mode .card,
-body.dark-mode .chart-box,
-body.dark-mode .student-dashboard-grid section,
-body.dark-mode .activity-section,
-body.dark-mode .admin-profile,
-body.dark-mode .welcome-box,
-body.dark-mode .insights-section,
-body.dark-mode .skill-gap-section,
-body.dark-mode .prediction,
-body.dark-mode .prediction-history,
-body.dark-mode .eligibility,
-body.dark-mode .resume-section,
-body.dark-mode .recommendation,
-body.dark-mode .report-section,
-body.dark-mode .companies,
-body.dark-mode .students,
-body.dark-mode .application-section,
-body.dark-mode .csv-import-section,
-body.dark-mode .company-form-section,
-body.dark-mode .department-stats-section,
-body.dark-mode .drive-section,
-body.dark-mode .top-students-section {
-    background: #1e293b !important;
-    color: #f8fafc !important;
-}
+/* =================================
+   WELCOME / PROFILE
+================================= */
 
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode h3,
-body.dark-mode p,
-body.dark-mode label,
-body.dark-mode td {
-    color: #f8fafc !important;
-}
-
-body.dark-mode input,
-body.dark-mode select {
-    background: #334155 !important;
-    color: white !important;
-    border: 1px solid #64748b !important;
-}
-
-body.dark-mode input::placeholder {
-    color: #cbd5e1 !important;
-}
-/* My Applications Dark Mode Fix */
-
-body.dark-mode .application-section {
-    background: #1e293b !important;
-    color: #f8fafc !important;
-}
-
-body.dark-mode .application-summary .summary-card {
-    background: #334155 !important;
-    color: #f8fafc !important;
-}
-
-body.dark-mode .application-filters input,
-body.dark-mode .application-filters select {
-    background: #334155 !important;
-    color: white !important;
-    border: 1px solid #64748b !important;
-}
-
-body.dark-mode .application-section table {
-    background: #1e293b !important;
-    color: white !important;
-}
-
-body.dark-mode .application-section th {
-    background: #2563eb !important;
-    color: white !important;
-}
-
-body.dark-mode .application-section td {
-    background: #1e293b !important;
-    color: white !important;
-    border-color: #64748b !important;
-}
-/* ================================
-   Floating AI Assistant
-================================ */
-
-#aiFloatingButton {
-
-    position: fixed;
-
-    left: 30px;
-
-    bottom: 30px;
-
-    width: 60px;
-
-    height: 60px;
-
-    border-radius: 50%;
-
-    border: none;
-
+.welcome-box {
     background: #2196f3;
-
     color: white;
-
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    cursor: pointer;
-
-    z-index: 9999;
-
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-
-}
-
-#aiFloatingButton:hover {
-
-    transform: scale(1.1);
-
-}
-
-
-/* AI Chat Window */
-
-#aiChatWindow {
-
-    display: none;
-
-    position: fixed;
-
-    left: 20px;
-
-    bottom: 90px;
-
-    width: 360px;
-
-    height: 520px;
-
-    background: white;
-
-    border-radius: 15px;
-
-    box-shadow: 0 5px 25px rgba(0,0,0,0.3);
-
-    z-index: 9998;
-
-    overflow: hidden;
-
-}
-
-
-/* Header */
-
-.ai-chat-header {
-
-    background: #2196f3;
-
-    color: white;
-
-    padding: 15px;
-
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 22px;
     font-weight: bold;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
+    width: 90%;
+    max-width: 1200px;
 }
 
-
-.ai-chat-header button {
-
-    background: transparent;
-
-    border: none;
-
-    color: white;
-
-    font-size: 18px;
-
-    cursor: pointer;
-
-}
-
-
-/* Chat Messages */
-
-#chatBox {
-
-    height: 300px;
-
-    padding: 15px;
-
-    overflow-y: auto;
-
-}
-
-
-.bot-message {
-
-    background: #e3f2fd;
-
-    padding: 10px;
-
+.admin-profile {
+    background: white;
+    margin: 20px auto;
+    padding: 20px;
     border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 1200px;
+}
 
+.admin-profile h3 {
+    color: #2196f3;
     margin-bottom: 10px;
-
 }
 
-
-.user-message {
-
-    background: #2196f3;
-
-    color: white;
-
-    padding: 10px;
-
-    border-radius: 10px;
-
-    margin-bottom: 10px;
-
-    text-align: right;
-
+.admin-profile p {
+    margin: 8px 0;
+    font-size: 16px;
 }
 
+/* =================================
+   APPLICATION SUMMARY
+================================= */
 
-/* Input */
-
-.chat-input-area {
-
-    display: flex;
-
-    padding: 10px;
-
-    gap: 5px;
-
+.application-summary {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    margin: 20px 0;
 }
 
-
-.chat-input-area input {
-
-    flex: 1;
-
-    padding: 10px;
-
-    border: 1px solid #ccc;
-
-    border-radius: 8px;
-
+.summary-card {
+    background: white;
+    padding: 18px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
 }
 
-
-.chat-input-area button {
-
-    padding: 10px;
-
-    border: none;
-
-    border-radius: 8px;
-
-    background: #2196f3;
-
-    color: white;
-
-    cursor: pointer;
-
+.summary-card h3 {
+    margin: 0;
+    font-size: 16px;
 }
-/* Student Table Responsive Alignment */
 
-.students {
-    width: 100%;
-    overflow-x: auto;
+.summary-card p {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 10px 0 0;
+}
+
+/* =================================
+   STUDENT DETAILS
+================================= */
+
+#studentSection {
+    display: block !important;
+    visibility: visible !important;
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto !important;
+    padding: 25px;
+}
+
+#studentSection h2 {
+    display: block !important;
+    color: #444;
+    margin-bottom: 15px;
 }
 
 #studentTable {
+    display: table !important;
+    visibility: visible !important;
     width: 100%;
     min-width: 1000px;
-    
+}
+
+#studentTableBody {
+    display: table-row-group !important;
+    visibility: visible !important;
 }
 
 #studentTable th,
@@ -1394,6 +475,7 @@ body.dark-mode .application-section td {
     text-align: center;
     padding: 12px 10px;
     white-space: nowrap;
+    vertical-align: middle;
 }
 
 #studentTable th:first-child,
@@ -1401,15 +483,14 @@ body.dark-mode .application-section td {
     text-align: left;
 }
 
-/* Center Student Details */
-
-#studentSection {
-    width: 90%;
-    max-width: 1200px;
-    margin: 30px auto !important;
-    padding: 25px;
+.students {
+    width: 100%;
+    overflow-x: auto;
 }
-/* Student Details Form Alignment */
+
+/* =================================
+   ADD STUDENT FORM
+================================= */
 
 .add-student-form {
     display: grid;
@@ -1437,8 +518,9 @@ body.dark-mode .application-section td {
     white-space: nowrap;
 }
 
-
-/* Search and Filter Alignment */
+/* =================================
+   STUDENT FILTER
+================================= */
 
 .student-filters {
     display: grid;
@@ -1454,273 +536,310 @@ body.dark-mode .application-section td {
     border: 1px solid #ccc;
     border-radius: 8px;
 }
-/* ===============================
-FINAL STUDENT DASHBOARD ALIGNMENT
-=============================== */
 
-.resume-section,
-.eligibility,
-.recommendation,
-.interview-section,
-.mock-interview,
-.roadmap-section {
-    width: 90%;
-    max-width: 1200px;
-    margin: 25px auto;
-    background: #fff;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,.1);
+/* =================================
+   STUDENT ACTION BUTTONS
+================================= */
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
 }
 
-.resume-section h2,
-.eligibility h2,
-.recommendation h2,
-.interview-section h2,
-.mock-interview h2,
-.roadmap-section h2{
-    text-align:center;
-    margin-bottom:20px;
-}
-
-.resume-section button,
-.eligibility button,
-.recommendation button,
-.interview-section button,
-.mock-interview button,
-.roadmap-section button{
-    background:#667eea;
-    color:white;
-    border:none;
-    padding:12px 22px;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-.resume-section input,
-.eligibility input,
-.recommendation input,
-.interview-section select{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border:1px solid #ccc;
-    border-radius:8px;
-}
-
-#resumeAnalysis,
-#placementScoreResult,
-#companyRecommendationResult,
-#questionResult,
-#mockInterviewResult,
-#careerRoadmapResult{
-    margin-top:20px;
-    padding:15px;
-    background:#f4f7fb;
-    border-radius:10px;
-}
-
-@media(max-width:768px){
-
-.resume-section,
-.eligibility,
-.recommendation,
-.interview-section,
-.mock-interview,
-.roadmap-section{
-width:95%;
-}
-
-}
-/* Dashboard Sections Alignment */
-
-.resume-section,
-.recommendation,
-.interview-section,
-.mock-interview,
-.career-roadmap,
-.skill-progress,
-.report-section,
-.eligibility {
-    background: white;
-    width: 90%;
-    max-width: 1200px;
-    margin: 25px auto;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-/* Headings */
-
-.resume-section h2,
-.recommendation h2,
-.interview-section h2,
-.mock-interview h2,
-.career-roadmap h2,
-.skill-progress h2,
-.report-section h2,
-.eligibility h2 {
-    margin-bottom: 20px;
-}
-
-/* Input boxes */
-
-.resume-section input,
-.recommendation input,
-.interview-section select,
-.eligibility input {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-}
-
-/* Buttons */
-
-.resume-section button,
-.recommendation button,
-.interview-section button,
-.mock-interview button,
-.career-roadmap button,
-.skill-progress button,
-.report-section button,
-.eligibility button {
-    background: #2196f3;
-    color: white;
+.action-buttons button {
+    padding: 8px 15px;
     border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
+    border-radius: 6px;
+    color: white;
     cursor: pointer;
+    font-size: 14px;
 }
 
-/* Result boxes */
-
-#resumeAnalysis,
-#placementScoreResult,
-#companyRecommendation,
-#interviewQuestion,
-#mockInterviewResult,
-#roadmapResult,
-#skillProgressResult {
-    margin-top: 20px;
-    padding: 15px;
-    background: #f1f5f9;
-    border-radius: 10px;
+.view-btn {
+    background: #3b82f6;
+    color: white;
 }
 
+.edit-btn {
+    background: #22c55e;
+    color: white;
+}
+
+.delete-btn {
+    background: #ef4444;
+    color: white;
+}
+
+/* =================================
+   STUDENT DASHBOARD GRID
+================================= */
+
+.student-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin: 30px auto;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.student-dashboard-grid section {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.student-dashboard-grid h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.profile-section,
+.performance-section,
+#studentNotificationSection,
+.top-students-section {
+    min-height: 280px;
+}
+
+#studentNotificationSection {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
 
 .top-students-section {
     width: 100%;
 }
 
-#studentNotificationSection {
-    width: 100%;
+.top-students-section p {
+    margin: 8px 0;
 }
 
-@media (max-width: 768px) {
-    .student-dashboard-grid {
-        grid-template-columns: 1fr;
-    }
-}
-#resumeScoreBar {
-    width: 0%;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    color: white;
-    background: #22c55e;
-    border-radius: 8px;
-    transition: 0.5s;
-}
-.placement-score,
-.email-notification,
-.advanced-analytics,
-.skill-gap-section,
-.interview-performance,
-.career-roadmap,
-.skill-progress {
+/* =================================
+   AI INSIGHTS
+================================= */
+
+.insights-section {
     background: white;
     width: 90%;
     max-width: 1200px;
-    margin: 25px auto;
     padding: 25px;
+    margin: 25px auto;
     border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.placement-score h2,
-.email-notification h2,
-.advanced-analytics h2,
-.skill-gap-section h2,
-.interview-performance h2,
-.career-roadmap h2,
-.skill-progress h2 {
+.insights-section h2 {
+    margin-top: 0;
     margin-bottom: 20px;
+    text-align: left;
 }
 
-.placement-score button,
-.email-notification button,
-.advanced-analytics button,
-.skill-gap-section button,
-.interview-performance button,
-.career-roadmap button,
-.skill-progress button {
-    background: #2196f3;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    cursor: pointer;
+#aiInsights {
+    line-height: 1.8;
 }
-.recommendation {
+
+/* =================================
+   SKILL GAP
+================================= */
+
+.skill-gap-section {
     background: white;
     width: 90%;
     max-width: 1200px;
-    margin: 25px auto;
     padding: 25px;
+    margin: 25px auto;
     border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.recommendation h2 {
+.skill-gap-section h2 {
+    margin-top: 0;
     margin-bottom: 20px;
 }
 
-.recommendation input {
-    width: 100%;
+.skill-gap-section input {
+    width: 60%;
     padding: 12px;
-    margin-bottom: 15px;
+    margin-right: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
 }
 
-.recommendation button {
-    background: #2196f3;
-    color: white;
-    border: none;
+.skill-gap-section button {
     padding: 12px 20px;
+    border: none;
     border-radius: 8px;
     cursor: pointer;
 }
 
-#companyRecommendation {
-    margin-top: 20px;
-    padding: 15px;
-    background: #f1f5f9;
-    border-radius: 10px;
+/* =================================
+   DEPARTMENT / DRIVE
+================================= */
+
+.department-stats-section,
+.drive-section {
+    background: white;
+    padding: 25px;
+    margin: 25px auto;
+    width: 90%;
+    max-width: 1200px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-#resumeScoreBar {
-    width: 0%;
-    height: 30px;
-    line-height: 30px;
+
+.department-stats-section h2,
+.drive-section h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.department-stats-section table,
+.drive-section table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.department-stats-section th,
+.department-stats-section td,
+.drive-section th,
+.drive-section td {
+    padding: 12px;
     text-align: center;
-    color: white;
-    background: #22c55e;
-    border-radius: 8px;
-    transition: 0.5s;
 }
+
+/* Drive Delete Button */
+
+#driveTableBody button {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#driveTableBody button:hover {
+    background: #b02a37;
+}
+
+/* =================================
+   FORMS
+================================= */
+
+.csv-import-section,
+.company-form-section {
+    background: white;
+    padding: 25px;
+    margin: 25px auto;
+    width: 90%;
+    max-width: 1200px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.csv-import-section h2,
+.company-form-section h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.company-form-section input,
+.csv-import-section input {
+    padding: 12px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.company-form-section button,
+.csv-import-section button {
+    padding: 12px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* =================================
+   LOGIN
+================================= */
+
+.login-body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.login-box {
+    background: white;
+    width: 350px;
+    padding: 35px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.login-box h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    background: #667eea;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-box button:hover {
+    background: #5563c1;
+}
+
+#message {
+    margin-top: 15px;
+    color: red;
+}
+
+/* =================================
+   FOOTER
+================================= */
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: white;
+    margin-top: 30px;
+}
+
+/* =================================
+   GENERAL SECTION
+================================= */
+
 section {
     margin-top: 30px;
 }
@@ -1734,1527 +853,54 @@ h2 {
     color: #2563eb;
 }
 
-button {
-    min-width: 180px;
-}
-
-
-/* FINAL STUDENT DASHBOARD DESIGN */
-
-
-
-.insights-section {
-    width: 90%;
-    max-width: 1200px;
-    margin: 25px auto;
-}
-
-@media (max-width: 768px) {
-    .student-dashboard-grid {
-        grid-template-columns: 1fr;
-    }
-}
-/* Profile box */
-
-.profile-section,
-.performance-section,
-#studentNotificationSection,
-.top-students-section {
-    min-height: 280px;
-}
-
-/* Notification section */
-
-#studentNotificationSection {
-    position: relative;
-    overflow: hidden;
-}
-
-/* Floating button */
-
-#aiFloatingButton {
-    left: 30px;
-    bottom: 30px;
-}
-
-/* Top students */
-
-.top-students-section p {
-    margin: 8px 0;
-}
-
-/* Card spacing */
-
-.student-dashboard-grid {
-    margin-top: 30px;
-    gap: 25px;
-}
-/* Student action buttons */
-
-.action-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-}
-
-.action-buttons button {
-    padding: 8px 14px;
-    border: none;
-    border-radius: 6px;
-    color: white;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-/* View button */
-.view-btn {
-    background: #3b82f6;
-}
-
-/* Edit button */
-.edit-btn {
-    background: #22c55e;
-}
-
-/* Delete button */
-.delete-btn {
-    background: #ef4444;
-}
-.action-buttons {
-    display: flex;
-    gap: 5px;
-}
-
-
-
-#studentTable td {
-    text-align: center;
-    vertical-align: middle;
-}
-
-#studentTable {
-    width: 100%;
-}
-.action-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-}
-
-.view-btn {
-    background: #3b82f6;
-    color: white;
-}
-
-.edit-btn {
-    background: #22c55e;
-    color: white;
-}
-
-.delete-btn {
-    background: #ef4444;
-    color: white;
-}
-
-.action-buttons button {
-    border: none;
-    border-radius: 5px;
-    padding: 8px 15px;
-    cursor: pointer;
-}
-/* Dark mode result box fix */
-
-body.dark-mode #questionResult,
-body.dark-mode #mockInterviewResult,
-body.dark-mode #careerRoadmapResult,
-body.dark-mode #skillProgressResult,
-body.dark-mode #resumeAnalysis,
-body.dark-mode #placementScoreResult,
-body.dark-mode #companyRecommendation,
-body.dark-mode #interviewQuestion,
-body.dark-mode #roadmapResult {
-
-    background: #334155 !important;
-    color: #ffffff !important;
-    border: 1px solid #64748b;
-}
-
-body.dark-mode #questionResult p,
-body.dark-mode #mockInterviewResult p,
-body.dark-mode #careerRoadmapResult p,
-body.dark-mode #skillProgressResult p,
-body.dark-mode #resumeAnalysis p,
-body.dark-mode #placementScoreResult p,
-body.dark-mode #companyRecommendation p,
-body.dark-mode #interviewQuestion p,
-body.dark-mode #roadmapResult p {
-
-    color: #ffffff !important;
-}
-.bot-message {
-    background: #f1f5f9;
-    color: #111827;
-    padding: 12px 15px;
-    margin: 10px 5px;
-    border-radius: 12px;
-    max-width: 85%;
-    line-height: 1.5;
-}
-
-
-body.dark-mode .user-message {
-    background: #2563eb !important;
-    color: #ffffff !important;
-}
-/* Dark Mode - AI Chat */
-body.dark-mode #aiChatWindow {
-    background: #1e293b !important;
-    color: #ffffff !important;
-}
-
-body.dark-mode #aiChatWindow #chatBox {
-    background: #0f172a !important;
-    color: #ffffff !important;
-}
-
-body.dark-mode #aiChatWindow .bot-message {
-    background: #334155 !important;
-    color: #ffffff !important;
-}
-
-body.dark-mode #aiChatWindow .user-message {
-    background: #2563eb !important;
-    color: #ffffff !important;
-}
-
-body.dark-mode #aiChatWindow input {
-    background: #334155 !important;
-    color: #ffffff !important;
-    border: 1px solid #64748b !important;
-}
-
-body.dark-mode #aiChatWindow input::placeholder {
-    color: #cbd5e1 !important;
-}
-/* AI CHAT DARK MODE FIX */
-
-body.dark-mode #aiChatWindow {
-    background: #1e1e1e !important;
-    color: white !important;
-}
-
-body.dark-mode #chatBox {
-    background: #1e1e1e !important;
-    color: white !important;
-}
-
-body.dark-mode #chatBox .bot-message {
-    background: #2d2d2d !important;
-    color: white !important;
-}
-
-body.dark-mode #chatBox .user-message {
-    background: #2196f3 !important;
-    color: white !important;
-}
-
-body.dark-mode #userQuestion {
-    background: #2d2d2d !important;
-    color: white !important;
-    border: 1px solid #555 !important;
-}
-
-body.dark-mode #userQuestion::placeholder {
-    color: #cccccc !important;
-}
-/* ==========================================
-   FINAL AI CHAT DARK MODE FIX
-========================================== */
-
-body.dark-mode #aiChatWindow {
-    background: #1e293b !important;
-    color: #ffffff !important;
-}
-
-body.dark-mode #aiChatWindow .ai-chat-header {
-    background: #1d4ed8 !important;
-    color: #ffffff !important;
-}
-
-body.dark-mode #aiChatWindow #chatBox {
-    background: #0f172a !important;
-    color: #ffffff !important;
-}
-
-body.dark-mode #aiChatWindow .bot-message {
-    background: #334155 !important;
-    color: #ffffff !important;
-}
-
-body.dark-mode #aiChatWindow .user-message {
-    background: #2563eb !important;
-    color: #ffffff !important;
-}
-
-body.dark-mode #aiChatWindow .chat-input-area {
-    background: #1e293b !important;
-}
-
-body.dark-mode #aiChatWindow #userQuestion {
-    background: #334155 !important;
-    color: #ffffff !important;
-    border: 1px solid #64748b !important;
-}
-
-body.dark-mode #aiChatWindow #userQuestion::placeholder {
-    color: #cbd5e1 !important;
-}
-
-body.dark-mode #aiChatWindow .chat-input-area button {
-    background: #2563eb !important;
-    color: #ffffff !important;
-}
-/* ================================
-   AI CHAT MESSAGE COLORS
-================================ */
-
-/* User message */
-.user-message {
-    background: #2196f3 !important;
-    color: white !important;
-    padding: 12px 15px;
-    margin: 10px 5px;
-    border-radius: 12px;
-    max-width: 85%;
-    margin-left: auto;
-    line-height: 1.5;
-}
-
-/* AI / Bot reply */
-.bot-message {
-    background: #e3f2fd !important;
-    color: #111827 !important;
-    padding: 12px 15px;
-    margin: 10px 5px;
-    border-radius: 12px;
-    max-width: 85%;
-    margin-right: auto;
-    line-height: 1.5;
-}
-
-/* Dark mode - AI reply */
-body.dark-mode .bot-message {
-    background: #334155 !important;
-    color: #ffffff !important;
-}
-
-/* Dark mode - User message */
-body.dark-mode .user-message {
-    background: #2563eb !important;
-    color: #ffffff !important;
-}
-/* ================================
-   FINAL AI CHAT MESSAGE FIX
-================================ */
-
-/* AI Assistant message */
-#chatBox .bot-message {
-    background: #e3f2fd !important;
-    color: #000000 !important;
-    padding: 12px 15px !important;
-    margin: 10px 5px !important;
-    border-radius: 12px !important;
-    max-width: 85%;
-    line-height: 1.5;
-}
-
-/* AI Assistant text */
-#chatBox .bot-message,
-#chatBox .bot-message * {
-    color: #000000 !important;
-}
-
-/* User message */
-#chatBox .user-message {
-    background: #0d47a1 !important;
-    color: #ffffff !important;
-    padding: 12px 15px !important;
-    margin: 10px 5px !important;
-    border-radius: 12px !important;
-    text-align: right;
-}
-
-/* User message text */
-#chatBox .user-message,
-#chatBox .user-message * {
-    color: #ffffff !important;
-}
-
-/* Dark Mode - AI Assistant */
-body.dark-mode #chatBox .bot-message {
-    background: #334155 !important;
-    color: #ffffff !important;
-}
-
-body.dark-mode #chatBox .bot-message,
-body.dark-mode #chatBox .bot-message * {
-    color: #ffffff !important;
-}
-
-/* Dark Mode - User message */
-body.dark-mode #chatBox .user-message {
-    background: #2563eb !important;
-    color: #ffffff !important;
-}
-
-body.dark-mode #chatBox .user-message,
-body.dark-mode #chatBox .user-message * {
-    color: #ffffff !important;
-}
-#chatBox .bot-message {
-    background: #e3f2fd !important;
-    color: #000000 !important;
-}
-
-#chatBox .bot-message * {
-    color: #000000 !important;
-}
-
-#chatBox .user-message {
-    background: #0d47a1 !important;
-    color: #ffffff !important;
-}
-
-#chatBox .user-message * {
-    color: #ffffff !important;
-}
-/* FINAL FIX - AI REPLY IN DARK MODE */
-
-body.dark-mode #aiChatWindow #chatBox .bot-message {
-    background: #334155 !important;
-    color: #000000 !important;
-}
-
-body.dark-mode #aiChatWindow #chatBox .bot-message span {
-    color: #000000 !important;
-}
-
-body.dark-mode #aiChatWindow #chatBox .bot-message * {
-    color: #000000 !important;
-}
-
-/* User message */
-body.dark-mode #aiChatWindow #chatBox .user-message {
-    background: #0d47a1 !important;
-    color: #ffffff !important;
-}
-
-body.dark-mode #aiChatWindow #chatBox .user-message * {
-    color: #ffffff !important;
-}
-/* FINAL FIX - AI REPLY TEXT VISIBILITY */
-
-body.dark-mode #aiChatWindow #chatBox .bot-message,
-body.dark-mode #aiChatWindow #chatBox .bot-message span {
-    background: #dff3ff !important;
-    color: #000000 !important;
-}
-
-/* Force every text inside AI reply to black */
-body.dark-mode #aiChatWindow #chatBox .bot-message * {
-    color: #000000 !important;
-}
-/* FINAL AI ASSISTANT REPLY FIX */
-
-#aiChatWindow #chatBox .bot-message {
-    background: #ffffff !important;
-    color: #000000 !important;
-    padding: 12px 15px !important;
-    margin: 10px 5px !important;
-    border-radius: 12px !important;
-    max-width: 85%;
-    line-height: 1.5;
-    font-weight: 500;
-}
-
-#aiChatWindow #chatBox .bot-message * {
-    color: #000000 !important;
-}
-
-body.dark-mode #aiChatWindow #chatBox .bot-message * {
-    color: #000000 !important;
-}
-/* FINAL AI CHAT DARK MODE FIX */
-
-body.dark-mode #aiChatWindow #chatBox .bot-message {
-    background: #334155 !important;
-    color: #ffffff !important;
-}
-
-body.dark-mode #aiChatWindow #chatBox .bot-message * {
-    color: #ffffff !important;
-}
-
-body.dark-mode #aiChatWindow #chatBox .user-message {
-    background: #2563eb !important;
-    color: #ffffff !important;
-}
-
-body.dark-mode #aiChatWindow #chatBox .user-message * {
-    color: #ffffff !important;
-}
-/* AI Chat - Dark Mode */
-.dark-mode #aiChatWindow {
-    background: #1e1e1e !important;
-    color: white !important;
-}
-
-.dark-mode #chatBox {
-    background: #121212 !important;
-    color: white !important;
-}
-
-.dark-mode #chatBox .bot-message {
-    background: #1e1e1e !important;
-    color: white !important;
-}
-
-.dark-mode #chatBox .user-message {
-    background: #0d47a1 !important;
-    color: white !important;
-}
-
-.dark-mode #userQuestion {
-    background: #2a2a2a !important;
-    color: white !important;
-    border: 1px solid #555 !important;
-}
-
-.dark-mode #userQuestion::placeholder {
-    color: #bbb !important;
-}
-/* AI Chat Messages - Dark Mode */
-
-.dark-mode #chatBox .bot-message {
-    background: #000000 !important;
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-}
-
-.dark-mode #chatBox .bot-message * {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-}
-
-.dark-mode #chatBox .user-message {
-    background: #000000 !important;
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-}
-/* AI Chat Dark Mode */
-
-.dark-mode #chatBox .bot-message {
-    background-color: #000000 !important;
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-}
-
-.dark-mode #chatBox .bot-message span {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-}
-
-.dark-mode #chatBox .user-message {
-    background-color: #000000 !important;
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-}
-/* ==============================
-   AI CHAT ASSISTANT
-   ============================== */
-
-.ai-chat-button {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    padding: 12px 18px;
-    border: none;
-    border-radius: 25px;
-    background: #0d47a1;
-    color: white;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 9999;
-}
-
-.ai-chat-window {
-    display: none;
-    position: fixed;
-    bottom: 80px;
-    right: 25px;
-    width: 350px;
-    height: 450px;
-    background: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.3);
-    overflow: hidden;
-    z-index: 9999;
-}
-
-.ai-chat-header {
-    background: #0d47a1;
-    color: white;
-    padding: 15px;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.ai-chat-header button {
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-.chat-box {
-    height: 330px;
-    padding: 12px;
-    overflow-y: auto;
-    background: #f5f5f5;
-}
-
-.bot-message {
-    background: #ffffff;
-    color: #111111;
-    padding: 10px 12px;
-    margin: 8px 0;
-    border-radius: 12px;
-    max-width: 85%;
-    line-height: 1.5;
-}
-
-.user-message {
-    background: #0d47a1;
-    color: #ffffff;
-    padding: 10px 12px;
-    margin: 8px 0 8px auto;
-    border-radius: 12px;
-    max-width: 85%;
-    line-height: 1.5;
-}
-
-.chat-input-area {
-    display: flex;
-    gap: 5px;
-    padding: 10px;
-    background: #ffffff;
-}
-
-.chat-input-area input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-}
-
-.chat-input-area button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 8px;
-    background: #0d47a1;
-    color: white;
-    cursor: pointer;
-}
-
-/* Dark Mode */
-
-.dark-mode .ai-chat-window {
-    background: #111111;
-}
-
-.dark-mode .chat-box {
-    background: #111111;
-}
-
-.dark-mode .bot-message {
-    background: #000000 !important;
-    color: #ffffff !important;
-}
-
-.dark-mode .chat-input-area {
-    background: #111111;
-}
-
-.dark-mode .chat-input-area input {
-    background: #222222;
-    color: #ffffff;
-    border-color: #555555;
-}
-
-.dark-mode .chat-input-area input::placeholder {
-    color: #cccccc;
-}
-.ai-chat-section {
-    margin: 30px;
-    padding: 20px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.chat-messages {
-    height: 350px;
-    overflow-y: auto;
-    padding: 15px;
-    background: #f5f5f5;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-.bot-message,
-.user-message {
-    padding: 10px 14px;
-    margin: 8px 0;
-    border-radius: 10px;
-    max-width: 80%;
-    color: #111;
-    background: white;
-}
-
-.user-message {
-    margin-left: auto;
-    background: #dbeafe;
-}
-
-.chat-input-box {
-    display: flex;
-    gap: 10px;
-}
-
-.chat-input-box input {
-    flex: 1;
-    padding: 12px;
-    border: 1px solid #aaa;
-    border-radius: 8px;
-    color: #111;
-    background: white;
-}
-
-.chat-input-box button {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-/* AI Floating Chat Button */
-
-.ai-chat-button {
-    position: fixed;
-    right: 25px;
-    bottom: 25px;
-
-    width: 55px;
-    height: 55px;
-
-    border-radius: 50%;
-    border: none;
-
-    background: #2563eb;
-    color: white;
-
-    font-size: 25px;
-    cursor: pointer;
-
-    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
-
-    z-index: 9999;
-}
-
-
-/* Chat Box */
-
-.ai-chat-box {
-    display: none;
-
-    position: fixed;
-    right: 25px;
-    bottom: 90px;
-
-    width: 320px;
-    height: 430px;
-
-    background: white;
-
-    border-radius: 15px;
-
-    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-
-    overflow: hidden;
-
-    z-index: 9999;
-}
-
-
-/* Header */
-
-.ai-chat-header {
-    height: 50px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 15px;
-
-    background: #2563eb;
-    color: white;
-
-    font-weight: bold;
-}
-
-.ai-chat-header button {
-    border: none;
-    background: transparent;
-    color: white;
-
-    font-size: 18px;
-    cursor: pointer;
-}
-
-
-/* Messages */
-
-.chat-messages {
-    height: 320px;
-
-    padding: 12px;
-
-    overflow-y: auto;
-
-    background: #f8fafc;
-}
-
-.bot-message,
-.user-message {
-    padding: 9px 12px;
-
-    margin: 8px 0;
-
-    border-radius: 10px;
-
-    color: #111;
-
-    background: white;
-
-    word-wrap: break-word;
-}
-
-.user-message {
-    background: #dbeafe;
-    margin-left: 35px;
-}
-
-
-/* Input */
-
-.chat-input-box {
-    display: flex;
-
-    padding: 10px;
-
-    gap: 6px;
-
-    border-top: 1px solid #ddd;
-
-    background: white;
-}
-
-.chat-input-box input {
-    flex: 1;
-
-    padding: 9px;
-
-    border: 1px solid #aaa;
-
-    border-radius: 8px;
-
-    color: #111;
-
-    background: white;
-}
-
-.chat-input-box button {
-    width: 40px;
-
-    border: none;
-
-    border-radius: 8px;
-
-    background: #2563eb;
-
-    color: white;
-
-    cursor: pointer;
-}
 /* =================================
-   AI CHAT ASSISTANT
+   FLOATING AI CHAT BUTTON
 ================================= */
-
-/* Small Round AI Button */
-#aiChatButton {
-    position: fixed;
-    right: 25px;
-    bottom: 25px;
-
-    width: 55px;
-    height: 55px;
-
-    border-radius: 50%;
-    border: none;
-
-    background: #2563eb;
-    color: white;
-
-    font-size: 26px;
-
-    cursor: pointer;
-
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
-
-    z-index: 9999;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#aiChatButton:hover {
-    transform: scale(1.08);
-}
-
-
-/* =================================
-   AI CHAT WINDOW
-================================= */
-
-#aiChatWindow {
-    position: fixed;
-
-    right: 25px;
-    bottom: 90px;
-
-    width: 330px;
-    height: 430px;
-
-    background: white;
-
-    border-radius: 15px;
-
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-
-    overflow: hidden;
-
-    display: none;
-
-    z-index: 9998;
-
-    border: 1px solid #ddd;
-}
-
-
-/* =================================
-   CHAT HEADER
-================================= */
-
-.ai-chat-header {
-    height: 55px;
-
-    background: #2563eb;
-
-    color: white;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 0 15px;
-
-    font-weight: bold;
-}
-
-.ai-chat-header button {
-    background: transparent;
-
-    border: none;
-
-    color: white;
-
-    font-size: 20px;
-
-    cursor: pointer;
-}
-
-
-/* =================================
-   CHAT MESSAGES
-================================= */
-
-.chat-box {
-    height: 320px;
-
-    padding: 12px;
-
-    overflow-y: auto;
-
-    background: #f5f7fb;
-}
-
-
-/* User message */
-
-.user-message {
-    background: #2563eb;
-
-    color: white;
-
-    padding: 9px 12px;
-
-    margin: 8px 0;
-
-    border-radius: 12px 12px 2px 12px;
-
-    max-width: 80%;
-
-    margin-left: auto;
-
-    word-wrap: break-word;
-}
-
-
-/* AI message */
-
-.bot-message {
-    background: white;
-
-    color: #222;
-
-    padding: 9px 12px;
-
-    margin: 8px 0;
-
-    border-radius: 12px 12px 12px 2px;
-
-    max-width: 85%;
-
-    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
-
-    word-wrap: break-word;
-}
-
-
-/* =================================
-   CHAT INPUT
-================================= */
-
-.ai-chat-input {
-    height: 55px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 5px;
-
-    padding: 7px;
-
-    background: white;
-
-    border-top: 1px solid #ddd;
-}
-
-.ai-chat-input input {
-    flex: 1;
-
-    height: 38px;
-
-    border: 1px solid #ccc;
-
-    border-radius: 20px;
-
-    padding: 0 12px;
-
-    outline: none;
-
-    font-size: 14px;
-}
-
-.ai-chat-input button {
-    width: 40px;
-
-    height: 40px;
-
-    border-radius: 50%;
-
-    border: none;
-
-    background: #2563eb;
-
-    color: white;
-
-    font-size: 18px;
-
-    cursor: pointer;
-}
-
-
-/* =========================================
-   FLOATING AI ASSISTANT
-========================================= */
-
-.floating-ai-btn {
-    position: fixed;
-
-    right: 25px;
-    bottom: 25px;
-
-    width: 60px;
-    height: 60px;
-
-    border-radius: 50%;
-    border: none;
-
-    background: #2563eb;
-    color: white;
-
-    font-size: 28px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-
-    z-index: 99999;
-
-    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.35);
-}
-
-
-
-
-/* =================================
-   FLOATING AI ASSISTANT BUTTON
-================================= */
-
-#aiChatButton {
-    position: fixed !important;
-    right: 25px !important;
-    bottom: 25px !important;
-
-    width: 65px !important;
-    height: 65px !important;
-
-    border-radius: 50% !important;
-    border: none !important;
-
-    background: linear-gradient(135deg, #2196f3, #00bcd4) !important;
-    color: white !important;
-
-    font-size: 30px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    cursor: pointer !important;
-
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3) !important;
-
-    z-index: 99999 !important;
-}
-
-/* Hover */
-#aiChatButton:hover {
-    transform: scale(1.08);
-}
-
-
-/* =================================
-   AI CHAT WINDOW
-================================= */
-
-#aiChatWindow {
-    position: fixed !important;
-
-    right: 25px !important;
-    bottom: 105px !important;
-
-    width: 380px !important;
-    height: 500px !important;
-
-    background: white !important;
-
-    border-radius: 18px !important;
-
-    box-shadow: 0 10px 35px rgba(0,0,0,0.3) !important;
-
-    overflow: hidden !important;
-
-    z-index: 99998 !important;
-}
-
-
-/* =================================
-   CHAT HEADER
-================================= */
-
-.ai-chat-header {
-    height: 60px;
-
-    background: linear-gradient(135deg, #1976d2, #00acc1);
-
-    color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 18px;
-
-    font-weight: bold;
-    font-size: 17px;
-}
-
-.ai-chat-header button {
-    background: transparent;
-    border: none;
-    color: white;
-
-    font-size: 22px;
-
-    cursor: pointer;
-}
-
-
-/* =================================
-   CHAT BOX
-================================= */
-
-#chatBox {
-    height: 370px;
-
-    padding: 15px;
-
-    overflow-y: auto;
-
-    background: #ffffff;
-
-    color: #222;
-}
-
-
-/* =================================
-   INPUT AREA
-================================= */
-
-.ai-chat-input {
-    height: 70px;
-
-    display: flex;
-    align-items: center;
-
-    gap: 8px;
-
-    padding: 10px;
-
-    background: #f5f5f5;
-}
-
-.ai-chat-input input {
-    flex: 1;
-
-    height: 42px;
-
-    border: 1px solid #ccc;
-
-    border-radius: 10px;
-
-    padding: 0 12px;
-
-    color: #222;
-
-    background: white;
-}
-
-.ai-chat-input button {
-    height: 42px;
-
-    padding: 0 18px;
-
-    border: none;
-
-    border-radius: 10px;
-
-    background: #2196f3;
-
-    color: white;
-
-    cursor: pointer;
-}
-
-
-/* =================================
-   DARK MODE
-================================= */
-
-body.dark-mode #aiChatWindow {
-    background: #1e1e1e !important;
-}
-
-body.dark-mode #chatBox {
-    background: #1e1e1e !important;
-    color: white !important;
-}
-
-body.dark-mode .ai-chat-input {
-    background: #252525 !important;
-}
-
-body.dark-mode .ai-chat-input input {
-    background: #333 !important;
-    color: white !important;
-    border-color: #555 !important;
-}
-
-body.dark-mode .ai-chat-input input::placeholder {
-    color: #ccc !important;
-
-}
-/* =================================
-   FINAL AI CHAT FIX
-================================= */
-
-#aiChatWindow {
-    display: none !important;
-
-    position: fixed;
-    right: 25px;
-    bottom: 100px;
-
-    width: 380px;
-    height: 500px;
-
-    background: white;
-    border-radius: 18px;
-
-    box-shadow: 0 10px 35px rgba(0,0,0,0.3);
-
-    overflow: hidden;
-    z-index: 99998;
-}
-
-#aiChatButton {
-    position: fixed !important;
-    right: 25px !important;
-    bottom: 25px !important;
-
-    width: 65px !important;
-    height: 65px !important;
-
-    border-radius: 50% !important;
-    border: none !important;
-
-    background: linear-gradient(135deg, #2196f3, #00bcd4) !important;
-
-    color: white !important;
-    font-size: 30px !important;
-
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    cursor: pointer !important;
-    z-index: 99999 !important;
-}
-/* ===== FINAL BIG ROUND AI BUTTON ===== */
 
 #aiChatButton {
     position: fixed !important;
     right: 30px !important;
     bottom: 30px !important;
-
-    width: 70px !important;
-    height: 70px !important;
-
-    border-radius: 50% !important;
-    border: none !important;
-
-    background: linear-gradient(135deg, #2196f3, #00bcd4) !important;
-
-    color: white !important;
-    font-size: 32px !important;
-
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    cursor: pointer !important;
-
-    z-index: 999999 !important;
-
-    box-shadow: 0 6px 20px rgba(0,0,0,0.35) !important;
-}
-
-#aiChatButton:hover {
-    transform: scale(1.08);
-}
-/* =========================
-   AI CHAT - RIGHT SIDE
-========================= */
-
-#aiChatButton {
-    position: fixed !important;
-    right: 30px !important;
-    bottom: 30px !important;
-
-    width: 70px !important;
-    height: 70px !important;
-
-    border-radius: 50% !important;
-    border: none !important;
-
-    background: linear-gradient(135deg, #2196f3, #00bcd4) !important;
-    color: white !important;
-
-    font-size: 32px !important;
-
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    cursor: pointer !important;
-
-    z-index: 999999 !important;
-
-    box-shadow: 0 6px 20px rgba(0,0,0,0.35) !important;
-}
-
-
-/* AI MESSAGE WINDOW */
-
-#aiChatWindow {
-    position: fixed !important;
-
-    right: 30px !important;
     left: auto !important;
+    top: auto !important;
 
-    bottom: 115px !important;
+    width: 70px !important;
+    height: 70px !important;
 
-    width: 360px !important;
-    height: 500px !important;
+    border-radius: 50% !important;
+    border: none !important;
 
-    background: white !important;
+    background: linear-gradient(
+        135deg,
+        #2196f3,
+        #00bcd4
+    ) !important;
 
-    border-radius: 18px !important;
+    color: white !important;
+    font-size: 32px !important;
 
-    box-shadow: 0 8px 30px rgba(0,0,0,0.25) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 
-    z-index: 999998 !important;
+    cursor: pointer !important;
 
-    overflow: hidden !important;
+    z-index: 999999 !important;
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35) !important;
 }
 
-
-/* Chat header */
-
-.ai-chat-header {
-    height: 65px;
-
-    background: linear-gradient(135deg, #2196f3, #00bcd4);
-
-    color: white;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 0 18px;
-
-    font-weight: bold;
-
-    font-size: 17px;
+#aiChatButton:hover {
+    transform: scale(1.08);
 }
 
-
-/* Chat messages */
-
-#chatBox {
-    height: 365px;
-
-    padding: 15px;
-
-    overflow-y: auto;
-
-    background: #f7f9fc;
-}
-
-
-/* Input area */
-
-.ai-chat-input {
-    height: 70px;
-
-    display: flex;
-
-    gap: 8px;
-
-    align-items: center;
-
-    padding: 10px;
-
-    background: white;
-}
-
-.ai-chat-input input {
-    flex: 1;
-
-    height: 40px;
-
-    border: 1px solid #ddd;
-
-    border-radius: 8px;
-
-    padding: 0 10px;
-}
-
-.ai-chat-input button {
-    height: 40px;
-
-    padding: 0 20px;
-
-    border: none;
-
-    border-radius: 8px;
-
-    background: #2196f3;
-
-    color: white;
-
-    cursor: pointer;
-}
 /* =================================
-   AI CHAT - KEEP ABOVE AI BUTTON
+   AI CHAT WINDOW
 ================================= */
 
 #aiChatWindow {
+    display: none;
+
     position: fixed !important;
 
     right: 30px !important;
@@ -3266,23 +912,494 @@ body.dark-mode .ai-chat-input input::placeholder {
     width: 380px !important;
     height: 520px !important;
 
+    background: white !important;
+
+    border-radius: 18px !important;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3) !important;
+
+    overflow: hidden !important;
+
     z-index: 999998 !important;
 
-    display: none;
+    border: 1px solid #ddd;
 }
 
-/* AI ROUND BUTTON */
-#aiChatButton {
-    position: fixed !important;
+/* =================================
+   AI CHAT HEADER
+================================= */
 
-    right: 30px !important;
-    bottom: 30px !important;
+.ai-chat-header {
+    height: 60px;
 
-    left: auto !important;
-    top: auto !important;
+    background: linear-gradient(
+        135deg,
+        #1976d2,
+        #00acc1
+    );
 
-    width: 70px !important;
-    height: 70px !important;
+    color: white;
 
-    z-index: 999999 !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 18px;
+
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.ai-chat-header button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* =================================
+   CHAT BOX
+================================= */
+
+#chatBox,
+.chat-box,
+.chat-messages {
+    height: 370px;
+    padding: 15px;
+    overflow-y: auto;
+    background: #f7f9fc;
+    color: #222;
+}
+
+/* =================================
+   BOT MESSAGE
+================================= */
+
+#chatBox .bot-message,
+.chat-box .bot-message,
+.chat-messages .bot-message {
+    background: white !important;
+    color: #111827 !important;
+
+    padding: 10px 14px !important;
+    margin: 8px 0 !important;
+
+    border-radius: 12px;
+
+    max-width: 85%;
+
+    line-height: 1.5;
+
+    word-wrap: break-word;
+
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+#chatBox .bot-message *,
+.chat-box .bot-message *,
+.chat-messages .bot-message * {
+    color: #111827 !important;
+}
+
+/* =================================
+   USER MESSAGE
+================================= */
+
+#chatBox .user-message,
+.chat-box .user-message,
+.chat-messages .user-message {
+    background: #2563eb !important;
+    color: white !important;
+
+    padding: 10px 14px !important;
+    margin: 8px 0 8px auto !important;
+
+    border-radius: 12px 12px 2px 12px;
+
+    max-width: 85%;
+
+    line-height: 1.5;
+
+    word-wrap: break-word;
+}
+
+#chatBox .user-message *,
+.chat-box .user-message *,
+.chat-messages .user-message * {
+    color: white !important;
+}
+
+/* =================================
+   AI CHAT INPUT
+================================= */
+
+.ai-chat-input,
+.chat-input-area,
+.chat-input-box {
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 10px;
+
+    background: white;
+
+    border-top: 1px solid #ddd;
+}
+
+.ai-chat-input input,
+.chat-input-area input,
+.chat-input-box input {
+    flex: 1;
+
+    height: 42px;
+
+    padding: 0 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    color: #222;
+
+    background: white;
+}
+
+.ai-chat-input button,
+.chat-input-area button,
+.chat-input-box button {
+    height: 42px;
+
+    padding: 0 18px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #2196f3;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+/* =================================
+   AI CHAT SECTION
+================================= */
+
+.ai-chat-section {
+    margin: 30px auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 1200px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.ai-chat-section .chat-messages {
+    height: 350px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* =================================
+   DARK MODE
+================================= */
+
+body.dark-mode {
+    background: #0f172a !important;
+    color: #f8fafc !important;
+}
+
+body.dark-mode .header {
+    color: white;
+}
+
+body.dark-mode section,
+body.dark-mode .card,
+body.dark-mode .chart-box,
+body.dark-mode .student-dashboard-grid section,
+body.dark-mode .activity-section,
+body.dark-mode .admin-profile,
+body.dark-mode .insights-section,
+body.dark-mode .skill-gap-section,
+body.dark-mode .prediction,
+body.dark-mode .prediction-history,
+body.dark-mode .eligibility,
+body.dark-mode .resume-section,
+body.dark-mode .recommendation,
+body.dark-mode .report-section,
+body.dark-mode .companies,
+body.dark-mode .students,
+body.dark-mode .application-section,
+body.dark-mode .csv-import-section,
+body.dark-mode .company-form-section,
+body.dark-mode .department-stats-section,
+body.dark-mode .drive-section,
+body.dark-mode .top-students-section,
+body.dark-mode .placement-score,
+body.dark-mode .email-notification,
+body.dark-mode .advanced-analytics,
+body.dark-mode .interview-performance,
+body.dark-mode .career-roadmap,
+body.dark-mode .skill-progress,
+body.dark-mode .interview-section,
+body.dark-mode .mock-interview,
+body.dark-mode .roadmap-section,
+body.dark-mode .ai-chat-section {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode p,
+body.dark-mode label,
+body.dark-mode td {
+    color: #f8fafc !important;
+}
+
+body.dark-mode input,
+body.dark-mode select {
+    background: #334155 !important;
+    color: white !important;
+    border: 1px solid #64748b !important;
+}
+
+body.dark-mode input::placeholder {
+    color: #cbd5e1 !important;
+}
+
+/* =================================
+   DARK MODE TABLE
+================================= */
+
+body.dark-mode table {
+    background: #1e293b !important;
+    color: white !important;
+}
+
+body.dark-mode th {
+    background: #2563eb !important;
+    color: white !important;
+}
+
+body.dark-mode td {
+    background: #1e293b !important;
+    color: white !important;
+    border-color: #64748b !important;
+}
+
+/* =================================
+   DARK MODE APPLICATION
+================================= */
+
+body.dark-mode .application-summary .summary-card {
+    background: #334155 !important;
+    color: #f8fafc !important;
+}
+
+body.dark-mode .application-filters input,
+body.dark-mode .application-filters select {
+    background: #334155 !important;
+    color: white !important;
+    border: 1px solid #64748b !important;
+}
+
+/* =================================
+   DARK MODE RESULT BOXES
+================================= */
+
+body.dark-mode #questionResult,
+body.dark-mode #mockInterviewResult,
+body.dark-mode #careerRoadmapResult,
+body.dark-mode #skillProgressResult,
+body.dark-mode #resumeAnalysis,
+body.dark-mode #placementScoreResult,
+body.dark-mode #companyRecommendation,
+body.dark-mode #companyRecommendationResult,
+body.dark-mode #interviewQuestion,
+body.dark-mode #roadmapResult,
+body.dark-mode #skillGapResult {
+    background: #334155 !important;
+    color: white !important;
+    border: 1px solid #64748b;
+}
+
+body.dark-mode #questionResult *,
+body.dark-mode #mockInterviewResult *,
+body.dark-mode #careerRoadmapResult *,
+body.dark-mode #skillProgressResult *,
+body.dark-mode #resumeAnalysis *,
+body.dark-mode #placementScoreResult *,
+body.dark-mode #companyRecommendation *,
+body.dark-mode #companyRecommendationResult *,
+body.dark-mode #interviewQuestion *,
+body.dark-mode #roadmapResult *,
+body.dark-mode #skillGapResult * {
+    color: white !important;
+}
+
+/* =================================
+   DARK MODE AI CHAT
+================================= */
+
+body.dark-mode #aiChatWindow {
+    background: #1e293b !important;
+    border-color: #475569 !important;
+}
+
+body.dark-mode #chatBox,
+body.dark-mode .chat-box,
+body.dark-mode .chat-messages {
+    background: #0f172a !important;
+    color: white !important;
+}
+
+body.dark-mode #chatBox .bot-message,
+body.dark-mode .chat-box .bot-message,
+body.dark-mode .chat-messages .bot-message {
+    background: #334155 !important;
+    color: white !important;
+}
+
+body.dark-mode #chatBox .bot-message *,
+body.dark-mode .chat-box .bot-message *,
+body.dark-mode .chat-messages .bot-message * {
+    color: white !important;
+}
+
+body.dark-mode #chatBox .user-message,
+body.dark-mode .chat-box .user-message,
+body.dark-mode .chat-messages .user-message {
+    background: #2563eb !important;
+    color: white !important;
+}
+
+body.dark-mode #chatBox .user-message *,
+body.dark-mode .chat-box .user-message *,
+body.dark-mode .chat-messages .user-message * {
+    color: white !important;
+}
+
+body.dark-mode .ai-chat-input,
+body.dark-mode .chat-input-area,
+body.dark-mode .chat-input-box {
+    background: #1e293b !important;
+}
+
+body.dark-mode .ai-chat-input input,
+body.dark-mode .chat-input-area input,
+body.dark-mode .chat-input-box input {
+    background: #334155 !important;
+    color: white !important;
+    border-color: #64748b !important;
+}
+
+body.dark-mode .ai-chat-input input::placeholder,
+body.dark-mode .chat-input-area input::placeholder,
+body.dark-mode .chat-input-box input::placeholder {
+    color: #cbd5e1 !important;
+}
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 900px) {
+
+    .application-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .add-student-form {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .filters {
+        flex-direction: column;
+    }
+
+    .filters input,
+    .filters select {
+        width: 100%;
+    }
+
+    .student-dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .charts {
+        grid-template-columns: 1fr;
+    }
+
+    .skill-gap-section input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .resume-section,
+    .eligibility,
+    .recommendation,
+    .interview-section,
+    .mock-interview,
+    .roadmap-section {
+        width: 95%;
+    }
+
+    .ai-chat-section {
+        width: 95%;
+    }
+
+    #aiChatWindow {
+        width: calc(100% - 30px) !important;
+        right: 15px !important;
+        bottom: 95px !important;
+    }
+
+    #aiChatButton {
+        right: 20px !important;
+        bottom: 20px !important;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .header h1 {
+        font-size: 22px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    .application-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .login-box {
+        width: 90%;
+    }
+
+    .action-buttons {
+        flex-wrap: wrap;
+    }
 }

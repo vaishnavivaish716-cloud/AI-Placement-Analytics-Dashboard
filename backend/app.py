@@ -208,6 +208,67 @@ def predict():
     )
 
     return jsonify(result)
+# ----------------------------
+# AI Placement Chat API
+# ----------------------------
+@app.route("/api/ai-chat", methods=["POST"])
+def ai_chat():
+
+    data = request.get_json()
+
+    question = data.get("question", "").strip().lower()
+
+    if not question:
+        return jsonify({
+            "answer": "Please enter your question."
+        }), 400
+
+    if "placement" in question or "job" in question:
+
+        answer = (
+            "For placement preparation, focus on "
+            "CGPA, aptitude, technical skills, projects, "
+            "resume preparation and interview practice."
+        )
+
+    elif "skill" in question or "learn" in question:
+
+        answer = (
+            "You can focus on Python, Java, SQL, "
+            "HTML, CSS, JavaScript and Data Structures."
+        )
+
+    elif "interview" in question:
+
+        answer = (
+            "Prepare self-introduction, technical questions, "
+            "aptitude, HR questions and your final-year project."
+        )
+
+    elif "resume" in question:
+
+        answer = (
+            "Your resume should include skills, projects, "
+            "internships, certifications and achievements."
+        )
+
+    elif "company" in question:
+
+        answer = (
+            "Before applying, check the company's job role, "
+            "required skills, eligibility and package."
+        )
+
+    else:
+
+        answer = (
+            "I can help you with placements, skills, "
+            "interviews, resumes and companies."
+        )
+
+    return jsonify({
+        "answer": answer
+    })
 
 # ----------------------------
 # Run App
