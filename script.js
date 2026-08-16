@@ -371,12 +371,9 @@ function toggleDarkMode(){
 // Logout
 // ================================
 
-function logout(){
-
-    localStorage.removeItem("login");
-
-    window.location.href="login.html";
-
+function logout() {
+    localStorage.clear();
+    window.location.href = "index.html";
 }
 // =======================================
 // Company Management
