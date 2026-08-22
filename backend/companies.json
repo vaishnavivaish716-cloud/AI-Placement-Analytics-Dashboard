@@ -16,5 +16,11 @@
         "role": "Data Analyst",
         "package": 4.0,
         "studentsPlaced": 45
+    },
+    {
+        "company": "Hdlc",
+        "role": "Data analytics",
+        "package": "3.3",
+        "studentsPlaced": 55
     }
 ]

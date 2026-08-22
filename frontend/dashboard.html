@@ -32,25 +32,12 @@
 
 <header class="header">
 
-    <div class="logo-section">
-
-        <h1>🎓 AI Placement Analytics Dashboard</h1>
-         
-
-
-        <p>Kavery Arts and Science College</p>
-
-    </div>
-
-
+    <!-- LEFT -->
     <div class="header-right">
-
-        <span id="dateTime"></span>
 
         <button onclick="toggleDarkMode()">
             🌙 Dark Mode
         </button>
-
 
         <button onclick="logout()">
             Logout
@@ -58,7 +45,22 @@
 
     </div>
 
+    <!-- CENTER -->
+    <div class="logo-section">
+
+        <h1>🎓 AI Placement Analytics Dashboard</h1>
+
+        <p>Kavery Arts and Science College</p>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="header-time">
+        <span id="dateTime"></span>
+    </div>
+
 </header>
+
 <div class="welcome-box">
     <h2 id="welcomeMessage">Welcome Admin</h2>
 </div>
@@ -169,6 +171,39 @@ id="studentSection">
 
 </section>
 
+<section class="company-form-section">
+
+    <h2>➕ Add New Company</h2>
+
+    <input 
+    type="text"
+    id="companyName"
+    placeholder="Company Name">
+
+    <input 
+    type="text"
+    id="companyRole"
+    placeholder="Job Role">
+
+    <input 
+    type="text"
+    id="package"
+    placeholder="Package (LPA)">
+
+    <input 
+    type="number"
+    id="studentsPlaced"
+    placeholder="Students Placed">
+
+    <button onclick="addCompany()">
+        Add Company
+    </button>
+    </section>
+
+
+
+
+
 <!-- Company Details -->
 
 <section class="companies"
@@ -196,9 +231,12 @@ id="companySection">
     </table>
 
 </section>
-<!-- =========================
-     Placement Drives
-========================= -->
+
+
+    
+ <!-- =========================
+  PLACEMENT DRIVE MANAGEMENT 
+  ============================== -->
 <section class="application-section">
 
     <h2>📄 My Applications</h2>
@@ -289,38 +327,6 @@ id="companySection">
 
 </section>
 
-<section class="company-form-section">
-
-    <h2>➕ Add New Company</h2>
-
-    <input 
-    type="text"
-    id="companyName"
-    placeholder="Company Name">
-
-    <input 
-    type="text"
-    id="companyRole"
-    placeholder="Job Role">
-
-    <input 
-    type="text"
-    id="package"
-    placeholder="Package (LPA)">
-
-    <input 
-    type="number"
-    id="studentsPlaced"
-    placeholder="Students Placed">
-
-    <button onclick="addCompany()">
-        Add Company
-    </button>
-    </section>
-
-
-
-
 <!-- Charts -->
 
 <section class="charts">
@@ -370,6 +376,29 @@ id="companySection">
         </div>
 
     </section>
+    <section class="ai-summary-section">
+
+    <div class="ai-summary-header">
+        <div>
+            <h2>🤖 AI Placement Summary</h2>
+            <p>Smart overview of your placement performance</p>
+        </div>
+
+        <span class="ai-live-badge">● AI LIVE</span>
+    </div>
+
+    <div id="aiSummaryContent">
+        <div class="ai-summary-loading">
+            🔄 Generating placement insights...
+        </div>
+    </div>
+
+    <button onclick="generateAISummary()" class="ai-summary-btn">
+        ✨ Generate AI Summary
+    </button>
+
+</section>
+
 
 
     <!-- Student Performance Analysis -->
@@ -648,22 +677,49 @@ id="companySection">
 </section>
 <section class="interview-section">
 
-    <h2>🎤 AI Interview Question Generator</h2>
+    <h2>🎤 AI Interview Practice</h2>
 
     <select id="interviewTopic">
-        <option value="Java">Java</option>
-        <option value="Python">Python</option>
-        <option value="SQL">SQL</option>
-        <option value="HR">HR</option>
+        <option value="Java">☕ Java</option>
+        <option value="Python">🐍 Python</option>
+        <option value="SQL">🗄️ SQL</option>
+        <option value="HR">👔 HR</option>
+    </select>
+
+    <select id="interviewDifficulty">
+        <option value="Easy">🟢 Easy</option>
+        <option value="Medium">🟡 Medium</option>
+        <option value="Hard">🔴 Hard</option>
     </select>
 
     <button onclick="generateInterviewQuestion()">
-        Generate Question
+        🎲 Generate Question
     </button>
 
-    <div id="interviewQuestion">
-        <p>Select a topic and click Generate Question.</p>
+    <button onclick="nextInterviewQuestion()">
+        ➡️ Next Question
+    </button>
+
+    <div id="interviewProgress">
+        Question 0
     </div>
+
+    <div id="interviewQuestion">
+
+        <p>
+            Select a topic and click Generate Question.
+        </p>
+
+    </div>
+
+    <button
+        id="showAnswerBtn"
+        onclick="showInterviewAnswer()"
+        style="display:none;">
+        💡 Show Answer
+    </button>
+
+    <div id="interviewAnswer"></div>
 
 </section>
 

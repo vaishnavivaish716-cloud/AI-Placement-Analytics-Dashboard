@@ -371,12 +371,9 @@ function toggleDarkMode(){
 // Logout
 // ================================
 
-function logout(){
-
-    localStorage.removeItem("login");
-
-    window.location.href="login.html";
-
+function logout() {
+    localStorage.clear();
+    window.location.href = "index.html";
 }
 // =======================================
 // Company Management
@@ -953,7 +950,7 @@ function addStudent(){
 
         alert("Student Added Successfully");
 
-        getStudents();
+        loadDashboard();
 
     })
 
@@ -2575,46 +2572,374 @@ function calculatePlacementScore() {
         <p>${result}</p>
     `;
 }
+const interviewQuestions = {
+
+    Java: {
+
+        Easy: [
+            {
+                q: "What is Java?",
+                a: "Java is a high-level, object-oriented programming language."
+            },
+            {
+                q: "What is a class in Java?",
+                a: "A class is a blueprint used to create objects."
+            },
+            {
+                q: "What is an object?",
+                a: "An object is an instance of a class."
+            },
+            {
+                q: "What is inheritance?",
+                a: "Inheritance allows one class to acquire properties and methods of another class."
+            },
+            {
+                q: "What is a constructor?",
+                a: "A constructor is a special method used to initialize an object."
+            }
+        ],
+
+        Medium: [
+            {
+                q: "What is method overloading?",
+                a: "Method overloading means having multiple methods with the same name but different parameters."
+            },
+            {
+                q: "What is method overriding?",
+                a: "Method overriding occurs when a subclass provides its own implementation of a parent class method."
+            },
+            {
+                q: "What is encapsulation?",
+                a: "Encapsulation means wrapping data and methods together and controlling access to the data."
+            },
+            {
+                q: "What is polymorphism?",
+                a: "Polymorphism allows the same interface or method name to behave differently in different situations."
+            },
+            {
+                q: "What is an interface in Java?",
+                a: "An interface defines a contract that implementing classes must follow."
+            }
+        ],
+
+        Hard: [
+            {
+                q: "What is the difference between == and equals() in Java?",
+                a: "== compares references for objects, while equals() is used to compare object content when properly overridden."
+            },
+            {
+                q: "What is the Java Virtual Machine?",
+                a: "JVM executes Java bytecode and provides platform independence."
+            },
+            {
+                q: "What is garbage collection?",
+                a: "Garbage collection automatically removes objects that are no longer reachable."
+            },
+            {
+                q: "What is exception handling?",
+                a: "Exception handling manages runtime errors using mechanisms such as try, catch, finally, throw and throws."
+            },
+            {
+                q: "What is multithreading?",
+                a: "Multithreading allows multiple threads to execute concurrently within a program."
+            }
+        ]
+    },
+
+    Python: {
+
+        Easy: [
+            {
+                q: "What is Python?",
+                a: "Python is a high-level, interpreted, general-purpose programming language."
+            },
+            {
+                q: "What is a list in Python?",
+                a: "A list is an ordered and mutable collection of elements."
+            },
+            {
+                q: "What is a tuple?",
+                a: "A tuple is an ordered collection that cannot be modified after creation."
+            },
+            {
+                q: "What is a dictionary?",
+                a: "A dictionary stores data as key-value pairs."
+            },
+            {
+                q: "What is a variable?",
+                a: "A variable is a name that refers to a value or object."
+            }
+        ],
+
+        Medium: [
+            {
+                q: "What is a list comprehension?",
+                a: "List comprehension provides a concise way to create lists using an expression and iteration."
+            },
+            {
+                q: "What is a lambda function?",
+                a: "A lambda is a small anonymous function defined using the lambda keyword."
+            },
+            {
+                q: "What is exception handling in Python?",
+                a: "Python uses try, except, else and finally to handle exceptions."
+            },
+            {
+                q: "What is a module?",
+                a: "A module is a Python file containing reusable code such as functions and classes."
+            },
+            {
+                q: "What is inheritance in Python?",
+                a: "Inheritance allows a class to reuse and extend functionality from another class."
+            }
+        ],
+
+        Hard: [
+            {
+                q: "What is a decorator in Python?",
+                a: "A decorator modifies or extends the behavior of a function or class without changing its source code."
+            },
+            {
+                q: "What is a generator?",
+                a: "A generator produces values lazily using yield."
+            },
+            {
+                q: "What is the difference between deep copy and shallow copy?",
+                a: "A shallow copy copies the outer object while sharing nested references; a deep copy recursively copies nested objects."
+            },
+            {
+                q: "What is the Global Interpreter Lock?",
+                a: "The GIL allows only one thread at a time to execute Python bytecode in a CPython process."
+            },
+            {
+                q: "What are *args and **kwargs?",
+                a: "*args accepts variable positional arguments and **kwargs accepts variable keyword arguments."
+            }
+        ]
+    },
+
+    SQL: {
+
+        Easy: [
+            {
+                q: "What is SQL?",
+                a: "SQL is a language used to manage and query relational databases."
+            },
+            {
+                q: "What is a primary key?",
+                a: "A primary key uniquely identifies each row in a table."
+            },
+            {
+                q: "What is a table?",
+                a: "A table stores data in rows and columns."
+            },
+            {
+                q: "What is SELECT?",
+                a: "SELECT is used to retrieve data from database tables."
+            },
+            {
+                q: "What is a database?",
+                a: "A database is an organized collection of data."
+            }
+        ],
+
+        Medium: [
+            {
+                q: "What is a foreign key?",
+                a: "A foreign key is a column that references a key in another table."
+            },
+            {
+                q: "What is a JOIN?",
+                a: "A JOIN combines related rows from two or more tables."
+            },
+            {
+                q: "What is GROUP BY?",
+                a: "GROUP BY groups rows with the same values for aggregate calculations."
+            },
+            {
+                q: "What is HAVING?",
+                a: "HAVING filters grouped results after GROUP BY."
+            },
+            {
+                q: "What is normalization?",
+                a: "Normalization organizes database data to reduce redundancy and improve consistency."
+            }
+        ],
+
+        Hard: [
+            {
+                q: "What is an index in SQL?",
+                a: "An index is a database structure that can improve query lookup performance."
+            },
+            {
+                q: "What is a subquery?",
+                a: "A subquery is a query nested inside another SQL query."
+            },
+            {
+                q: "What is a view?",
+                a: "A view is a virtual table based on the result of a query."
+            },
+            {
+                q: "What is a transaction?",
+                a: "A transaction is a sequence of database operations treated as one logical unit of work."
+            },
+            {
+                q: "What is ACID?",
+                a: "ACID stands for Atomicity, Consistency, Isolation and Durability."
+            }
+        ]
+    },
+
+    HR: {
+
+        Easy: [
+            {
+                q: "Tell me about yourself.",
+                a: "Give a short introduction covering your education, skills, projects and career interests."
+            },
+            {
+                q: "What are your strengths?",
+                a: "Mention genuine strengths such as problem solving, communication, teamwork or adaptability with examples."
+            },
+            {
+                q: "Why should we hire you?",
+                a: "Explain how your skills, attitude and willingness to learn can contribute to the company."
+            },
+            {
+                q: "What is your career goal?",
+                a: "Describe a realistic career direction and how you plan to grow your skills."
+            },
+            {
+                q: "Are you a team player?",
+                a: "Explain how you collaborate, communicate and contribute to team goals."
+            }
+        ],
+
+        Medium: [
+            {
+                q: "Tell me about a difficult situation you faced.",
+                a: "Use the STAR method: Situation, Task, Action and Result."
+            },
+            {
+                q: "How do you handle failure?",
+                a: "Explain what you learned from the experience and how you improved afterward."
+            },
+            {
+                q: "Why do you want to join our company?",
+                a: "Connect your interests and skills with the company's work, culture and opportunities."
+            },
+            {
+                q: "How do you handle pressure?",
+                a: "Explain how you prioritize tasks, stay organized and remain calm."
+            },
+            {
+                q: "What is your weakness?",
+                a: "Choose a genuine but manageable weakness and explain how you are working to improve it."
+            }
+        ],
+
+        Hard: [
+            {
+                q: "Where do you see yourself in five years?",
+                a: "Describe how you want to grow professionally while contributing to the organization."
+            },
+            {
+                q: "Why should we choose you over another candidate?",
+                a: "Focus on your unique combination of skills, projects, learning attitude and ability to contribute."
+            },
+            {
+                q: "How would you handle conflict with a teammate?",
+                a: "Explain how you would listen, communicate respectfully, understand the issue and work toward a solution."
+            },
+            {
+                q: "What would you do if you disagreed with your manager?",
+                a: "Discuss the issue respectfully, provide evidence and support the final decision professionally."
+            },
+            {
+                q: "Why should we trust you with an important responsibility?",
+                a: "Show reliability through examples of responsibility, deadlines, teamwork and consistent performance."
+            }
+        ]
+    }
+};
+
+
+let currentInterviewQuestion = null;
+let interviewQuestionNumber = 0;
+
+
 function generateInterviewQuestion() {
 
-    let topic = document.getElementById("interviewTopic").value;
-    let result = document.getElementById("interviewQuestion");
+    const topic =
+        document.getElementById("interviewTopic").value;
 
-    let questions = {
+    const difficulty =
+        document.getElementById("interviewDifficulty").value;
 
-        Java: [
-            "What is OOP?",
-            "Difference between Interface and Abstract Class?",
-            "Explain Exception Handling."
-        ],
+    const questions =
+        interviewQuestions[topic][difficulty];
 
-        Python: [
-            "What is a List?",
-            "Difference between List and Tuple?",
-            "Explain Python Functions."
-        ],
+    const randomIndex =
+        Math.floor(Math.random() * questions.length);
 
-        SQL: [
-            "What is JOIN?",
-            "Difference between DELETE and TRUNCATE?",
-            "What is Primary Key?"
-        ],
+    currentInterviewQuestion =
+        questions[randomIndex];
 
-        HR: [
-            "Tell me about yourself.",
-            "Why should we hire you?",
-            "What are your strengths?"
-        ]
+    interviewQuestionNumber++;
 
-    };
+    document.getElementById("interviewProgress").innerHTML =
+        "Question " + interviewQuestionNumber;
 
-    let random =
-        Math.floor(Math.random() * questions[topic].length);
+    document.getElementById("interviewQuestion").innerHTML =
+        "<h3>🤖 " + currentInterviewQuestion.q + "</h3>";
 
-    result.innerHTML = `
-        <h3>🎯 ${topic} Interview Question</h3>
-        <p>${questions[topic][random]}</p>
-    `;
+    document.getElementById("interviewAnswer").innerHTML = "";
+
+    document.getElementById("showAnswerBtn").style.display =
+        "inline-block";
+}
+
+
+function nextInterviewQuestion() {
+
+    const topic = document.getElementById("interviewTopic").value;
+    const difficulty = document.getElementById("interviewDifficulty").value;
+
+    const questions = interviewQuestions[topic][difficulty];
+
+    if (!questions || questions.length === 0) {
+        return;
+    }
+
+    let randomIndex = Math.floor(Math.random() * questions.length);
+
+    currentInterviewQuestion = questions[randomIndex];
+
+    interviewQuestionNumber++;
+
+    document.getElementById("interviewProgress").innerHTML =
+        "Question " + interviewQuestionNumber;
+
+    document.getElementById("interviewQuestion").innerHTML =
+        "<h3>🤖 " + currentInterviewQuestion.q + "</h3>";
+
+    document.getElementById("interviewAnswer").innerHTML = "";
+
+    document.getElementById("showAnswerBtn").style.display =
+        "inline-block";
+}
+
+function showInterviewAnswer() {
+
+    if (!currentInterviewQuestion) {
+        return;
+    }
+
+    document.getElementById("interviewAnswer").innerHTML =
+        "<div class='interview-answer'>" +
+        "<strong>💡 Answer:</strong><br>" +
+        currentInterviewQuestion.a +
+        "</div>";
 }
 function startMockInterview() {
 
@@ -3067,56 +3392,322 @@ function askAI() {
 }
 
 
-// ===============================
-// AI Answer
-// ===============================
-
 function getAIAnswer(question) {
 
-    question = question.toLowerCase();
+    question = question.toLowerCase().trim();
+    question = question.replace(/\s+/g, " ");
 
+    // ===============================
+    // PLACEMENT
+    // ===============================
 
     if (
         question.includes("placement") ||
-        question.includes("job")
+        question.includes("job") ||
+        question.includes("vela") ||
+        question.includes("velai") ||
+        question.includes("placement epdi") ||
+        question.includes("placement eppadi") ||
+        question.includes("placement improve") ||
+        question.includes("placement kidaikuma")
     ) {
+        return `
+        🎯 Placement improve panna:
 
-        return "I can help you improve your placement preparation with skills, aptitude, projects and interview preparation.";
+        • Aptitude daily practice pannunga
+        • Technical skills improve pannunga
+        • 2–3 good projects build pannunga
+        • Resume strong-ah prepare pannunga
+        • Mock interview practice pannunga
+        • Company-wise preparation pannunga
 
+        Consistent-ah prepare pannina placement chance improve aagum 👍
+        `;
     }
 
+
+    // ===============================
+    // SKILLS
+    // ===============================
 
     if (
         question.includes("skill") ||
-        question.includes("learn")
+        question.includes("skills") ||
+        question.includes("learn") ||
+        question.includes("enna padikanum") ||
+        question.includes("enna kathukanum") ||
+        question.includes("edha learn") ||
+        question.includes("ethavathu learn")
     ) {
+        return `
+        💻 Placement-ku useful skills:
 
-        return "You can learn Python, Java, SQL, HTML, CSS, JavaScript and Data Structures.";
+        • Python
+        • Java
+        • SQL
+        • HTML & CSS
+        • JavaScript
+        • Data Structures
+        • Git & GitHub
 
+        First one programming language strong-ah kathukonga.
+        Athukku apram SQL + problem solving focus pannunga.
+        `;
     }
 
 
-    if (question.includes("interview")) {
+    // ===============================
+    // INTERVIEW
+    // ===============================
 
-        return "Prepare your self-introduction, technical questions, aptitude and HR interview questions.";
+    if (
+        question.includes("interview") ||
+        question.includes("interview ku") ||
+        question.includes("interview epdi") ||
+        question.includes("interview eppadi") ||
+        question.includes("interview prepare") ||
+        question.includes("interview preparation") ||
+        question.includes("prepare aaganum")
+    ) {
+        return `
+        🎤 Interview preparation-ku:
 
+        1. Self introduction practice pannunga
+        2. Technical basics revise pannunga
+        3. Project explanation ready-ah vechukonga
+        4. Common HR questions practice pannunga
+        5. Mock interviews try pannunga
+
+        Confidence + clear communication romba important 👍
+        `;
     }
 
 
-    if (question.includes("resume")) {
+    // ===============================
+    // RESUME
+    // ===============================
 
-        return "Add your skills, projects, internships, certifications and achievements to your resume.";
+    if (
+        question.includes("resume") ||
+        question.includes("cv") ||
+        question.includes("resume epdi") ||
+        question.includes("resume eppadi") ||
+        question.includes("resume improve") ||
+        question.includes("resume improve panna")
+    ) {
+        return `
+        📄 Resume improve panna:
 
+        • Skills
+        • Projects
+        • Internship
+        • Certifications
+        • Achievements
+        • Technical skills
+
+        Relevant information mattum clean-ah highlight pannunga.
+        `;
     }
 
 
-    if (question.includes("company")) {
+    // ===============================
+    // COMPANY
+    // ===============================
 
-        return "Research the company, required skills and job role before applying.";
+    if (
+        question.includes("company") ||
+        question.includes("companies") ||
+        question.includes("company details") ||
+        question.includes("company pathi") ||
+        question.includes("entha company") ||
+        question.includes("endha company")
+    ) {
+        return `
+        🏢 Company choose pannumbodhu:
 
+        • Job role
+        • Required skills
+        • Eligibility
+        • Package
+        • Selection process
+
+        Indha details check pannitu prepare pannunga.
+        `;
     }
 
 
-    return "Hi! I can help you with placements, skills, interviews, resumes and companies.";
+    // ===============================
+    // APTITUDE
+    // ===============================
 
+    if (
+        question.includes("aptitude") ||
+        question.includes("maths") ||
+        question.includes("reasoning") ||
+        question.includes("logical") ||
+        question.includes("aptitude epdi") ||
+        question.includes("aptitude eppadi")
+    ) {
+        return `
+        🧠 Aptitude preparation-ku:
+
+        • Percentages
+        • Profit & Loss
+        • Time & Work
+        • Time, Speed & Distance
+        • Ratio & Proportion
+        • Probability
+        • Logical Reasoning
+
+        Daily 10–20 questions practice pannina nalla improvement varum.
+        `;
+    }
+
+
+    // ===============================
+    // GREETING
+    // ===============================
+
+    if (
+        question.includes("vanakkam") ||
+        question.includes("hello") ||
+        question.includes("hi") ||
+        question.includes("hai")
+    ) {
+        return `
+        👋 Vanakkam! 😊
+
+        Naan unga AI Placement Assistant.
+
+        Placement, interview, resume, skills,
+        aptitude, companies pathi enna venumnaalum kekkalam.
+        `;
+    }
+
+
+    // ===============================
+    // HOW ARE YOU
+    // ===============================
+
+    if (
+        question.includes("epdi iruka") ||
+        question.includes("eppadi iruka") ||
+        question.includes("epdi irukinga") ||
+        question.includes("eppadi irukinga")
+    ) {
+        return "😊 Naan super-ah iruken macha! Placement preparation-ku ready-ah help panren.";
+    }
+
+
+    // ===============================
+    // THANK YOU
+    // ===============================
+
+    if (
+        question.includes("thanks") ||
+        question.includes("thank you") ||
+        question.includes("nandri")
+    ) {
+        return "😊 You're welcome macha! Placement preparation-ku best wishes! 🎯";
+    }
+
+
+    // ===============================
+    // DEFAULT
+    // ===============================
+
+    return `
+    🤖 Purinjukitten!
+
+    Placement, interview, resume, skills,
+    aptitude illa company related doubt-na
+    kekkalam.
+
+    Tamil / Tanglish-la keta kooda
+    try panni understand pannuren 👍
+    `;
+}
+// =================================
+// AI PLACEMENT SUMMARY
+// =================================
+
+function generateAISummary() {
+
+    const result = document.getElementById("aiSummaryContent");
+
+    if (!result) return;
+
+    result.innerHTML = `
+        <div class="ai-summary-loading">
+            🤖 AI is analyzing placement data...
+        </div>
+    `;
+
+    setTimeout(() => {
+
+        const total =
+            parseInt(document.getElementById("totalStudents")?.innerText) || 0;
+
+        const placed =
+            parseInt(document.getElementById("placedStudents")?.innerText) || 0;
+
+        const rateText =
+            document.getElementById("placementRate")?.innerText || "0%";
+
+        const rate =
+            parseFloat(rateText.replace("%", "")) || 0;
+
+        let performance;
+        let performanceIcon;
+
+        if (rate >= 80) {
+            performance = "Excellent placement performance";
+            performanceIcon = "🟢";
+        } else if (rate >= 60) {
+            performance = "Good placement performance";
+            performanceIcon = "🟡";
+        } else {
+            performance = "Placement performance needs improvement";
+            performanceIcon = "🔴";
+        }
+
+        const notPlaced = Math.max(total - placed, 0);
+
+        result.innerHTML = `
+
+            <div class="ai-insight-cards">
+
+                <div class="ai-insight-card">
+                    <span class="ai-insight-icon">📊</span>
+                    <h3>Placement Performance</h3>
+                    <strong>${rate}%</strong>
+                    <p>
+                        ${performanceIcon} ${performance}
+                    </p>
+                </div>
+
+                <div class="ai-insight-card">
+                    <span class="ai-insight-icon">🎯</span>
+                    <h3>Student Readiness</h3>
+                    <strong>${notPlaced}</strong>
+                    <p>
+                        Students currently need placement opportunities
+                        and preparation support.
+                    </p>
+                </div>
+
+                <div class="ai-insight-card">
+                    <span class="ai-insight-icon">🚀</span>
+                    <h3>AI Recommendation</h3>
+                    <strong>Improve</strong>
+                    <p>
+                        Focus on aptitude, technical skills,
+                        interview preparation and company-specific training.
+                    </p>
+                </div>
+
+            </div>
+        `;
+
+    }, 800);
 }

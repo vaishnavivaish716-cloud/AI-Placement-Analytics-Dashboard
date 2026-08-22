@@ -3,46 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - AI Placement Analytics Dashboard</title>
+
+    <title>AI Placement Analytics - Login</title>
 
     <link rel="stylesheet" href="login.css">
 </head>
 
 <body>
 
-<div class="login-box">
+<div class="login-page">
 
-    <h1>🎓 AI Placement Analytics Dashboard</h1>
+    <!-- ROBOT -->
+    <div class="robot-area">
 
-    <h2>Admin Login</h2>
-    <select id="userType">
+        <div class="robot" onclick="touchRobot()">
 
-    <option value="admin">Admin</option>
+            <div class="antenna"></div>
 
-    <option value="student">Student</option>
+            <div class="robot-head">
 
-</select>
+                <div class="eyes">
+                    <span></span>
+                    <span></span>
+                </div>
 
-    <input
-        type="text"
-        id="username"
-        placeholder="Username">
+                <div class="robot-mouth"></div>
 
+            </div>
+
+            <div class="robot-body">
+
+                <div class="robot-light">AI</div>
+
+            </div>
+
+        </div>
+
+        <p id="robotMessage">
+            👆 Touch me to Login
+        </p>
+
+    </div>
+
+
+    <!-- LOGIN BOX -->
+    <div class="login-box" id="loginBox">
+
+        <h1>🎓 AI Placement Analytics</h1>
+
+        <p class="subtitle">
+            Smart Placement Management System
+        </p>
+
+        <h2>Login</h2>
+
+        <select id="userType"
+        onchange="updateRobotGreeting()">
+
+            <option value="admin">Admin</option>
+            <option value="student">Student</option>
+
+        </select>
+
+        <input
+            type="text"
+            id="username"
+            placeholder="Username">
+
+        <div class="password-box">
     <input
         type="password"
         id="password"
         placeholder="Password">
 
-    <button onclick="login()">
-        
-        Login
+    <button
+        type="button"
+        class="eye-btn"
+        onclick="togglePassword()">
+        👁️
     </button>
+</div>
 
-    <p id="error"></p>
+        <button onclick="login()">
+            Login
+        </button>
+
+        <p id="error"></p>
+
+    </div>
 
 </div>
 
+
 <script src="login.js"></script>
+
+<script>
+
+function touchRobot() {
+
+    const robot = document.querySelector(".robot");
+    const message = document.getElementById("robotMessage");
+    const loginBox = document.getElementById("loginBox");
+
+    robot.classList.add("robot-active");
+
+    typeRobotMessage("🤖 Hello! Please enter your login details.");
+    setTimeout(function () {
+
+        loginBox.classList.add("show-login");
+
+    }, 400);
+
+}
+
+</script>
 
 </body>
 </html>

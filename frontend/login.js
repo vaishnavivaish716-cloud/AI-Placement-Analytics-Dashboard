@@ -41,3 +41,65 @@ function login() {
     }
 
 }
+function togglePassword() {
+
+    const password = document.getElementById("password");
+    const eye = document.querySelector(".eye-btn");
+
+    if (password.type === "password") {
+        password.type = "text";
+        eye.textContent = "🙈";
+    } else {
+        password.type = "password";
+        eye.textContent = "👁️";
+    }
+}
+function updateRobotGreeting() {
+
+    const userType = document.getElementById("userType").value;
+    const message = document.getElementById("robotMessage");
+
+    if (userType === "admin") {
+
+        message.innerHTML =
+            "👨‍💼 Welcome Placement Officer!";
+
+    } else {
+
+        message.innerHTML =
+            "🎓 Welcome Student! Ready for placements?";
+    }
+}
+function typeRobotMessage(text) {
+
+    const message = document.getElementById("robotMessage");
+
+    message.innerHTML = "";
+
+    let i = 0;
+
+    const typing = setInterval(function () {
+
+        message.innerHTML += text.charAt(i);
+
+        i++;
+
+        if (i >= text.length) {
+            clearInterval(typing);
+        }
+
+    }, 35);
+}
+document.addEventListener("DOMContentLoaded", function () {
+
+    const password = document.getElementById("password");
+
+    password.addEventListener("keypress", function (event) {
+
+        if (event.key === "Enter") {
+            login();
+        }
+
+    });
+
+});

@@ -30,5 +30,21 @@
         "skills": "PYTHON",
         "status": "Not Placed",
         "id": 4
+    },
+    {
+        "name": "sangeetha",
+        "department": "IT",
+        "cgpa": 8.4,
+        "skills": "Java,SQL,HTML",
+        "status": "Placed",
+        "id": 5
+    },
+    {
+        "name": "Vaishu",
+        "department": "EEE",
+        "cgpa": 8.8,
+        "skills": "Java,HTML",
+        "status": "Placed",
+        "id": 6
     }
 ]

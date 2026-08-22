@@ -1403,3 +1403,1091 @@ body.dark-mode .chat-input-box input::placeholder {
         flex-wrap: wrap;
     }
 }
+/* ==============================
+   CLEAN DASHBOARD ALIGNMENT
+============================== */
+
+section,
+.card,
+.dashboard-card,
+.analytics-card,
+.practice-card {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Common section heading */
+section h2,
+section h3 {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+/* Interview controls */
+.ai-interview-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* Select boxes */
+.ai-interview-controls select {
+    height: 44px;
+    min-width: 120px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Interview buttons */
+.ai-interview-controls button {
+    height: 44px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+/* Question number */
+#questionNumber {
+    margin: 12px 0;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Question box */
+#questionBox {
+    width: 100%;
+    min-height: 55px;
+    padding: 15px 18px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border-radius: 10px;
+    text-align: left;
+}
+
+/* Answer button */
+#showAnswerBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    height: 42px;
+    padding: 0 18px;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+th,
+td {
+    padding: 12px 14px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Table buttons */
+td button {
+    min-width: 100px;
+    padding: 8px 14px;
+    border-radius: 7px;
+}
+
+/* Form rows */
+input,
+select,
+button {
+    box-sizing: border-box;
+}
+
+/* Placement drive form */
+input[type="text"],
+input[type="date"],
+input[type="number"],
+select {
+    height: 42px;
+}
+
+/* Cards alignment */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    align-items: stretch;
+}
+
+.dashboard-grid > * {
+    width: 100%;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+
+    .ai-interview-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .ai-interview-controls select,
+    .ai-interview-controls button {
+        width: 100%;
+    }
+
+    table {
+        min-width: 700px;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+}
+/* =========================================
+   FINAL DASHBOARD ALIGNMENT FIX
+========================================= */
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Remove unwanted movement */
+section:hover,
+.card:hover {
+    transform: none !important;
+}
+
+/* Common dashboard width */
+.welcome-box,
+.admin-profile,
+.students,
+.companies,
+.insights-section,
+.skill-gap-section,
+.department-stats-section,
+.drive-section,
+.csv-import-section,
+.company-form-section,
+.application-section,
+.prediction,
+.prediction-history,
+.eligibility,
+.resume-section,
+.recommendation,
+.report-section,
+.interview-section,
+.mock-interview,
+.career-roadmap,
+.skill-progress,
+.placement-score,
+.email-notification,
+.advanced-analytics,
+.interview-performance {
+    width: calc(100% - 50px);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Cards */
+.cards {
+    width: calc(100% - 50px);
+    max-width: 1200px;
+    margin: 25px auto;
+    padding: 0;
+}
+
+/* Charts */
+.charts {
+    width: calc(100% - 50px);
+    max-width: 1200px;
+    margin: 25px auto;
+    padding: 0;
+}
+
+/* Student form */
+.add-student-form {
+    width: 100%;
+    display: grid;
+    grid-template-columns:
+        1.4fr
+        1fr
+        .8fr
+        1.4fr
+        1fr
+        auto;
+    gap: 10px;
+    align-items: center;
+}
+
+.add-student-form input,
+.add-student-form select,
+.add-student-form button {
+    width: 100%;
+    margin: 0;
+}
+
+/* Student filters */
+.student-filters {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.student-filters input,
+.student-filters select {
+    width: 100%;
+}
+
+/* Tables */
+.students,
+.companies,
+.application-section,
+.department-stats-section,
+.drive-section,
+.prediction-history {
+    overflow-x: auto;
+}
+
+.students table,
+.companies table,
+.application-section table,
+.department-stats-section table,
+.drive-section table,
+.prediction-history table {
+    width: 100%;
+    min-width: 700px;
+    table-layout: auto;
+}
+
+/* Table cells */
+th,
+td {
+    padding: 12px 14px;
+    vertical-align: middle;
+}
+
+/* Action buttons */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+}
+
+.action-buttons button {
+    min-width: auto;
+    width: auto;
+    margin: 0;
+}
+
+/* Application summary */
+.application-summary {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+.summary-card {
+    width: 100%;
+}
+
+/* Student dashboard */
+.student-dashboard-grid {
+    width: calc(100% - 50px);
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0;
+}
+
+.student-dashboard-grid section {
+    width: 100%;
+    margin: 0;
+}
+
+/* Charts */
+.chart-box {
+    width: 100%;
+    min-width: 0;
+}
+
+.chart-box canvas {
+    display: block;
+    width: 100% !important;
+}
+
+/* Interview controls */
+.ai-interview-controls {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.ai-interview-controls select {
+    width: auto;
+    min-width: 150px;
+}
+
+.ai-interview-controls button {
+    width: auto;
+    min-width: 150px;
+}
+
+/* Interview question */
+#questionBox,
+#interviewQuestion,
+#questionResult {
+    width: 100%;
+    text-align: left;
+}
+
+/* Result boxes */
+#resumeAnalysis,
+#placementScoreResult,
+#companyRecommendation,
+#companyRecommendationResult,
+#interviewQuestion,
+#questionResult,
+#mockInterviewResult,
+#roadmapResult,
+#careerRoadmapResult,
+#skillProgressResult,
+#skillGapResult {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Forms */
+.prediction input,
+.eligibility input,
+.recommendation input,
+.resume-section input,
+.company-form-section input,
+.csv-import-section input {
+    margin: 5px 5px 5px 0;
+}
+
+/* AI chat stays fixed */
+#aiChatWindow {
+    position: fixed !important;
+}
+
+#aiChatButton {
+    position: fixed !important;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .add-student-form {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .application-summary {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .charts {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .header {
+        padding: 18px;
+    }
+
+    .header-right {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .header-right button {
+        margin-left: 0;
+    }
+
+    .cards,
+    .charts,
+    .welcome-box,
+    .admin-profile,
+    .students,
+    .companies,
+    .insights-section,
+    .skill-gap-section,
+    .department-stats-section,
+    .drive-section,
+    .csv-import-section,
+    .company-form-section,
+    .application-section,
+    .prediction,
+    .prediction-history,
+    .eligibility,
+    .resume-section,
+    .recommendation,
+    .report-section,
+    .interview-section,
+    .mock-interview,
+    .career-roadmap,
+    .skill-progress,
+    .placement-score,
+    .email-notification,
+    .advanced-analytics,
+    .interview-performance,
+    .student-dashboard-grid {
+        width: calc(100% -
+        20px);
+    }
+     .application-summary {
+        grid-template-columns: 
+        1fr;
+     }
+     #aiChatWindow {
+        width: calc(100% -
+        20px) !important;
+        right: 10px ! 
+        important;
+     }
+    }
+/* =================================
+   ADD PLACEMENT DRIVE ALIGNMENT
+================================= */
+
+#driveAdminSection {
+    width: 90%;
+    max-width: 1200px;
+    margin: 25px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+#driveAdminSection h3 {
+    width: 100%;
+    margin: 0 0 5px 0;
+    color: #2563eb;
+}
+
+#driveAdminSection input {
+    height: 42px;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    flex: 1;
+    min-width: 180px;
+}
+
+#driveAdminSection button {
+    height: 42px;
+    padding: 0 22px;
+    min-width: 140px;
+    border: none;
+    border-radius: 8px;
+    background: #667eea;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+} #driveAdminSection
+button:hover {
+    background: #5563c1;
+}
+body.dark-mode #driveAdminSection {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+}
+
+body.dark-mode #driveAdminSection h3 {
+    color: #f8fafc !important;
+}
+
+body.dark-mode #driveAdminSection input {
+    background: #334155 !important;
+    color: #ffffff !important;
+    border-color: #64748b !important;
+}
+
+body.dark-mode #driveAdminSection input::placeholder {
+    color: #cbd5e1 !important;
+}
+
+body.dark-mode #driveAdminSection button {
+    background: #2563eb !important;
+    color: #ffffff !important;
+}
+/* =================================
+   PROFESSIONAL AI SUMMARY
+================================= */
+
+.ai-summary-section {
+    width: 90%;
+    max-width: 1200px;
+    margin: 25px auto;
+    padding: 25px;
+    background: linear-gradient(135deg, #ffffff, #f8faff);
+    border-radius: 18px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.10);
+    border: 1px solid #e5e7eb;
+    box-sizing: border-box;
+}
+
+.ai-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.ai-summary-header h2 {
+    margin: 0;
+    color: #2563eb;
+}
+
+.ai-summary-header p {
+    margin-top: 6px;
+    color: #64748b;
+}
+
+.ai-live-badge {
+    padding: 7px 12px;
+    border-radius: 20px;
+    background: #dcfce7;
+    color: #16a34a;
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+#aiSummaryContent {
+    min-height: 90px;
+    padding: 18px;
+    background: #f1f5f9;
+    border-radius: 12px;
+    line-height: 1.7;
+}
+
+.ai-summary-loading {
+    color: #64748b;
+}
+
+.ai-summary-btn {
+    margin-top: 18px;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #2563eb, #00bcd4);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ai-summary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
+}
+
+/* DARK MODE */
+
+body.dark-mode .ai-summary-section {
+    background: linear-gradient(135deg, #1e293b, #172033) !important;
+    border-color: #475569 !important;
+}
+
+body.dark-mode .ai-summary-header h2 {
+    color: #60a5fa !important;
+}
+
+body.dark-mode .ai-summary-header p {
+    color: #cbd5e1 !important;
+}
+
+body.dark-mode #aiSummaryContent {
+    background: #334155 !important;
+    color: #f8fafc !important;
+}
+
+body.dark-mode .ai-summary-loading {
+    color: #cbd5e1 !important;
+}
+
+@media (max-width: 600px) {
+
+    .ai-summary-section {
+        width: calc(100% - 20px);
+        padding: 18px;
+    }
+
+    .ai-summary-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+/* =================================
+   TOP PERFORMING STUDENTS - CLEAN UI
+================================= */
+
+.top-students-section {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.top-students-section h2 {
+    margin: 0 0 20px 0;
+    color: #2563eb;
+}
+
+#topStudents {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.top-student-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    transition: 0.2s;
+}
+
+.top-student-card:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
+}
+
+.top-student-rank {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #2563eb;
+    color: white;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.top-student-info {
+    flex: 1;
+}
+
+.top-student-info h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #1e293b;
+}
+
+.top-student-info p {
+    margin: 4px 0 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.top-student-cgpa {
+    font-weight: bold;
+    color: #2563eb;
+}
+
+/* DARK MODE */
+
+body.dark-mode .top-students-section {
+    background: #1e293b !important;
+}
+
+body.dark-mode .top-student-card {
+    background: #334155 !important;
+    border-color: #475569 !important;
+}
+
+body.dark-mode .top-student-info h3 {
+    color: white !important;
+}
+
+body.dark-mode .top-student-info p {
+    color: #cbd5e1 !important;
+}
+
+body.dark-mode .top-student-cgpa {
+    color: #60a5fa !important;
+}
+/* ===============================
+   PLACEMENT READINESS SCORE
+================================ */
+
+.readiness-section {
+    margin: 30px 0;
+    padding: 25px;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.10);
+}
+
+.readiness-section h2 {
+    margin-bottom: 20px;
+    color: #1565c0;
+}
+
+.readiness-card {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 20px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #e3f2fd, #f8fbff);
+}
+
+.readiness-score {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2196f3, #00bcd4);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 5px 15px rgba(33,150,243,0.30);
+}
+
+.readiness-score span {
+    font-size: 38px;
+    font-weight: bold;
+}
+
+.readiness-score small {
+    font-size: 14px;
+}
+
+.readiness-info h3 {
+    margin: 0 0 8px;
+    font-size: 22px;
+}
+
+.readiness-info p {
+    margin: 0;
+    color: #555;
+}
+
+.readiness-breakdown {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.readiness-breakdown div {
+    padding: 15px;
+    border-radius: 12px;
+    background: #f5f7fb;
+    text-align: center;
+}
+
+.readiness-breakdown span {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.readiness-breakdown strong {
+    color: #1565c0;
+    font-size: 18px;
+}
+
+.readiness-section button {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #2196f3, #00bcd4);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.readiness-section button:hover {
+    transform: translateY(-2px);
+}
+
+
+/* ===============================
+   DARK MODE
+================================ */
+
+body.dark-mode .readiness-section {
+    background: #1e1e1e;
+    color: white;
+}
+
+body.dark-mode .readiness-card {
+    background: linear-gradient(135deg, #202b3c, #18212f);
+}
+
+body.dark-mode .readiness-info p {
+    color: #ccc;
+}
+
+body.dark-mode .readiness-breakdown div {
+    background: #292929;
+}
+
+body.dark-mode .readiness-breakdown span {
+    color: #ddd;
+}
+
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media (max-width: 768px) {
+
+    .readiness-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .readiness-breakdown {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .readiness-breakdown {
+        grid-template-columns: 1fr;
+    }
+
+}
+.dashboard-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.dashboard-header h1 {
+    font-weight: 800;
+    font-size: 32px;
+}
+/* =================================
+   CENTER DASHBOARD TITLE
+================================= */
+
+.header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-section {
+    text-align: center;
+}
+
+.logo-section h1 {
+    text-align: center;
+    font-weight: 800;
+    font-size: 32px;
+    margin: 0;
+}
+
+.header-right {
+    position: absolute;
+    right: 20px;
+}
+/* HEADER RIGHT - FORCE SEPARATION */
+
+.header {
+    position: relative !important;
+}
+
+.header-right {
+    position: absolute !important;
+    right: 20px !important;
+    top: 20px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    gap: 10px !important;
+}
+
+.header-right #dateTime {
+    margin-bottom: 5px !important;
+}
+
+.header-right button {
+    margin: 0 !important;
+    min-width: 120px !important;
+}
+/* =================================
+   PERFECT HEADER ALIGNMENT
+================================= */
+
+.header {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 90px !important;
+}
+
+.logo-section {
+    text-align: center !important;
+}
+
+.logo-section h1 {
+    margin: 0 !important;
+    font-weight: 800 !important;
+}
+
+.logo-section p {
+    margin: 5px 0 0 !important;
+}
+
+/* RIGHT SIDE - SAME LINE */
+
+.header-right {
+    position: absolute !important;
+    right: 25px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+
+    gap: 12px !important;
+    width: auto !important;
+}
+
+.header-right #dateTime {
+    white-space: nowrap !important;
+}
+
+.header-right button {
+    margin: 0 !important;
+    white-space: nowrap !important;
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .header {
+        flex-direction: column !important;
+        padding: 15px !important;
+    }
+
+    .header-right {
+        position: static !important;
+        transform: none !important;
+        margin-top: 12px !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+    }
+}
+/* =================================
+   FINAL HEADER
+================================= */
+
+.header {
+    position: relative !important;
+    min-height: 100px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* CENTER */
+
+.logo-section {
+    text-align: center !important;
+}
+
+.logo-section h1 {
+    margin: 0 !important;
+    font-weight: 800 !important;
+}
+
+.logo-section p {
+    margin: 5px 0 0 !important;
+}
+
+/* LEFT - DARK MODE + LOGOUT */
+
+.header-right {
+    position: absolute !important;
+
+    left: 25px !important;
+    right: auto !important;
+
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+
+    gap: 12px !important;
+}
+
+.header-right button {
+    margin: 0 !important;
+    white-space: nowrap !important;
+}
+
+/* RIGHT - DATE TIME */
+
+.header-time {
+    position: absolute !important;
+
+    right: 25px !important;
+    left: auto !important;
+
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+}
