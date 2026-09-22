@@ -1,91 +1,397 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Panel</title>
 
-<link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
-<h1>Admin Dashboard</h1>
 
-<button onclick="logout()">Logout</button>
+    <div>
+        <h1>Admin Dashboard</h1>
+        <p>AI Placement Analytics Dashboard</p>
+    </div>
+
+    <button onclick="logout()">Logout</button>
 
 </header>
 
-<section class="prediction">
 
-<h2>Add Student</h2>
+<main>
 
-<input type="text" id="studentName" placeholder="Student Name">
+    <!-- ADMIN PROFILE -->
 
-<input type="text" id="department" placeholder="Department">
+    <section class="prediction">
 
-<input type="number" id="cgpaValue" placeholder="CGPA">
+        <h2>👨‍💼 Admin Panel</h2>
 
-<button onclick="addStudent()">
-Add Student
-</button>
+        <p>
+            Welcome Admin. Manage students, companies and placement activities
+            from this dashboard.
+        </p>
+
+    </section>
+
+
+    <!-- PLACEMENT SUMMARY -->
+
+    <section
+    class="placement-summary">
+
+        <h2>📊 Placement Summary</h2>
+
+        <div class="dashboard-grid">
+
+            <div class="card">
+                <h3>Total Students</h3>
+                <h2 id="totalStudents">0</h2>
+            </div>
+
+            <div class="card">
+                <h3>Placed Students</h3>
+                <h2 id="placedStudents">0</h2>
+            </div>
+
+            <div class="card">
+                <h3>Not Placed</h3>
+                <h2 id="notPlaced">0</h2>
+            </div>
+
+            <div class="card">
+                <h3>Placement Rate</h3>
+                <h2 id="placementRate">0%</h2>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ADD STUDENT -->
+
+    <section class="prediction">
+
+        <h2>👨‍🎓 Add Student</h2>
+
+        <input
+            type="text"
+            id="studentName"
+            placeholder="Student Name"
+        >
+
+        <input
+            type="text"
+            id="department"
+            placeholder="Department"
+        >
+
+        <input
+            type="number"
+            id="cgpaValue"
+            placeholder="CGPA"
+            step="0.01"
+        >
+
+        <input
+            type="text"
+            id="studentSkills"
+            placeholder="Skills"
+        >
+
+        <select id="studentStatus">
+
+            <option value="Not Placed">
+                Not Placed
+            </option>
+
+            <option value="Placed">
+                Placed
+            </option>
+
+        </select>
+
+        <button onclick="addStudent()">
+            Add Student
+        </button>
+
+    </section>
+
+
+    <!-- STUDENT MANAGEMENT -->
+
+    <section>
+
+        <h2>👥 Student Management</h2>
+
+        <input
+            type="text"
+            id="studentSearch"
+            placeholder="Search student..."
+            onkeyup="searchStudents()"
+        >
+
+        <table id="adminTable">
+
+            <thead>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>CGPA</th>
+                    <th>Skills</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="studentTableBody">
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+
+    <!-- ADD COMPANY -->
+
+    <section class="prediction">
+
+        <h2>🏢 Add Company</h2>
+
+        <input
+            type="text"
+            id="companyName"
+            placeholder="Company Name"
+        >
+
+        <input
+            type="text"
+            id="companyRole"
+            placeholder="Job Role"
+        >
+
+        <input
+            type="number"
+            id="package"
+            placeholder="Package (LPA)"
+            step="0.1"
+        >
+
+        <select id="campusType">
+
+            <option value="On-Campus">
+                On-Campus
+            </option>
+
+            <option value="Off-Campus">
+                Off-Campus
+            </option>
+
+        </select>
+
+        <button onclick="addCompany()">
+            Add Company
+        </button>
+
+    </section>
+
+
+    <!-- COMPANY MANAGEMENT -->
+
+    <section>
+
+        <h2>🏢 Company Management</h2>
+
+        <table id="companyTable">
+
+            <thead>
+
+                <tr>
+                    <th>Company</th>
+                    <th>Role</th>
+                    <th>Package</th>
+                    <th>Type</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="companyTableBody">
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+
+    <!-- PLACEMENT TYPE -->
+
+    <section>
+
+        <h2>🎯 Placement Activities</h2>
+
+        <div class="dashboard-grid">
+
+            <div class="card">
+
+                <h3>🏫 On-Campus Placement</h3>
+
+                <p>
+                    Manage companies visiting the college,
+                    placement drives and eligible students.
+                </p>
+
+                <button onclick="showOnCampus()">
+                    Manage On-Campus Drives
+                </button>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>🌐 Off-Campus Placement</h3>
+
+                <p>
+                    Manage external job opportunities,
+                    companies and student applications.
+                </p>
+
+                <button onclick="showOffCampus()">
+                    Manage Off-Campus
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+<section id="onCampusSection" class="campus-section" style="display:none;">
+
+    <h2>🏫 On-Campus Placement Drives</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Company</th>
+                <th>Job Role</th>
+                <th>Package</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody id="onCampusBody">
+        </tbody>
+    </table>
 
 </section>
+<section id="offCampusSection" class="campus-section" style="display:none;">
 
-<section>
+    <h2>🌐 Off-Campus Placement Opportunities</h2>
 
-<table id="adminTable">
+    <table>
 
-<thead>
+        <thead>
+            <tr>
+                <th>Company</th>
+                <th>Job Role</th>
+                <th>Package</th>
+                <th>Status</th>
+            </tr>
+        </thead>
 
-<tr>
+        <tbody id="offCampusBody">
+        </tbody>
 
-<th>Name</th>
-<th>Department</th>
-<th>CGPA</th>
-<th>Action</th>
-
-</tr>
-
-</thead>
-
-<tbody id="studentBody">
-
-</tbody>
-
-</table>
+    </table>
 
 </section>
-<h2>Add Company</h2>
+</main>
 
-<input type="text" id="companyName" placeholder="Company Name">
 
-<input type="number" id="package" placeholder="Package (LPA)">
-
-<button onclick="addCompany()">
-Add Company
-</button>
-
-<br><br>
-
-<table id="companyTable">
-
-<thead>
-<tr>
-<th>Company</th>
-<th>Package</th>
-<th>Action</th>
-</tr>
-</thead>
-
-<tbody id="companyBody">
-
-</tbody>
-
-</table>
 
 <script src="script.js"></script>
+
+<script>
+
+    // Admin page protection
+
+    const role = localStorage.getItem("role");
+    const loginStatus = localStorage.getItem("login");
+
+    if (loginStatus !== "true" || role !== "admin") {
+
+        window.location.href = "login.html";
+
+    }
+
+
+    // Logout
+
+    function logout() {
+
+        localStorage.removeItem("login");
+        localStorage.removeItem("role");
+        localStorage.removeItem("username");
+
+        window.location.href = "login.html";
+
+    }
+
+
+    // Basic placement summary
+
+    function updateAdminSummary() {
+
+        const students =
+            JSON.parse(localStorage.getItem("students") || "[]");
+
+        const total = students.length;
+
+        const placed =
+            students.filter(
+                student => student.status === "Placed"
+            ).length;
+
+        const notPlaced = total - placed;
+
+        const rate =
+            total > 0
+                ? ((placed / total) * 100).toFixed(1)
+                : 0;
+
+
+        document.getElementById("totalStudents").textContent = total;
+
+        document.getElementById("placedStudents").textContent = placed;
+
+        document.getElementById("notPlaced").textContent =
+            notPlaced;
+
+        document.getElementById("placementRate").textContent =
+            rate + "%";
+
+    }
+
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        updateAdminSummary
+    );
+
+</script>
 
 </body>
 </html>

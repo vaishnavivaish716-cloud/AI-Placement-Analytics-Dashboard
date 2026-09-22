@@ -4,6 +4,8 @@ function login() {
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
 
+
+    // ADMIN LOGIN
     if (
         userType === "admin" &&
         username === "admin" &&
@@ -12,12 +14,15 @@ function login() {
 
         localStorage.setItem("login", "true");
         localStorage.setItem("role", "admin");
-        localStorage.setItem("username",username);
+        localStorage.setItem("username", username);
 
-        window.location.href = "dashboard.html";
+        // Admin → Admin Dashboard
+        window.location.href = "admin.html";
 
     }
 
+
+    // STUDENT LOGIN
     else if (
         userType === "student" &&
         username === "student" &&
@@ -26,38 +31,67 @@ function login() {
 
         localStorage.setItem("login", "true");
         localStorage.setItem("role", "student");
-        //Demo student: Arun
-        localStorage.setItem("studentUsername", "Ice");
 
-        window.location.href = "dashboard.html";
+        localStorage.setItem(
+            "studentUsername",
+            "Ice"
+        );
+
+        // Student → Student Dashboard
+        window.location.href = "student.html";
 
     }
 
+
+    // INVALID LOGIN
     else {
 
         document.getElementById("error").innerHTML =
-        "Invalid Username or Password";
+            "Invalid Username or Password";
 
     }
 
 }
+
+
+// SHOW / HIDE PASSWORD
+
 function togglePassword() {
 
-    const password = document.getElementById("password");
-    const eye = document.querySelector(".eye-btn");
+    const password =
+        document.getElementById("password");
+
+    const eye =
+        document.querySelector(".eye-btn");
+
 
     if (password.type === "password") {
+
         password.type = "text";
+
         eye.textContent = "🙈";
+
     } else {
+
         password.type = "password";
+
         eye.textContent = "👁️";
+
     }
+
 }
+
+
+// ROBOT GREETING
+
 function updateRobotGreeting() {
 
-    const userType = document.getElementById("userType").value;
-    const message = document.getElementById("robotMessage");
+    const userType =
+        document.getElementById("userType").value;
+
+    const message =
+        document.getElementById("robotMessage");
+
 
     if (userType === "admin") {
 
@@ -68,38 +102,66 @@ function updateRobotGreeting() {
 
         message.innerHTML =
             "🎓 Welcome Student! Ready for placements?";
+
     }
+
 }
+
+
+// ROBOT TYPING MESSAGE
+
 function typeRobotMessage(text) {
 
-    const message = document.getElementById("robotMessage");
+    const message =
+        document.getElementById("robotMessage");
 
     message.innerHTML = "";
 
     let i = 0;
 
-    const typing = setInterval(function () {
 
-        message.innerHTML += text.charAt(i);
+    const typing =
+        setInterval(function () {
 
-        i++;
+            message.innerHTML +=
+                text.charAt(i);
 
-        if (i >= text.length) {
-            clearInterval(typing);
-        }
+            i++;
 
-    }, 35);
+
+            if (i >= text.length) {
+
+                clearInterval(typing);
+
+            }
+
+        }, 35);
+
 }
-document.addEventListener("DOMContentLoaded", function () {
 
-    const password = document.getElementById("password");
 
-    password.addEventListener("keypress", function (event) {
+// ENTER KEY LOGIN
 
-        if (event.key === "Enter") {
-            login();
-        }
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-    });
+        const password =
+            document.getElementById("password");
 
-});
+
+        password.addEventListener(
+            "keypress",
+            function (event) {
+
+                if (event.key === "Enter") {
+
+                    login();
+
+                }
+
+            }
+        );
+
+    }
+);

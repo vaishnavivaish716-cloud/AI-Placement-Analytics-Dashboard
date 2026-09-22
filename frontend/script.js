@@ -412,7 +412,7 @@ function getCompanies(){
 
                     <td>${company.package || "-"}</td>
 
-                    <td>${company.studentsPlaced || 0}</td>
+                    <td>${company.campusType || "-"}</td>
 
                     <td>
                         <button onclick="editCompany('${company.company}')">
@@ -487,52 +487,34 @@ function deleteCompany(companyName) {
 // =======================================
 
 
-function addCompany(){
+function addCompany() {
+
+    const company =
+        document.getElementById("companyName").value.trim();
+
+    const role =
+        document.getElementById("companyRole").value.trim();
+
+    const packageValue =
+        document.getElementById("package").value.trim();
+
+    const campusType =
+        document.getElementById("campusType").value;
 
 
-    let company =
-    document.getElementById(
-        "companyName"
-    ).value;
+    if (
+        company === "" ||
+        role === "" ||
+        packageValue === ""
+    ) {
 
-
-    let role =
-    document.getElementById(
-        "companyRole"
-    ).value;
-
-
-    let packageValue =
-    document.getElementById(
-        "package"
-    ).value;
-
-
-    let studentsPlaced =
-    document.getElementById(
-        "studentsPlaced"
-    ).value;
-
-
-
-    if(
-        company==="" ||
-        packageValue==="" ||
-        studentsPlaced===""
-    ){
-
-        alert(
-            "Please fill company details"
-        );
-
+        alert("Please fill all company details");
         return;
 
     }
 
 
-
-    let companyData = {
-
+    const companyData = {
 
         company: company,
 
@@ -540,68 +522,56 @@ function addCompany(){
 
         package: packageValue,
 
-        studentsPlaced:
-        Number(studentsPlaced)
+        studentsPlaced: 0,
 
+        campusType: campusType
 
     };
 
 
+    fetch("http://127.0.0.1:5000/companies", {
 
+        method: "POST",
 
-    fetch(
-        "http://127.0.0.1:5000/companies",
-        {
+        headers: {
+            "Content-Type": "application/json"
+        },
 
-            method:"POST",
-
-            headers:{
-
-                "Content-Type":
-                "application/json"
-
-            },
-
-            body:
-            JSON.stringify(companyData)
-
-        }
-
-    )
-
-
-    .then(response=>response.json())
-
-
-    .then(data=>{
-
-
-        alert(
-            "Company Added Successfully"
-        );
-        document.getElementById("companyName").value = "";
-document.getElementById("companyRole").value = "";
-document.getElementById("package").value = "";
-document.getElementById("studentsPlaced").value = "";
-
-
-        getCompanies();
-
+        body: JSON.stringify(companyData)
 
     })
 
-    .catch(error=>{
+    .then(response => {
 
+        if (!response.ok) {
+            throw new Error("Failed to add company");
+        }
 
-        console.log(error);
+        return response.json();
 
+    })
+
+    .then(data => {
+
+        alert("Company Added Successfully");
+
+        document.getElementById("companyName").value = "";
+        document.getElementById("companyRole").value = "";
+        document.getElementById("package").value = "";
+
+        getCompanies();
+
+    })
+
+    .catch(error => {
+
+        console.error("Add Company Error:", error);
+
+        alert("Company add failed. Check Flask backend.");
 
     });
 
-
-
 }
-
 
 
 
@@ -920,10 +890,10 @@ function addStudent(){
 
         name: document.getElementById("studentName").value,
 
-        department: document.getElementById("studentDepartment").value,
+        department: document.getElementById("department").value,
 
         cgpa: Number(
-            document.getElementById("studentCGPA").value
+            document.getElementById("cgpaValue").value
         ),
 
         skills: document.getElementById("studentSkills").value,
@@ -931,6 +901,21 @@ function addStudent(){
         status: document.getElementById("studentStatus").value
 
     };
+
+
+    if(
+        studentData.name === "" ||
+        studentData.department === "" ||
+        !studentData.cgpa ||
+        studentData.skills === ""
+    ){
+
+        alert("Please fill all student details");
+
+        return;
+
+    }
+
 
     fetch("http://127.0.0.1:5000/api/students", {
 
@@ -944,11 +929,25 @@ function addStudent(){
 
     })
 
-    .then(response => response.json())
+    .then(response => {
+
+        if(!response.ok){
+            throw new Error("Failed to add student");
+        }
+
+        return response.json();
+
+    })
 
     .then(data => {
 
         alert("Student Added Successfully");
+
+        document.getElementById("studentName").value = "";
+        document.getElementById("department").value = "";
+        document.getElementById("cgpaValue").value = "";
+        document.getElementById("studentSkills").value = "";
+        document.getElementById("studentStatus").value = "Not Placed";
 
         loadDashboard();
 
@@ -956,7 +955,9 @@ function addStudent(){
 
     .catch(error => {
 
-        console.log("Add Student Error:", error);
+        console.error("Add Student Error:", error);
+
+        alert("Student add failed. Check if Flask backend is running.");
 
     });
 
@@ -3710,4 +3711,193 @@ function generateAISummary() {
         `;
 
     }, 800);
+}
+
+
+
+// =======================================
+// ON-CAMPUS PLACEMENT
+// =======================================
+
+function showOnCampus() {
+
+    let section = document.getElementById("onCampusSection");
+
+    if (!section) {
+        alert("On-Campus section not found.");
+        return;
+    }
+
+    section.style.display = "block";
+
+    const tbody = document.getElementById("onCampusBody");
+
+    if (!tbody) {
+        alert("On-Campus data area not found.");
+        return;
+    }
+
+    tbody.innerHTML = `
+        <tr>
+            <td colspan="4">Loading On-Campus companies...</td>
+        </tr>
+    `;
+
+    fetch("http://127.0.0.1:5000/companies")
+        .then(response => {
+
+            if (!response.ok) {
+                throw new Error("Failed to load companies");
+            }
+
+            return response.json();
+
+        })
+        .then(companies => {
+
+            const onCampusCompanies =
+                companies.filter(company =>
+                    company.campusType === "On-Campus"
+                );
+
+            tbody.innerHTML = "";
+
+            if (onCampusCompanies.length === 0) {
+
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="4">
+                            No On-Campus companies available
+                        </td>
+                    </tr>
+                `;
+
+                return;
+            }
+
+            onCampusCompanies.forEach(company => {
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${company.company || "-"}</td>
+                        <td>${company.role || "-"}</td>
+                        <td>${company.package || "-"} LPA</td>
+                        <td>On-Campus</td>
+                    </tr>
+                `;
+
+            });
+
+            section.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        })
+        .catch(error => {
+
+            console.error("On-Campus Error:", error);
+
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="4">
+                        Unable to load On-Campus companies
+                    </td>
+                </tr>
+            `;
+
+        });
+}
+
+
+// =======================================
+// OFF-CAMPUS PLACEMENT
+// =======================================
+
+function showOffCampus() {
+
+    let section = document.getElementById("offCampusSection");
+
+    if (!section) {
+        alert("Off-Campus section not found.");
+        return;
+    }
+
+    section.style.display = "block";
+
+    const tbody = document.getElementById("offCampusBody");
+
+    if (!tbody) {
+        alert("Off-Campus data area not found.");
+        return;
+    }
+
+    tbody.innerHTML = `
+        <tr>
+            <td colspan="4">Loading Off-Campus companies...</td>
+        </tr>
+    `;
+
+    fetch("http://127.0.0.1:5000/companies")
+        .then(response => {
+
+            if (!response.ok) {
+                throw new Error("Failed to load companies");
+            }
+
+            return response.json();
+
+        })
+        .then(companies => {
+
+            const offCampusCompanies =
+                companies.filter(company =>
+                    company.campusType === "Off-Campus"
+                );
+
+            tbody.innerHTML = "";
+
+            if (offCampusCompanies.length === 0) {
+
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="4">
+                            No Off-Campus companies available
+                        </td>
+                    </tr>
+                `;
+
+                return;
+            }
+
+            offCampusCompanies.forEach(company => {
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${company.company || "-"}</td>
+                        <td>${company.role || "-"}</td>
+                        <td>${company.package || "-"} LPA</td>
+                        <td>Off-Campus</td>
+                    </tr>
+                `;
+
+            });
+
+            section.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        })
+        .catch(error => {
+
+            console.error("Off-Campus Error:", error);
+
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="4">
+                        Unable to load Off-Campus companies
+                    </td>
+                </tr>
+            `;
+
+        });
 }

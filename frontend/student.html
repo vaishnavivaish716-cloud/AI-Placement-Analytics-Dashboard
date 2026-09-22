@@ -1,0 +1,2079 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <h2>AI Placement Analytics Dashboard</h2>
+
+        <div>
+
+            <span id="studentName">Student</span>
+
+            <button onclick="logout()">
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+
+        <!-- ================= WELCOME ================= -->
+
+        <section class="welcome-box">
+
+            <h1>
+                Welcome, Student 👋
+            </h1>
+
+            <p>
+                Track your placement preparation and opportunities.
+            </p>
+
+        </section>
+
+
+        <!-- ================= MY PROFILE ================= -->
+
+        <section>
+
+            <h2>
+                My Profile
+            </h2>
+
+            <div class="card">
+
+                <p>
+                    <b>Name:</b>
+                    <span id="profileName">Student</span>
+                </p>
+
+                <p>
+                    <b>Department:</b>
+                    B.Sc Computer Science
+                </p>
+
+                <p>
+                    <b>Placement Status:</b>
+                    <span id="placementStatus">
+                        Not Placed
+                    </span>
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PLACEMENT OPPORTUNITIES ================= -->
+
+        <section>
+
+            <h2>
+                Placement Opportunities
+            </h2>
+
+            <div class="dashboard-grid">
+
+
+                <!-- ON CAMPUS -->
+
+                <div class="card">
+
+                    <h3>
+                        🏫 On-Campus
+                    </h3>
+
+                    <p>
+                        View companies visiting our college.
+                    </p>
+
+                    <button onclick="viewOnCampus()">
+                        View Drives
+                    </button>
+
+                </div>
+
+
+                <!-- OFF CAMPUS -->
+
+                <div class="card">
+
+                    <h3>
+                        🌐 Off-Campus
+                    </h3>
+
+                    <p>
+                        Explore external job opportunities.
+                    </p>
+
+                    <button onclick="viewOffCampus()">
+                        View Jobs
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PLACEMENT PREPARATION ================= -->
+
+        <section>
+
+            <h2>
+                Placement Preparation
+            </h2>
+
+            <div class="dashboard-grid">
+
+
+                <!-- TECHNICAL INTERVIEW -->
+
+                <div class="card">
+
+                    <h3>
+                        💻 Technical Interview
+                    </h3>
+
+                    <p>
+                        Java, Python, SQL, DBMS, OOP,
+                        DSA, OS, Computer Networks
+                    </p>
+
+                    <button onclick="startTechnicalPractice()">
+                        Practice
+                    </button>
+
+                </div>
+
+
+                <!-- APTITUDE -->
+
+                <div class="card">
+
+                    <h3>
+                        🧮 Aptitude
+                    </h3>
+
+                    <p>
+                        Quantitative, Logical Reasoning,
+                        Verbal, Percentage, Time & Work
+                    </p>
+
+                    <button onclick="startAptitudePractice()">
+                        Practice
+                    </button>
+
+                </div>
+
+
+                <!-- COMMUNICATION -->
+
+                <div class="card">
+
+                    <h3>
+                        🗣️ Communication Skills
+                    </h3>
+
+                    <p>
+                        Grammar, Vocabulary,
+                        Sentence Formation and Reading
+                    </p>
+
+                    <button onclick="startCommunicationPractice()">
+                        Practice
+                    </button>
+
+                </div>
+
+
+                <!-- GROUP DISCUSSION -->
+
+                <div class="card">
+
+                    <h3>
+                        👥 Group Discussion
+                    </h3>
+
+                    <p>
+                        Technology, Social and
+                        General GD Topics
+                    </p>
+
+                    <button onclick="startGroupDiscussionPractice()">
+                        Practice
+                    </button>
+
+                </div>
+
+
+                <!-- HR INTERVIEW -->
+
+                <div class="card">
+
+                    <h3>
+                        🤝 HR Interview
+                    </h3>
+
+                    <p>
+                        Self Introduction, Strengths,
+                        Weaknesses, Career Goals
+                    </p>
+
+                    <button onclick="startHRInterviewPractice()">
+                        Practice
+                    </button>
+
+                </div>
+
+
+                <!-- MOCK INTERVIEW -->
+
+                <div class="card">
+
+                    <h3>
+                        🎤 Mock Interview
+                    </h3>
+
+                    <p>
+                        Practice a complete
+                        placement interview.
+                    </p>
+
+                    <button onclick="startMockInterview()">
+                        Practice
+                    </button>
+
+                </div>
+
+            </div>
+<div class="card">
+
+    <h3>
+        🤖 AI Interview Assistant
+    </h3>
+
+    <p>
+        Practice interview answers and get AI-based feedback.
+    </p>
+
+    <button onclick="openAIInterviewAssistant()">
+        Start AI Practice
+    </button>
+
+</div>
+        </section>
+        <section class="card">
+
+    <h2>📊 My Preparation Progress</h2>
+
+    <p>
+        💻 Technical Interview:
+        <b><span id="dashboardTechnicalScore">Not Attempted</span></b>
+    </p>
+
+    <p>
+        🧮 Aptitude:
+        <b><span id="dashboardAptitudeScore">Not Attempted</span></b>
+    </p>
+
+</section>
+
+
+        <!-- ================================================= -->
+        <!-- TECHNICAL INTERVIEW PRACTICE -->
+        <!-- ================================================= -->
+
+        <section id="technicalPractice"
+                 class="card"
+                 style="display:none;">
+
+            <h2>
+                💻 Technical Interview Practice
+            </h2>
+
+            <p>
+                ⏱️ Time Left:
+                <b>
+                    <span id="technicalTimer">
+                        60
+                    </span>
+                </b>
+                seconds
+            </p>
+
+
+            <hr>
+
+
+            <h3 id="technicalQuestion">
+                Question
+            </h3>
+
+
+            <div id="technicalOptions">
+            </div>
+
+
+            <br>
+
+
+            <button onclick="nextTechnicalQuestion()">
+                Next Question
+            </button>
+
+
+            <p id="technicalResult">
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ================================================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ================================================= -->
+
+    <script>
+        function openAIInterviewAssistant() {
+
+    const assistant =
+        document.getElementById("aiInterviewAssistant");
+
+    if (!assistant) {
+        alert("AI Interview Assistant not found.");
+        return;
+    }
+
+    assistant.style.display = "block";
+
+    assistant.scrollIntoView({
+        behavior: "smooth"
+    });
+
+    document.getElementById("aiInterviewQuestion").textContent =
+        "Tell me about yourself.";
+
+    document.getElementById("aiInterviewAnswer").value = "";
+
+    document.getElementById("aiInterviewResult").innerHTML = "";
+}
+
+
+        /* ==========================================
+           LOGOUT
+        ========================================== */
+
+        function logout() {
+
+            localStorage.removeItem("login");
+
+            localStorage.removeItem("role");
+
+            localStorage.removeItem("studentUsername");
+
+            window.location.href = "login.html";
+
+        }
+
+
+
+        /* ==========================================
+           STUDENT NAME
+        ========================================== */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const username =
+                    localStorage.getItem(
+                        "studentUsername"
+                    ) || "Student";
+
+
+                document.getElementById(
+                    "studentName"
+                ).textContent = username;
+
+
+                document.getElementById(
+                    "profileName"
+                ).textContent = username;
+
+            }
+        );
+
+
+
+        /* ==========================================
+           ON-CAMPUS
+        ========================================== */
+
+        function viewOnCampus() {
+
+            fetch(
+                "http://127.0.0.1:5000/companies"
+            )
+
+            .then(response => {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Failed to load companies"
+                    );
+
+                }
+
+                return response.json();
+
+            })
+
+            .then(companies => {
+
+                const onCampus =
+                    companies.filter(
+                        company =>
+                            company.campusType ===
+                            "On-Campus"
+                    );
+
+
+                if (onCampus.length === 0) {
+
+                    alert(
+                        "No On-Campus placement drives available."
+                    );
+
+                    return;
+
+                }
+
+
+                let message =
+                    "🏫 ON-CAMPUS PLACEMENT DRIVES\n\n";
+
+
+                onCampus.forEach(company => {
+
+                    message +=
+                        "Company: " +
+                        (company.company || "-") +
+                        "\n";
+
+                    message +=
+                        "Role: " +
+                        (company.role || "-") +
+                        "\n";
+
+                    message +=
+                        "Package: " +
+                        (company.package || "-") +
+                        " LPA\n\n";
+
+                });
+
+
+                alert(message);
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "On-Campus Error:",
+                    error
+                );
+
+
+                alert(
+                    "Unable to load On-Campus drives. Check Flask backend."
+                );
+
+            });
+
+        }
+
+
+
+        /* ==========================================
+           OFF-CAMPUS
+        ========================================== */
+
+        function viewOffCampus() {
+
+            fetch(
+                "http://127.0.0.1:5000/companies"
+            )
+
+            .then(response => {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Failed to load companies"
+                    );
+
+                }
+
+                return response.json();
+
+            })
+
+            .then(companies => {
+
+                const offCampus =
+                    companies.filter(
+                        company =>
+                            company.campusType ===
+                            "Off-Campus"
+                    );
+
+
+                if (offCampus.length === 0) {
+
+                    alert(
+                        "No Off-Campus jobs available."
+                    );
+
+                    return;
+
+                }
+
+
+                let message =
+                    "🌐 OFF-CAMPUS JOB OPPORTUNITIES\n\n";
+
+
+                offCampus.forEach(company => {
+
+                    message +=
+                        "Company: " +
+                        (company.company || "-") +
+                        "\n";
+
+                    message +=
+                        "Role: " +
+                        (company.role || "-") +
+                        "\n";
+
+                    message +=
+                        "Package: " +
+                        (company.package || "-") +
+                        " LPA\n\n";
+
+                });
+
+
+                alert(message);
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "Off-Campus Error:",
+                    error
+                );
+
+
+                alert(
+                    "Unable to load Off-Campus jobs. Check Flask backend."
+                );
+
+            });
+
+        }
+
+
+
+        let technicalQuestions = [
+
+    {
+        question: "Which language is mainly used for Android development?",
+        options: ["Java", "HTML", "SQL", "CSS"],
+        answer: "Java"
+    },
+
+    {
+        question: "Which keyword is used to create a class in Java?",
+        options: ["class", "object", "new", "create"],
+        answer: "class"
+    },
+
+    {
+        question: "Which of these is a database?",
+        options: ["MySQL", "HTML", "CSS", "Java"],
+        answer: "MySQL"
+    },
+
+    {
+        question: "What does SQL stand for?",
+        options: [
+            "Structured Query Language",
+            "Simple Question Language",
+            "System Query List",
+            "Structured Question List"
+        ],
+        answer: "Structured Query Language"
+    },
+
+    {
+        question: "Which concept allows the same method to have different forms?",
+        options: [
+            "Inheritance",
+            "Polymorphism",
+            "Encapsulation",
+            "Abstraction"
+        ],
+        answer: "Polymorphism"
+    },
+
+    {
+        question: "Which language is commonly used for data analysis?",
+        options: ["Python", "HTML", "CSS", "XML"],
+        answer: "Python"
+    },
+
+    {
+        question: "Which symbol is used for comments in Python?",
+        options: ["#", "//", "/*", "<!--"],
+        answer: "#"
+    },
+
+    {
+        question: "What does HTML stand for?",
+        options: [
+            "Hyper Text Markup Language",
+            "High Text Machine Language",
+            "Hyperlink Text Mark Language",
+            "Home Tool Markup Language"
+        ],
+        answer: "Hyper Text Markup Language"
+    },
+
+    {
+        question: "Which of the following is an operating system?",
+        options: ["Windows", "MySQL", "Python", "HTML"],
+        answer: "Windows"
+    },
+
+    {
+        question: "What is the full form of CPU?",
+        options: [
+            "Central Processing Unit",
+            "Computer Processing Unit",
+            "Central Program Unit",
+            "Control Processing Unit"
+        ],
+        answer: "Central Processing Unit"
+    },
+
+    {
+        question: "Which data structure follows FIFO?",
+        options: ["Stack", "Queue", "Tree", "Graph"],
+        answer: "Queue"
+    },
+
+    {
+        question: "Which data structure follows LIFO?",
+        options: ["Queue", "Stack", "Array", "Tree"],
+        answer: "Stack"
+    },
+
+    {
+        question: "Which language is used to style web pages?",
+        options: ["CSS", "SQL", "Python", "Java"],
+        answer: "CSS"
+    },
+
+    {
+        question: "Which language is used to make web pages interactive?",
+        options: ["JavaScript", "HTML", "SQL", "CSS"],
+        answer: "JavaScript"
+    },
+
+    {
+        question: "What is DBMS?",
+        options: [
+            "Database Management System",
+            "Data Backup Management System",
+            "Database Machine System",
+            "Data Management Software"
+        ],
+        answer: "Database Management System"
+    },
+
+    {
+        question: "Which command is used to retrieve data from a SQL table?",
+        options: ["SELECT", "GET", "FETCH", "OPEN"],
+        answer: "SELECT"
+    },
+
+    {
+        question: "Which keyword is used to insert data into a SQL table?",
+        options: ["INSERT", "ADD", "PUT", "UPDATE"],
+        answer: "INSERT"
+    },
+
+    {
+        question: "Which keyword is used to remove a table in SQL?",
+        options: ["DELETE", "DROP", "REMOVE", "CLEAR"],
+        answer: "DROP"
+    },
+
+    {
+        question: "What is OOP?",
+        options: [
+            "Object Oriented Programming",
+            "Object Operating Program",
+            "Online Object Programming",
+            "Open Oriented Programming"
+        ],
+        answer: "Object Oriented Programming"
+    },
+
+    {
+        question: "Which OOP concept hides internal implementation details?",
+        options: [
+            "Abstraction",
+            "Inheritance",
+            "Polymorphism",
+            "Compilation"
+        ],
+        answer: "Abstraction"
+    }
+
+];
+
+
+let technicalIndex = 0;
+let technicalScore = 0;
+let technicalTime = 60;
+let technicalTimer;
+function startTechnicalPractice() {
+
+    const practice =
+        document.getElementById("technicalPractice");
+
+    if (!practice) {
+        alert("Technical Practice section not found.");
+        return;
+    }
+
+    practice.style.display = "block";
+
+    technicalIndex = 0;
+    technicalScore = 0;
+    technicalTime = 60;
+
+    clearInterval(technicalTimer);
+
+    technicalQuestions.sort(function () {
+        return Math.random() - 0.5;
+    });
+
+    document.getElementById("technicalTimer").textContent =
+        technicalTime;
+
+    document.getElementById("technicalResult").textContent = "";
+
+    showTechnicalQuestion();
+
+    technicalTimer = setInterval(function () {
+
+        technicalTime--;
+
+        document.getElementById("technicalTimer").textContent =
+            technicalTime;
+
+        if (technicalTime <= 0) {
+
+            clearInterval(technicalTimer);
+
+            showTechnicalResult();
+        }
+
+    }, 1000);
+}
+function showTechnicalQuestion() {
+
+    // Only 5 questions per practice
+    if (technicalIndex >= 5) {
+        clearInterval(technicalTimer);
+        showTechnicalResult();
+        return;
+    }
+
+    const q = technicalQuestions[technicalIndex];
+
+    document.getElementById("technicalQuestion").textContent =
+        q.question;
+
+    const optionsDiv =
+        document.getElementById("technicalOptions");
+
+    optionsDiv.innerHTML = "";
+
+    q.options.forEach(function(option) {
+
+        const button = document.createElement("button");
+
+        button.textContent = option;
+
+        button.style.display = "block";
+        button.style.margin = "8px 0";
+        button.style.width = "100%";
+
+        button.onclick = function() {
+
+            if (option === q.answer) {
+                technicalScore++;
+            }
+
+            const buttons =
+                optionsDiv.querySelectorAll("button");
+
+            buttons.forEach(function(btn) {
+                btn.disabled = true;
+            });
+        };
+
+        optionsDiv.appendChild(button);
+    });
+}
+function nextTechnicalQuestion() {
+
+    technicalIndex++;
+
+    if (technicalIndex >= 5) {
+
+        clearInterval(technicalTimer);
+
+        showTechnicalResult();
+
+        return;
+    }
+
+    showTechnicalQuestion();
+}
+
+
+
+
+
+        
+
+
+function showTechnicalResult() {
+
+    document.getElementById("technicalQuestion").textContent =
+        "Practice Completed 🎉";
+
+    document.getElementById("technicalOptions").innerHTML = "";
+
+    document.getElementById("technicalResult").innerHTML =
+        "Your Score: <b>" +
+        technicalScore +
+        " / " +
+        5 +
+        "</b>";
+
+    localStorage.setItem(
+        "technicalScore",
+        technicalScore
+    );
+}
+let aptitudeQuestions = [
+
+    {
+        question: "What is 20% of 200?",
+        options: ["20", "30", "40", "50"],
+        answer: "40"
+    },
+
+    {
+        question: "What is 15 × 4?",
+        options: ["40", "50", "60", "70"],
+        answer: "60"
+    },
+
+    {
+        question: "What is 100 ÷ 5?",
+        options: ["10", "15", "20", "25"],
+        answer: "20"
+    },
+
+    {
+        question: "What is 25% of 400?",
+        options: ["50", "75", "100", "125"],
+        answer: "100"
+    },
+
+    {
+        question: "If 5 pens cost ₹50, what is the cost of 1 pen?",
+        options: ["₹5", "₹10", "₹15", "₹20"],
+        answer: "₹10"
+    },
+
+    {
+        question: "What is 12 + 18?",
+        options: ["25", "30", "35", "40"],
+        answer: "30"
+    },
+
+    {
+        question: "What is 9 × 7?",
+        options: ["56", "63", "72", "81"],
+        answer: "63"
+    },
+
+    {
+        question: "What is 144 ÷ 12?",
+        options: ["10", "12", "14", "16"],
+        answer: "12"
+    },
+
+    {
+        question: "A train travels 60 km in 1 hour. How far in 3 hours?",
+        options: ["120 km", "150 km", "180 km", "200 km"],
+        answer: "180 km"
+    },
+
+    {
+        question: "What is 30% of 500?",
+        options: ["100", "150", "200", "250"],
+        answer: "150"
+    },
+
+    {
+        question: "If 10 workers finish a job in 5 days, this is an example of?",
+        options: [
+            "Time and Work",
+            "Probability",
+            "Percentage",
+            "Average"
+        ],
+        answer: "Time and Work"
+    },
+
+    {
+        question: "What is the average of 10, 20 and 30?",
+        options: ["15", "20", "25", "30"],
+        answer: "20"
+    },
+
+    {
+        question: "What is 3/4 as a percentage?",
+        options: ["25%", "50%", "75%", "80%"],
+        answer: "75%"
+    },
+
+    {
+        question: "If a shirt costs ₹1000 and has a 10% discount, what is the discount?",
+        options: ["₹50", "₹100", "₹150", "₹200"],
+        answer: "₹100"
+    },
+
+    {
+        question: "What is 2⁵?",
+        options: ["16", "24", "32", "64"],
+        answer: "32"
+    }
+
+];
+
+
+let aptitudeIndex = 0;
+let aptitudeScore = 0;
+let aptitudeTime = 60;
+let aptitudeTimer;
+
+
+let communicationQuestions = [
+
+    {
+        question: "Which is important for effective communication?",
+        options: ["Listening", "Ignoring", "Shouting", "Silence"],
+        answer: "Listening"
+    },
+
+    {
+        question: "What should you do when someone is speaking?",
+        options: ["Listen carefully", "Interrupt them", "Look away", "Use your phone"],
+        answer: "Listen carefully"
+    },
+
+    {
+        question: "Which is a form of non-verbal communication?",
+        options: ["Body language", "Email", "Phone call", "Written report"],
+        answer: "Body language"
+    },
+
+    {
+        question: "What does active listening mean?",
+        options: [
+            "Paying full attention",
+            "Ignoring the speaker",
+            "Talking continuously",
+            "Changing the topic"
+        ],
+        answer: "Paying full attention"
+    },
+
+    {
+        question: "Which is important during an interview?",
+        options: [
+            "Clear communication",
+            "Speaking too fast",
+            "Avoiding eye contact",
+            "Giving one-word answers"
+        ],
+        answer: "Clear communication"
+    },
+
+    {
+        question: "What should you avoid during communication?",
+        options: ["Interrupting", "Listening", "Eye contact", "Clear speech"],
+        answer: "Interrupting"
+    },
+
+    {
+        question: "Which skill helps you understand others better?",
+        options: ["Listening", "Arguing", "Ignoring", "Guessing"],
+        answer: "Listening"
+    },
+
+    {
+        question: "What is a good way to start a formal conversation?",
+        options: ["Good morning", "Hey bro", "What?", "Come here"],
+        answer: "Good morning"
+    },
+
+    {
+        question: "What does body language include?",
+        options: [
+            "Gestures and facial expressions",
+            "Only writing",
+            "Only speaking",
+            "Only reading"
+        ],
+        answer: "Gestures and facial expressions"
+    },
+
+    {
+        question: "Which helps make speech clear?",
+        options: [
+            "Proper pronunciation",
+            "Speaking very fast",
+            "Mumbling",
+            "Avoiding words"
+        ],
+        answer: "Proper pronunciation"
+    }
+];
+
+let communicationIndex = 0;
+let communicationScore = 0;
+let communicationTime = 60;
+let communicationTimer;
+
+
+function startCommunicationPractice() {
+
+    const practice =
+        document.getElementById("communicationPractice");
+
+    if (!practice) {
+        alert("Communication Practice section not found.");
+        return;
+    }
+
+    practice.style.display = "block";
+
+    communicationIndex = 0;
+    communicationScore = 0;
+    communicationTime = 60;
+
+    clearInterval(communicationTimer);
+
+    communicationQuestions.sort(function () {
+        return Math.random() - 0.5;
+    });
+
+    document.getElementById("communicationTimer").textContent =
+        communicationTime;
+
+    document.getElementById("communicationResult").textContent = "";
+
+    showCommunicationQuestion();
+
+    communicationTimer = setInterval(function () {
+
+        communicationTime--;
+
+        document.getElementById("communicationTimer").textContent =
+            communicationTime;
+
+        if (communicationTime <= 0) {
+            clearInterval(communicationTimer);
+            showCommunicationResult();
+        }
+
+    }, 1000);
+}
+function showCommunicationQuestion() {
+
+    if (communicationIndex >= 5) {
+        clearInterval(communicationTimer);
+        showCommunicationResult();
+        return;
+    }
+
+    const q = communicationQuestions[communicationIndex];
+
+    document.getElementById("communicationQuestion").textContent =
+        q.question;
+
+    const optionsDiv =
+        document.getElementById("communicationOptions");
+
+    optionsDiv.innerHTML = "";
+
+    q.options.forEach(function(option) {
+
+        const button = document.createElement("button");
+
+        button.textContent = option;
+
+        button.style.display = "block";
+        button.style.margin = "8px 0";
+        button.style.width = "100%";
+
+        button.onclick = function() {
+
+            if (option === q.answer) {
+                communicationScore++;
+            }
+
+            const buttons =
+                optionsDiv.querySelectorAll("button");
+
+            buttons.forEach(function(btn) {
+                btn.disabled = true;
+            });
+        };
+
+        optionsDiv.appendChild(button);
+    });
+}
+function nextCommunicationQuestion() {
+
+    communicationIndex++;
+
+    if (communicationIndex >= 5) {
+        clearInterval(communicationTimer);
+        showCommunicationResult();
+        return;
+    }
+
+    showCommunicationQuestion();
+}
+function showCommunicationResult() {
+
+    document.getElementById("communicationQuestion").textContent =
+        "Practice Completed 🎉";
+
+    document.getElementById("communicationOptions").innerHTML = "";
+
+    document.getElementById("communicationResult").innerHTML =
+        "Your Score: <b>" +
+        communicationScore +
+        " / " +
+        5 +
+        "</b>";
+}
+
+function startAptitudePractice() {
+
+    const practice =
+        document.getElementById("aptitudePractice");
+
+    if (!practice) {
+        alert("Aptitude Practice section not found.");
+        return;
+    }
+
+    practice.style.display = "block";
+
+    aptitudeIndex = 0;
+    aptitudeScore = 0;
+    aptitudeTime = 60;
+
+    clearInterval(aptitudeTimer);
+
+    // Randomly shuffle questions
+    aptitudeQuestions.sort(function () {
+        return Math.random() - 0.5;
+    });
+
+    document.getElementById("aptitudeTimer").textContent =
+        aptitudeTime;
+
+    document.getElementById("aptitudeResult").textContent = "";
+
+    showAptitudeQuestion();
+
+    aptitudeTimer = setInterval(function () {
+
+        aptitudeTime--;
+
+        document.getElementById("aptitudeTimer").textContent =
+            aptitudeTime;
+
+        if (aptitudeTime <= 0) {
+
+            clearInterval(aptitudeTimer);
+
+            showAptitudeResult();
+        }
+
+    }, 1000);
+}
+
+function showAptitudeQuestion() {
+
+    if (aptitudeIndex >= 5) {
+        clearInterval(aptitudeTimer);
+        showAptitudeResult();
+        return;
+    }
+
+    const q = aptitudeQuestions[aptitudeIndex];
+
+    document.getElementById("aptitudeQuestion").textContent =
+        q.question;
+
+    const optionsDiv =
+        document.getElementById("aptitudeOptions");
+
+    optionsDiv.innerHTML = "";
+
+    q.options.forEach(function(option) {
+
+        const button = document.createElement("button");
+
+        button.textContent = option;
+
+        button.style.display = "block";
+        button.style.margin = "8px 0";
+        button.style.width = "100%";
+
+        button.onclick = function() {
+
+            if (option === q.answer) {
+                aptitudeScore++;
+            }
+
+            const buttons =
+                optionsDiv.querySelectorAll("button");
+
+            buttons.forEach(function(btn) {
+                btn.disabled = true;
+            });
+        };
+
+        optionsDiv.appendChild(button);
+    });
+}
+
+
+function nextAptitudeQuestion() {
+
+    aptitudeIndex++;
+
+    if (aptitudeIndex >= 5) {
+
+        clearInterval(aptitudeTimer);
+
+        showAptitudeResult();
+
+        return;
+    }
+
+    showAptitudeQuestion();
+}
+
+
+function showAptitudeResult() {
+
+    document.getElementById("aptitudeQuestion").textContent =
+        "Practice Completed 🎉";
+
+    document.getElementById("aptitudeOptions").innerHTML = "";
+
+    document.getElementById("aptitudeResult").innerHTML =
+        "Your Score: <b>" +
+        aptitudeScore +
+        " / " +
+        5 +
+        "</b>";
+
+    localStorage.setItem(
+        "aptitudeScore",
+        aptitudeScore
+    );
+}
+let groupDiscussionTopics = [
+    "Is Artificial Intelligence useful for students?",
+    "Should social media have limits?",
+    "Online Education vs Classroom Education",
+    "Is Technology Making Life Better?",
+    "Importance of Teamwork",
+    "Should College Students Do Internships?",
+    "Mobile Phones: Useful or Harmful?",
+    "Importance of Communication Skills",
+    "Work From Home vs Office Work",
+    "Role of Social Media in Education"
+];
+
+let groupDiscussionIndex = 0;
+let groupDiscussionTime = 60;
+let groupDiscussionTimer;
+
+function startGroupDiscussionPractice() {
+
+    const practice =
+        document.getElementById("groupDiscussionPractice");
+
+    if (!practice) {
+        alert("Group Discussion Practice section not found.");
+        return;
+    }
+
+    practice.style.display = "block";
+
+    groupDiscussionIndex = 0;
+    groupDiscussionTime = 60;
+
+    clearInterval(groupDiscussionTimer);
+
+    document.getElementById("groupDiscussionTimer").textContent =
+        groupDiscussionTime;
+
+    document.getElementById("groupDiscussionResult").textContent = "";
+
+    showGroupDiscussionTopic();
+
+    groupDiscussionTimer = setInterval(function () {
+
+        groupDiscussionTime--;
+
+        document.getElementById("groupDiscussionTimer").textContent =
+            groupDiscussionTime;
+
+        if (groupDiscussionTime <= 0) {
+
+            clearInterval(groupDiscussionTimer);
+
+            showGroupDiscussionResult();
+        }
+
+    }, 1000);
+}
+
+function showGroupDiscussionTopic() {
+
+    if (groupDiscussionIndex >= groupDiscussionTopics.length) {
+
+        clearInterval(groupDiscussionTimer);
+
+        showGroupDiscussionResult();
+
+        return;
+    }
+
+    document.getElementById("groupDiscussionTopic").textContent =
+        groupDiscussionTopics[groupDiscussionIndex];
+}
+
+function nextGroupDiscussionTopic() {
+
+    groupDiscussionIndex++;
+
+    if (groupDiscussionIndex >= groupDiscussionTopics.length) {
+
+        clearInterval(groupDiscussionTimer);
+
+        showGroupDiscussionResult();
+
+        return;
+    }
+
+    showGroupDiscussionTopic();
+}
+
+function showGroupDiscussionResult() {
+
+    document.getElementById("groupDiscussionTopic").textContent =
+        "Practice Completed 🎉";
+
+    document.getElementById("groupDiscussionResult").innerHTML =
+        "All Group Discussion Topics Completed!";
+}
+let hrQuestions = [
+    {
+        question: "Tell me about yourself.",
+        answer: "Give a short introduction about your education, skills and career goals."
+    },
+    {
+        question: "What are your strengths?",
+        answer: "Mention your positive qualities such as communication, teamwork and problem solving."
+    },
+    {
+        question: "What is your weakness?",
+        answer: "Mention one genuine weakness and explain how you are improving it."
+    },
+    {
+        question: "Why should we hire you?",
+        answer: "Explain your skills, willingness to learn and how you can contribute to the company."
+    },
+    {
+        question: "Why do you want to join our company?",
+        answer: "Talk about your interest in the company, its work and the opportunity to grow."
+    },
+    {
+        question: "Where do you see yourself in five years?",
+        answer: "Explain your career growth and professional goals."
+    },
+    {
+        question: "Why did you choose Computer Science?",
+        answer: "Explain your interest in technology, programming and software development."
+    },
+    {
+        question: "Are you comfortable working in a team?",
+        answer: "Explain your teamwork experience and ability to cooperate with others."
+    },
+    {
+        question: "How do you handle pressure?",
+        answer: "Explain how you stay calm, organize your work and solve problems step by step."
+    },
+    {
+        question: "Do you have any questions for us?",
+        answer: "Ask about the role, team, training or growth opportunities."
+    }
+];
+
+let hrIndex = 0;
+let hrTime = 60;
+let hrTimer;
+
+function startHRInterviewPractice() {
+
+    const practice =
+        document.getElementById("hrInterviewPractice");
+
+    if (!practice) {
+        alert("HR Interview Practice section not found.");
+        return;
+    }
+
+    practice.style.display = "block";
+
+    hrIndex = 0;
+    hrTime = 60;
+
+    clearInterval(hrTimer);
+
+    document.getElementById("hrTimer").textContent = hrTime;
+
+    document.getElementById("hrAnswer").textContent = "";
+
+    showHRQuestion();
+
+    hrTimer = setInterval(function () {
+
+        hrTime--;
+
+        document.getElementById("hrTimer").textContent = hrTime;
+
+        if (hrTime <= 0) {
+
+            clearInterval(hrTimer);
+
+            showHRAnswer();
+        }
+
+    }, 1000);
+}
+
+function showHRQuestion() {
+
+    if (hrIndex >= hrQuestions.length) {
+
+        clearInterval(hrTimer);
+
+        document.getElementById("hrQuestion").textContent =
+            "HR Interview Completed 🎉";
+
+        return;
+    }
+
+    document.getElementById("hrQuestion").textContent =
+        hrQuestions[hrIndex].question;
+
+    document.getElementById("hrAnswer").textContent = "";
+}
+
+function showHRAnswer() {
+
+    document.getElementById("hrAnswer").innerHTML =
+        "<b>Suggested Answer:</b><br>" +
+        hrQuestions[hrIndex].answer;
+}
+
+function nextHRQuestion() {
+
+    hrIndex++;
+    hrTime = 60;
+
+    if (hrIndex >= hrQuestions.length) {
+
+        clearInterval(hrTimer);
+
+        document.getElementById("hrQuestion").textContent =
+            "HR Interview Completed 🎉";
+
+        document.getElementById("hrAnswer").innerHTML =
+            "You have completed all HR interview questions.";
+
+        return;
+    }
+
+    document.getElementById("hrTimer").textContent = hrTime;
+
+    showHRQuestion();
+
+    clearInterval(hrTimer);
+
+    hrTimer = setInterval(function () {
+
+        hrTime--;
+
+        document.getElementById("hrTimer").textContent = hrTime;
+
+        if (hrTime <= 0) {
+
+            clearInterval(hrTimer);
+
+            showHRAnswer();
+        }
+
+    }, 1000);
+}
+let mockQuestions = [
+    {
+        question: "Tell me about yourself."
+    },
+    {
+        question: "What are your strengths?"
+    },
+    {
+        question: "What are your weaknesses?"
+    },
+    {
+        question: "Why should we hire you?"
+    },
+    {
+        question: "Why do you want to join our company?"
+    },
+    {
+        question: "Where do you see yourself in five years?"
+    },
+    {
+        question: "Explain one project you have worked on."
+    },
+    {
+        question: "What programming languages do you know?"
+    },
+    {
+        question: "How do you handle pressure?"
+    },
+    {
+        question: "Do you have any questions for us?"
+    }
+];
+
+let mockIndex = 0;
+let mockTime = 60;
+let mockTimer;
+
+function startMockInterview() {
+
+    const practice =
+        document.getElementById("mockInterviewPractice");
+
+    if (!practice) {
+        alert("Mock Interview Practice section not found.");
+        return;
+    }
+
+    practice.style.display = "block";
+
+    mockIndex = 0;
+    mockTime = 60;
+
+    clearInterval(mockTimer);
+
+    document.getElementById("mockTimer").textContent = mockTime;
+
+    document.getElementById("mockAnswer").value = "";
+
+    showMockQuestion();
+
+    mockTimer = setInterval(function () {
+
+        mockTime--;
+
+        document.getElementById("mockTimer").textContent =
+            mockTime;
+
+        if (mockTime <= 0) {
+
+            clearInterval(mockTimer);
+
+            document.getElementById("mockFeedback").textContent =
+                "Time's up! Try to answer the question clearly.";
+        }
+
+    }, 1000);
+}
+
+function showMockQuestion() {
+
+    if (mockIndex >= mockQuestions.length) {
+
+        clearInterval(mockTimer);
+
+        document.getElementById("mockQuestion").textContent =
+            "Mock Interview Completed 🎉";
+
+        return;
+    }
+
+    document.getElementById("mockQuestion").textContent =
+        mockQuestions[mockIndex].question;
+
+    document.getElementById("mockAnswer").value = "";
+
+    document.getElementById("mockFeedback").textContent = "";
+}
+
+function submitMockAnswer() {
+
+    const answer =
+        document.getElementById("mockAnswer").value.trim();
+
+    if (answer === "") {
+
+        document.getElementById("mockFeedback").textContent =
+            "Please enter your answer before continuing.";
+
+        return;
+    }
+
+    document.getElementById("mockFeedback").innerHTML =
+        "✅ Answer recorded. Good job!";
+
+    clearInterval(mockTimer);
+}
+
+function nextMockQuestion() {
+
+    mockIndex++;
+
+    if (mockIndex >= mockQuestions.length) {
+
+        clearInterval(mockTimer);
+
+        document.getElementById("mockQuestion").textContent =
+            "Mock Interview Completed 🎉";
+
+        document.getElementById("mockFeedback").innerHTML =
+            "🎉 You have completed the Mock Interview.";
+
+        return;
+    }
+
+    mockTime = 60;
+
+    document.getElementById("mockTimer").textContent =
+        mockTime;
+
+    showMockQuestion();
+
+    clearInterval(mockTimer);
+
+    mockTimer = setInterval(function () {
+
+        mockTime--;
+
+        document.getElementById("mockTimer").textContent =
+            mockTime;
+
+        if (mockTime <= 0) {
+
+            clearInterval(mockTimer);
+
+            document.getElementById("mockFeedback").textContent =
+                "Time's up! Try to answer the question clearly.";
+        }
+
+    }, 1000);
+}
+function analyzeAIInterviewAnswer() {
+
+    const answer =
+        document.getElementById("aiInterviewAnswer").value.trim();
+
+    const result =
+        document.getElementById("aiInterviewResult");
+
+    if (answer === "") {
+        result.innerHTML =
+            "<p>⚠️ Please enter your answer first.</p>";
+        return;
+    }
+
+    let score = 50;
+
+    const lowerAnswer = answer.toLowerCase();
+
+    // Check answer length
+    if (answer.length >= 50) {
+        score += 10;
+    }
+
+    if (answer.length >= 100) {
+        score += 10;
+    }
+
+    // Check useful interview keywords
+    const keywords = [
+        "skills",
+        "education",
+        "project",
+        "experience",
+        "computer",
+        "programming",
+        "team",
+        "goal",
+        "learning",
+        "career"
+    ];
+
+    let keywordCount = 0;
+
+    keywords.forEach(function(keyword) {
+
+        if (lowerAnswer.includes(keyword)) {
+            keywordCount++;
+        }
+
+    });
+
+    score += keywordCount * 2;
+
+    if (score > 100) {
+        score = 100;
+    }
+
+    let communication;
+
+    if (score >= 80) {
+        communication = "Excellent";
+    } else if (score >= 65) {
+        communication = "Good";
+    } else {
+        communication = "Needs Improvement";
+    }
+
+    let suggestion;
+
+    if (score >= 80) {
+
+        suggestion =
+            "Your answer is well structured. Keep practicing with confidence.";
+
+    } else if (score >= 65) {
+
+        suggestion =
+            "Your answer is good. Try adding more details about your skills and projects.";
+
+    } else {
+
+        suggestion =
+            "Try giving a longer and more structured answer. Mention your education, skills and project experience.";
+    }
+
+    result.innerHTML =
+
+        "<h3>🤖 AI Interview Analysis</h3>" +
+
+        "<p>📊 Overall Score: <b>" +
+        score +
+        "/100</b></p>" +
+
+        "<p>🗣️ Communication: <b>" +
+        communication +
+        "</b></p>" +
+
+        "<p>🔎 Relevant Points Found: <b>" +
+        keywordCount +
+        "</b></p>" +
+
+        "<p>💡 AI Suggestion:</p>" +
+
+        "<p>" +
+        suggestion +
+        "</p>";
+}
+function openAIInterviewAssistant() {
+
+    const assistant =
+        document.getElementById("aiInterviewAssistant");
+
+    if (!assistant) {
+        alert("AI Interview Assistant not found.");
+        return;
+    }
+
+    assistant.style.display = "block";
+
+    document.getElementById("aiInterviewQuestion").textContent =
+        "Tell me about yourself.";
+
+    document.getElementById("aiInterviewAnswer").value = "";
+
+    document.getElementById("aiInterviewResult").innerHTML = "";
+}
+</script>
+<section id="aptitudePractice"
+         class="card"
+         style="display:none;">
+
+    <h2>🧮 Aptitude Practice</h2>
+
+    <p>
+        ⏱️ Time Left:
+        <b>
+            <span id="aptitudeTimer">60</span>
+        </b>
+        seconds
+    </p>
+
+    <hr>
+
+    <h3 id="aptitudeQuestion">
+        Question
+    </h3>
+
+    <div id="aptitudeOptions"></div>
+
+    <br>
+
+    <button onclick="nextAptitudeQuestion()">
+        Next Question
+    </button>
+
+    <p id="aptitudeResult"></p>
+
+</section>
+<section id="communicationPractice"
+         class="card"
+         style="display:none;">
+
+    <h2>🗣️ Communication Skills Practice</h2>
+
+    <p>
+        ⏱️ Time Left:
+        <b><span id="communicationTimer">60</span></b>
+        seconds
+    </p>
+
+    <hr>
+
+    <h3 id="communicationQuestion">
+        Question
+    </h3>
+
+    <div id="communicationOptions"></div>
+
+    <br>
+
+    <button onclick="nextCommunicationQuestion()">
+        Next Question
+    </button>
+
+    <p id="communicationResult"></p>
+    
+    
+
+</section>
+<section id="groupDiscussionPractice"
+         class="card"
+         style="display:none;">
+
+    <h2>🗣️ Group Discussion Practice</h2>
+
+    <p>
+        ⏱️ Time Left:
+        <b>
+            <span id="groupDiscussionTimer">60</span>
+        </b>
+        seconds
+    </p>
+
+    <hr>
+
+    <h3 id="groupDiscussionTopic">
+        Topic
+    </h3>
+
+    <br>
+
+    <button onclick="nextGroupDiscussionTopic()">
+        Next Topic
+    </button>
+
+    <p id="groupDiscussionResult"></p>
+
+</section>
+<section id="hrInterviewPractice"
+         class="card"
+         style="display:none;">
+
+    <h2>💼 HR Interview Practice</h2>
+
+    <p>
+        ⏱️ Time Left:
+        <b>
+            <span id="hrTimer">60</span>
+        </b>
+        seconds
+    </p>
+
+    <hr>
+
+    <h3 id="hrQuestion">
+        HR Interview Question
+    </h3>
+
+    <p id="hrAnswer"></p>
+
+    <br>
+
+    <button onclick="showHRAnswer()">
+        Show Suggested Answer
+    </button>
+
+    <button onclick="nextHRQuestion()">
+        Next Question
+    </button>
+
+</section>
+<section id="mockInterviewPractice"
+         class="card"
+         style="display:none;">
+
+    <h2>🎤 Mock Interview Practice</h2>
+
+    <p>
+        ⏱️ Time Left:
+        <b>
+            <span id="mockTimer">60</span>
+        </b>
+        seconds
+    </p>
+
+    <hr>
+
+    <h3 id="mockQuestion">
+        Interview Question
+    </h3>
+
+    <textarea id="mockAnswer"
+              rows="5"
+              placeholder="Type your answer here..."></textarea>
+
+    <br><br>
+
+    <button onclick="submitMockAnswer()">
+        Submit Answer
+    </button>
+
+    <button onclick="nextMockQuestion()">
+        Next Question
+    </button>
+
+    <p id="mockFeedback"></p>
+
+</section>
+<section id="aiInterviewAssistant"
+         class="card"
+         style="display:none;">
+
+    <h2>🤖 AI Interview Assistant</h2>
+
+    <p>
+        Get AI-based feedback on your interview answer.
+    </p>
+
+    <h3 id="aiInterviewQuestion">
+        Interview Question
+    </h3>
+
+    <textarea id="aiInterviewAnswer"
+              rows="6"
+              placeholder="Type your interview answer here..."></textarea>
+
+    <br><br>
+
+    <button onclick="analyzeAIInterviewAnswer()">
+        🤖 Analyze My Answer
+    </button>
+
+    <hr>
+
+    <div id="aiInterviewResult"></div>
+
+</section>
+</body>
+</html>

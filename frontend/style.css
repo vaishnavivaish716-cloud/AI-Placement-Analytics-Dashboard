@@ -2492,3 +2492,243 @@ body.dark-mode .readiness-breakdown span {
     font-weight: 600 !important;
     white-space: nowrap !important;
 }
+/* =================================
+   ADMIN DASHBOARD FINAL ALIGNMENT
+================================= */
+
+main {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 25px;
+}
+
+main > section {
+    width: 100%;
+    margin: 25px 0;
+}
+
+main > section h2 {
+    margin-bottom: 18px;
+}
+
+/* Admin cards */
+
+.dashboard-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.dashboard-grid .card {
+    width: 100%;
+    min-height: 150px;
+    padding: 22px;
+}
+
+/* Admin forms */
+
+.prediction {
+    width: 100%;
+    max-width: none;
+    margin: 25px 0;
+}
+
+.prediction input,
+.prediction select {
+    margin: 6px 8px 6px 0;
+    min-width: 180px;
+}
+
+.prediction button {
+    margin-top: 6px;
+}
+
+/* Admin tables */
+
+main table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+main th,
+main td {
+    padding: 14px 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Search box */
+
+#studentSearch {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    main {
+        padding: 15px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .prediction input,
+    .prediction select,
+    .prediction button {
+        width: 100%;
+        margin: 6px 0;
+    }
+
+    main table {
+        min-width: 700px;
+    }
+}
+/* ADMIN HEADER ALIGNMENT */
+
+header {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 30px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header p {
+    margin: 5px 0 0;
+}
+
+header button {
+    margin: 0;
+    padding: 10px 20px;
+}
+/* PLACEMENT SUMMARY CARDS */
+
+.placement-summary .dashboard-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.placement-summary .card {
+    min-height: 120px;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.placement-summary .card h3 {
+    margin-bottom: 15px;
+}
+
+.placement-summary .card h2 {
+    margin: 0;
+    font-size: 30px;
+}
+/* ADD STUDENT FORM */
+
+.prediction {
+    box-sizing: border-box;
+}
+
+.prediction input,
+.prediction select {
+    height: 42px;
+    box-sizing: border-box;
+}
+
+.prediction button {
+    height: 42px;
+    padding: 0 22px;
+}
+/* STUDENT MANAGEMENT TABLE */
+
+#adminTable {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+#adminTable th,
+#adminTable td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px 8px;
+}
+
+#adminTable th {
+    font-weight: 600;
+}
+
+#adminTable .action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+/* COMPANY MANAGEMENT TABLE */
+
+#companyTable {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+#companyTable th,
+#companyTable td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px 8px;
+}
+
+#companyTable th {
+    font-weight: 600;
+}
+
+#companyTable button {
+    margin: 2px;
+    padding: 7px 12px;
+}
+/* CAMPUS PLACEMENT SECTIONS */
+
+.campus-section {
+    width: 100%;
+    margin: 30px 0;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.campus-section h2 {
+    margin-bottom: 20px;
+}
+
+.campus-section table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.campus-section th,
+.campus-section td {
+    padding: 13px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.campus-section th {
+    font-weight: 600;
+}

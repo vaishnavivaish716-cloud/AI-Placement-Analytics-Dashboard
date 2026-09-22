@@ -1,11 +1,5 @@
 [
     {
-        "company": "TCS",
-        "role": "Software Developer",
-        "package": 4.2,
-        "studentsPlaced": 120
-    },
-    {
         "company": "Infosys",
         "role": "System Engineer",
         "package": 5.0,
@@ -22,5 +16,19 @@
         "role": "Data analytics",
         "package": "3.3",
         "studentsPlaced": 55
+    },
+    {
+        "company": "Infosys",
+        "role": "Developer",
+        "package": "5",
+        "studentsPlaced": 0,
+        "campusType": "On-Campus"
+    },
+    {
+        "company": "TCS",
+        "role": "Software Developer",
+        "package": "4.5",
+        "studentsPlaced": 0,
+        "campusType": "Off-Campus"
     }
 ]
